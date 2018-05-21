@@ -10,6 +10,7 @@ namespace Ouvidoria.Models
     [Table("Evento")]
     public class Evento
     {
+        [Key]
         public int id { get; set; }
 
         [Required]
@@ -19,9 +20,11 @@ namespace Ouvidoria.Models
         [Required]
         [MaxLength(4000, ErrorMessage = "Tamanho máximo de 4000 caracteres")]
         public string Descricao { get; set; }
+        
+        [ForeignKey("EventoTipo")]
+        public int idEventoTipo { get; set; }
 
-        [Required]
-        public EventoTipo Tipo { get; set; }
+        public virtual EventoTipo EventoTipo { get; set; }
 
         [ForeignKey("Usuario")]
         public int idUsuario { get; set; }

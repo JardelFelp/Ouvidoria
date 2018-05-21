@@ -10,6 +10,7 @@ namespace Ouvidoria.Models
     [Table("Usuario")]
     public class Usuario
     {
+        [Key]
         public int id { get; set; }
 
         [Required]
@@ -24,15 +25,22 @@ namespace Ouvidoria.Models
         [MaxLength(15, ErrorMessage = "Tamanho máximo de 15 caracteres")]
         public string Telefone { get; set; }
 
-        /*[Required]
+        /*
+         * [Required]
         [MaxLength(20, ErrorMessage = "Tamanho máximo de 20 caracteres")]
         [MinLength(6, ErrorMessage = "Tamanho mínimo de 6 caracteres")]
-        public string Senha { get; set; }*/
+        public string Senha { get; set; }
+        */
 
-        public Cursos Curso { get; set; }
+        [ForeignKey("Curso")]
+        public int idCurso { get; set; }
 
-        [Required]
-        public UsuarioPerfil Perfil { get; set; }
+        public virtual Curso Curso { get; set; }
+
+        [ForeignKey("UsuarioPerfil")]
+        public int idUsuarioPerfil { get; set; }
+        
+        public virtual UsuarioPerfil UsuarioPerfil { get; set; }
 
     }
 }

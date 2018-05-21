@@ -17,7 +17,8 @@ namespace Ouvidoria.Controllers
         // GET: Usuarios
         public ActionResult Index()
         {
-            return View(db.Usuario.ToList());
+            var usuario = db.Usuario.Include(u => u.Curso).Include(u => u.UsuarioPerfil);
+            return View(usuario.ToList());
         }
 
         // GET: Usuarios/Details/5
@@ -38,6 +39,8 @@ namespace Ouvidoria.Controllers
         // GET: Usuarios/Create
         public ActionResult Create()
         {
+            ViewBag.idCurso = new SelectList(db.Curso, "id", "Nome");
+            ViewBag.idUsuarioPerfil = new SelectList(db.UsuarioPerfil, "id", "Perfil");
             return View();
         }
 
@@ -46,7 +49,7 @@ namespace Ouvidoria.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Nome,Email,Telefone,Curso,Perfil")] Usuario usuario)
+        public ActionResult Create([Bind(Include = "id,Nome,Email,Telefone,idCurso,idUsuarioPerfil")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +58,8 @@ namespace Ouvidoria.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.idCurso = new SelectList(db.Curso, "id", "Nome", usuario.idCurso);
+            ViewBag.idUsuarioPerfil = new SelectList(db.UsuarioPerfil, "id", "Perfil", usuario.idUsuarioPerfil);
             return View(usuario);
         }
 
@@ -70,6 +75,8 @@ namespace Ouvidoria.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.idCurso = new SelectList(db.Curso, "id", "Nome", usuario.idCurso);
+            ViewBag.idUsuarioPerfil = new SelectList(db.UsuarioPerfil, "id", "Perfil", usuario.idUsuarioPerfil);
             return View(usuario);
         }
 
@@ -78,7 +85,7 @@ namespace Ouvidoria.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,Nome,Email,Telefone,Curso,Perfil")] Usuario usuario)
+        public ActionResult Edit([Bind(Include = "id,Nome,Email,Telefone,idCurso,idUsuarioPerfil")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +93,8 @@ namespace Ouvidoria.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.idCurso = new SelectList(db.Curso, "id", "Nome", usuario.idCurso);
+            ViewBag.idUsuarioPerfil = new SelectList(db.UsuarioPerfil, "id", "Perfil", usuario.idUsuarioPerfil);
             return View(usuario);
         }
 

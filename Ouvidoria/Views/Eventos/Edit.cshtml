@@ -33,10 +33,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Tipo, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.idEventoTipo, "idEventoTipo", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Tipo)
-                @Html.ValidationMessageFor(model => model.Tipo)
+                @Html.DropDownList("idEventoTipo", String.Empty)
+                @Html.ValidationMessageFor(model => model.idEventoTipo)
             </div>
         </div>
 

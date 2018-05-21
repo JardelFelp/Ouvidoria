@@ -14,14 +14,14 @@ namespace Ouvidoria.Controllers
     {
         private OuvidoriaContext db = new OuvidoriaContext();
 
-        // GET: Eventos
+        // GET: Eventoes
         public ActionResult Index()
         {
-            var evento = db.Evento.Include(e => e.Usuario);
+            var evento = db.Evento.Include(e => e.EventoTipo).Include(e => e.Usuario);
             return View(evento.ToList());
         }
 
-        // GET: Eventos/Details/5
+        // GET: Eventoes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,19 +36,20 @@ namespace Ouvidoria.Controllers
             return View(evento);
         }
 
-        // GET: Eventos/Create
+        // GET: Eventoes/Create
         public ActionResult Create()
         {
+            ViewBag.idEventoTipo = new SelectList(db.EventoTipo, "id", "Tipo");
             ViewBag.idUsuario = new SelectList(db.Usuario, "id", "Nome");
             return View();
         }
 
-        // POST: Eventos/Create
+        // POST: Eventoes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Titulo,Descricao,Tipo,idUsuario")] Evento evento)
+        public ActionResult Create([Bind(Include = "id,Titulo,Descricao,idEventoTipo,idUsuario")] Evento evento)
         {
             if (ModelState.IsValid)
             {
@@ -57,11 +58,12 @@ namespace Ouvidoria.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.idEventoTipo = new SelectList(db.EventoTipo, "id", "Tipo", evento.idEventoTipo);
             ViewBag.idUsuario = new SelectList(db.Usuario, "id", "Nome", evento.idUsuario);
             return View(evento);
         }
 
-        // GET: Eventos/Edit/5
+        // GET: Eventoes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,16 +75,17 @@ namespace Ouvidoria.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.idEventoTipo = new SelectList(db.EventoTipo, "id", "Tipo", evento.idEventoTipo);
             ViewBag.idUsuario = new SelectList(db.Usuario, "id", "Nome", evento.idUsuario);
             return View(evento);
         }
 
-        // POST: Eventos/Edit/5
+        // POST: Eventoes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,Titulo,Descricao,Tipo,idUsuario")] Evento evento)
+        public ActionResult Edit([Bind(Include = "id,Titulo,Descricao,idEventoTipo,idUsuario")] Evento evento)
         {
             if (ModelState.IsValid)
             {
@@ -90,11 +93,12 @@ namespace Ouvidoria.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.idEventoTipo = new SelectList(db.EventoTipo, "id", "Tipo", evento.idEventoTipo);
             ViewBag.idUsuario = new SelectList(db.Usuario, "id", "Nome", evento.idUsuario);
             return View(evento);
         }
 
-        // GET: Eventos/Delete/5
+        // GET: Eventoes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -109,7 +113,7 @@ namespace Ouvidoria.Controllers
             return View(evento);
         }
 
-        // POST: Eventos/Delete/5
+        // POST: Eventoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

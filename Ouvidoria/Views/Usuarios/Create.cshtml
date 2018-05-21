@@ -39,18 +39,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Curso, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Curso</label> 
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Curso)
-                @Html.ValidationMessageFor(model => model.Curso)
+                @Html.DropDownList("idCurso", String.Empty)
+                @Html.ValidationMessageFor(model => model.idCurso)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Perfil, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Perfil</label> 
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Perfil)
-                @Html.ValidationMessageFor(model => model.Perfil)
+                @Html.DropDownList("idUsuarioPerfil", String.Empty)
+                @Html.ValidationMessageFor(model => model.idUsuarioPerfil)
             </div>
         </div>
 

@@ -168,7 +168,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Cursos.cs" />
+    <Compile Include="Models\Curso.cs" />
     <Compile Include="Models\Evento.cs" />
     <Compile Include="Models\EventoTipo.cs" />
     <Compile Include="Models\IdentityModels.cs" />
