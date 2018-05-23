@@ -4,64 +4,61 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Usuario</h4>
-        <hr />
+        <div class="col-xs-12">
+            <h4>Novo Usuario</h4>
+            <hr />
+        </div>
         @Html.ValidationSummary(true)
         <div class="form-group">
-            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nome)
+            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "col-md-offset-1 control-label col-md-1" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(model => model.Nome, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Nome)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email)
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "col-md-offset-1 control-label col-md-1" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(model => model.Email, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Email)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Telefone)
+            @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "col-md-offset-1 control-label col-md-1" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(model => model.Telefone, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Telefone)
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2">Curso</label> 
-            <div class="col-md-10">
-                @Html.DropDownList("idCurso", String.Empty)
+            <label class="control-label col-md-1 col-md-offset-1">Curso</label> 
+            <div class="col-md-9">
+                @Html.DropDownList("idCurso", (IEnumerable<SelectListItem>)ViewBag.PriorityID, new { @class = "form-control btn btn-default" })
                 @Html.ValidationMessageFor(model => model.idCurso)
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2">Perfil</label> 
-            <div class="col-md-10">
-                @Html.DropDownList("idUsuarioPerfil", String.Empty)
+            <label class="control-label col-md-1 col-md-offset-1">Perfíl</label> 
+            <div class="col-md-9">
+                @Html.DropDownList("idUsuarioPerfil", (IEnumerable<SelectListItem>)ViewBag.PriorityID, new { @class = "form-control btn btn-default" })
                 @Html.ValidationMessageFor(model => model.idUsuarioPerfil)
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="col-md-offset-1 col-md-10" style="text-align: right">
+                <button class="btn btn-default">@Html.ActionLink("Voltar", "Index")</button>
+                <input type="submit" value="Salvar Usuário" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
