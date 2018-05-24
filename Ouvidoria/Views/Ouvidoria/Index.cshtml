@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Ouvidoria.Models.Evento
+@{
     ViewBag.Title = "Ouvidoria";
 }
 <div class="content-end">
@@ -42,10 +43,10 @@
             </div>
         </div>
 
-        <div class="col-md-9 col-sm-8 content-cad" id="divReclamacao" hidden="hidden">
+        <div class="col-md-9 col-sm-8 content-cad" id="divFormulario" hidden="hidden">
             <h1 class="page-header">
                 Ouvidoria
-                <small>Registre abaixo a sua reclamação</small>
+                <small id="smTipo">Registre abaixo a sua reclamação</small>
             </h1>
             <ol class="breadcrumb">
                 <li>
@@ -53,175 +54,52 @@
                 </li>
                 <li class="active" id="liPagina">Reclamações</li>
             </ol>
-            <div class="form-horizontal">
-                <form>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true)
                     <div class="form-group">
-                        <label class="control-label col-md-2">Título</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" />
+                        @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.Titulo, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Titulo)
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <label class="control-label col-md-2">Descrição</label>
-                        <div class="col-md-10">
-                            <textarea rows="4" class="form-control"></textarea>
+                        @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-9">
+                            @Html.TextAreaFor(model => model.Descricao, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Descricao)
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Área</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" />
+
+                    <div class="form-group" hidden="hidden">
+                        @Html.LabelFor(model => model.idEventoTipo, "Tipo de Evento", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-9">
+                            @Html.DropDownList("idEventoTipo", (IEnumerable<SelectListItem>)ViewBag.PriorityID, new { @class = "form-control btn btn-default" })
+                            @Html.ValidationMessageFor(model => model.idEventoTipo)
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <label class="control-label col-md-2">Anônimo</label>
-                        <div class="col-md-10 ">
-                            <input type="checkbox" class="checkbox" />
+                        @Html.LabelFor(model => model.idUsuario, "Usuário", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-9">
+                            @Html.DropDownList("idUsuario", (IEnumerable<SelectListItem>)ViewBag.PriorityID, new { @class = "form-control btn btn-default" })
+                            @Html.ValidationMessageFor(model => model.idUsuario)
                         </div>
                     </div>
-                    <div class="col-md-12 end-button">
-                         <button class="btn btn-primary" onclick="alert('Função ainda não implantada!')">Enviar Reclamação</button>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-1 col-md-10" style="text-align: right">
+                            <button class="btn btn-default">@Html.ActionLink("Voltar", "Index")</button>
+                            <input type="submit" value="Salvar Evento" class="btn btn-primary" id="btnSalvar"/>
+                        </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            }
         </div>
-
-
-        <div class="col-md-9 col-sm-8 content-cad" id="divSugestao" hidden="hidden">
-            <h1 class="page-header">
-                Ouvidoria
-                <small>Deixe abaixo a sua sugestão</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li>
-                    @Html.ActionLink("Ouvidoria", "Index", "Ouvidoria")
-                </li>
-                <li class="active" id="liPagina">Sugestões</li>
-            </ol>
-            <div class="form-horizontal">
-                <form>
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Título</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Descrição</label>
-                        <div class="col-md-10">
-                            <textarea rows="4" class="form-control"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Área</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Anônimo</label>
-                        <div class="col-md-10 ">
-                            <input type="checkbox" class="checkbox" />
-                        </div>
-                    </div>
-                    <div class="col-md-12 end-button">
-                        <button class="btn btn-primary" onclick="alert('Função ainda não implantada!')">Enviar Reclamação</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-
-
-        <div class="col-md-9 col-sm-8 content-cad" id="divElogio" hidden="hidden">
-            <h1 class="page-header">
-                Ouvidoria
-                <small>Deixe abaixo o seu elogio</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li>
-                    @Html.ActionLink("Ouvidoria", "Index", "Ouvidoria")
-                </li>
-                <li class="active" id="liPagina">Elogios</li>
-            </ol>
-            <div class="form-horizontal">
-                <form>
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Título</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Descrição</label>
-                        <div class="col-md-10">
-                            <textarea rows="4" class="form-control"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Área</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Anônimo</label>
-                        <div class="col-md-10 ">
-                            <input type="checkbox" class="checkbox" />
-                        </div>
-                    </div>
-                    <div class="col-md-12 end-button">
-                        <button class="btn btn-primary" onclick="alert('Função ainda não implantada!')">Enviar Reclamação</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-
-        <div class="col-md-9 col-sm-8 content-cad" id="divDenuncia" hidden="hidden">
-            <h1 class="page-header">
-                Ouvidoria
-                <small>Registre abaixo a sua denúncia</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li>
-                    @Html.ActionLink("Página Inicial", "Index", "Home")
-                </li>
-                <li class="active" id="liPagina">Denúncia</li>
-            </ol>
-            <div class="form-horizontal">
-                <form>
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Título</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Descrição</label>
-                        <div class="col-md-10">
-                            <textarea rows="4" class="form-control"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Área</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Anônimo</label>
-                        <div class="col-md-10 ">
-                            <input type="checkbox" class="checkbox" />
-                        </div>
-                    </div>
-                    <div class="col-md-12 end-button">
-                        <button class="btn btn-primary" onclick="alert('Função ainda não implantada!')">Enviar Reclamação</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
     </div>
     <!-- /.row -->
 </div>
@@ -238,42 +116,43 @@
     $(document).ready(function () {
         $("#mostraOuvidoria").click(function () {
             $("#divInicial").show();
-            $("#divReclamacao").hide();
-            $("#divSugestao").hide();
-            $("#divElogio").hide();
-            $("#divDenuncia").hide();
+            $("#divFormulario").hide();
         });
 
         $("#mostraReclamacao").click(function () {
             $("#divInicial").hide();
-            $("#divReclamacao").show();
-            $("#divSugestao").hide();
-            $("#divElogio").hide();
-            $("#divDenuncia").hide();
+            $("#divFormulario").show();
+            $("#smTipo").text("Registre abaixo a sua Reclamação");
+            $("#liPágina").text("Reclamação");
+            $("#idEventoTipo").prop('selectedIndex', 2);
+            $("#btnSalvar").val("Salvar Reclamação");
         });
 
         $("#mostraSugestao").click(function () {
             $("#divInicial").hide();
-            $("#divReclamacao").hide();
-            $("#divSugestao").show();
-            $("#divElogio").hide();
-            $("#divDenuncia").hide();
+            $("#divFormulario").show();
+            $("#smTipo").text("Registre abaixo a sua Sugestão");
+            $("#liPágina").text("Sugestão");
+            $("#idEventoTipo").prop('selectedIndex', 3);
+            $("#btnSalvar").val("Salvar Sugestão");
         });
 
         $("#mostraElogio").click(function () {
             $("#divInicial").hide();
-            $("#divReclamacao").hide();
-            $("#divSugestao").hide();
-            $("#divElogio").show();
-            $("#divDenuncia").hide();
+            $("#divFormulario").show();
+            $("#smTipo").text("Registre abaixo o seu Elogio");
+            $("#liPágina").text("Elogio");
+            $("#idEventoTipo").prop('selectedIndex', 1);
+            $("#btnSalvar").val("Salvar Elogio");
         });
 
         $("#mostraDenuncia").click(function () {
             $("#divInicial").hide();
-            $("#divReclamacao").hide();
-            $("#divSugestao").hide();
-            $("#divElogio").hide();
-            $("#divDenuncia").show();
+            $("#divFormulario").show();
+            $("#smTipo").text("Registre abaixo a sua Denúncia");
+            $("#liPágina").text("Denúncia");
+            $("#idEventoTipo").prop('selectedIndex', 0);
+            $("#btnSalvar").val("Salvar Denúncia");
         });
     });
 </script>
