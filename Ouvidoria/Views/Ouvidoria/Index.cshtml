@@ -1,10 +1,10 @@
 ﻿@{
     ViewBag.Title = "Ouvidoria";
 }
-<div class="container">
-    <div class="row">
+<div class="content-end">
+    <div class="row" style="padding-left: 25px; padding-right: 25px; width: calc(100% - 50px)">
         <div class="col-md-3 col-sm-4 sidebar">
-            <ul class="nav nav-stacked nav-pills">
+            <ul class="nav nav-stacked nav-pills" style="background-color: white;">
                 <li>
                     @Html.ActionLink("Página Inicial", "Index", "Home")
                 </li>
@@ -26,10 +26,7 @@
             </ul>
         </div>
 
-
-
-
-        <div class="col-md-9 col-sm-8" id="divInicial">
+        <div class="col-md-9 col-sm-8 content-cad" id="divInicial">
             <h1 class="page-header">
                 Ouvidoria
                 <small>Escolha ao lado a opção desejada</small>
@@ -45,7 +42,7 @@
             </div>
         </div>
 
-        <div class="col-md-9 col-sm-8" id="divReclamacao" hidden="hidden">
+        <div class="col-md-9 col-sm-8 content-cad" id="divReclamacao" hidden="hidden">
             <h1 class="page-header">
                 Ouvidoria
                 <small>Registre abaixo a sua reclamação</small>
@@ -82,17 +79,15 @@
                             <input type="checkbox" class="checkbox" />
                         </div>
                     </div>
-                    <div class="col-md-12 ">
-                        <div style="text-align: center;">
-                            <button class="btn btn-primary" onclick="alert('Função ainda não implantada!')">Enviar Reclamação</button>
-                        </div>
+                    <div class="col-md-12 end-button">
+                         <button class="btn btn-primary" onclick="alert('Função ainda não implantada!')">Enviar Reclamação</button>
                     </div>
                 </form>
             </div>
         </div>
 
 
-        <div class="col-md-9 col-sm-8" id="divSugestao" hidden="hidden">
+        <div class="col-md-9 col-sm-8 content-cad" id="divSugestao" hidden="hidden">
             <h1 class="page-header">
                 Ouvidoria
                 <small>Deixe abaixo a sua sugestão</small>
@@ -129,10 +124,8 @@
                             <input type="checkbox" class="checkbox" />
                         </div>
                     </div>
-                    <div class="col-md-12 ">
-                        <div style="text-align: center;">
-                            <button class="btn btn-primary" onclick="alert('Função ainda não implantada!')">Enviar Reclamação</button>
-                        </div>
+                    <div class="col-md-12 end-button">
+                        <button class="btn btn-primary" onclick="alert('Função ainda não implantada!')">Enviar Reclamação</button>
                     </div>
                 </form>
             </div>
@@ -140,7 +133,7 @@
 
 
 
-        <div class="col-md-9 col-sm-8" id="divElogio" hidden="hidden">
+        <div class="col-md-9 col-sm-8 content-cad" id="divElogio" hidden="hidden">
             <h1 class="page-header">
                 Ouvidoria
                 <small>Deixe abaixo o seu elogio</small>
@@ -177,17 +170,15 @@
                             <input type="checkbox" class="checkbox" />
                         </div>
                     </div>
-                    <div class="col-md-12 ">
-                        <div style="text-align: center;">
-                            <button class="btn btn-primary" onclick="alert('Função ainda não implantada!')">Enviar Reclamação</button>
-                        </div>
+                    <div class="col-md-12 end-button">
+                        <button class="btn btn-primary" onclick="alert('Função ainda não implantada!')">Enviar Reclamação</button>
                     </div>
                 </form>
             </div>
         </div>
 
 
-        <div class="col-md-9 col-sm-8" id="divDenuncia" hidden="hidden">
+        <div class="col-md-9 col-sm-8 content-cad" id="divDenuncia" hidden="hidden">
             <h1 class="page-header">
                 Ouvidoria
                 <small>Registre abaixo a sua denúncia</small>
@@ -224,10 +215,8 @@
                             <input type="checkbox" class="checkbox" />
                         </div>
                     </div>
-                    <div class="col-md-12 ">
-                        <div style="text-align: center;">
-                            <button class="btn btn-primary" onclick="alert('Função ainda não implantada!')">Enviar Reclamação</button>
-                        </div>
+                    <div class="col-md-12 end-button">
+                        <button class="btn btn-primary" onclick="alert('Função ainda não implantada!')">Enviar Reclamação</button>
                     </div>
                 </form>
             </div>
