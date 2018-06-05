@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -159,16 +160,20 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Context\ApplicationDataContext.cs" />
-    <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\AdministracaoController.cs" />
+    <Compile Include="Controllers\DepartamentosController.cs" />
+    <Compile Include="Controllers\DepoimentosController.cs" />
     <Compile Include="Controllers\EventosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\OtherController.cs" />
     <Compile Include="Controllers\OuvidoriaController.cs" />
+    <Compile Include="Controllers\PerfisController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Curso.cs" />
+    <Compile Include="Models\Departamento.cs" />
+    <Compile Include="Models\DepartamentoDepoimento.cs" />
     <Compile Include="Models\Evento.cs" />
     <Compile Include="Models\EventoTipo.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -180,6 +185,7 @@
     <Compile Include="ViewModels\AccountViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\app.css" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.css" />
@@ -216,6 +222,22 @@
     <Content Include="Views\Eventos\Details.cshtml" />
     <Content Include="Views\Eventos\Edit.cshtml" />
     <Content Include="Views\Eventos\Index.cshtml" />
+    <Content Include="Views\Departamentos\Create.cshtml" />
+    <Content Include="Views\Departamentos\Delete.cshtml" />
+    <Content Include="Views\Departamentos\Details.cshtml" />
+    <Content Include="Views\Departamentos\Edit.cshtml" />
+    <Content Include="Views\Departamentos\Index.cshtml" />
+    <Content Include="Views\Depoimentos\Create.cshtml" />
+    <Content Include="Views\Depoimentos\Delete.cshtml" />
+    <Content Include="Views\Depoimentos\Details.cshtml" />
+    <Content Include="Views\Depoimentos\Edit.cshtml" />
+    <Content Include="Views\Depoimentos\Index.cshtml" />
+    <Content Include="Views\Administracao\Index.cshtml" />
+    <Content Include="Views\Perfis\Create.cshtml" />
+    <Content Include="Views\Perfis\Delete.cshtml" />
+    <Content Include="Views\Perfis\Details.cshtml" />
+    <Content Include="Views\Perfis\Edit.cshtml" />
+    <Content Include="Views\Perfis\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -234,13 +256,10 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Other\SideBar.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Ouvidoria\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_PartialReclamacao.cshtml" />
+    <Content Include="Views\Shared\_PartialAdmSideBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />

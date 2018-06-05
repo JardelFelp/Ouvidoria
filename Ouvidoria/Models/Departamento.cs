@@ -7,10 +7,9 @@ using System.Web;
 
 namespace Ouvidoria.Models
 {
-    [Table("Curso")]
-    public class Curso
+    [Table("Departamento")]
+    public class Departamento
     {
-        [Key]
         public int id { get; set; }
 
         [Required]

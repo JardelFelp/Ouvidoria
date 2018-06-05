@@ -1,0 +1,59 @@
+﻿@model Ouvidoria.Models.DepartamentoDepoimento
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>DepartamentoDepoimento</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Avaliacao, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Avaliacao)
+                @Html.ValidationMessageFor(model => model.Avaliacao)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Comentario, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Comentario)
+                @Html.ValidationMessageFor(model => model.Comentario)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.idUsuario, "idUsuario", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idUsuario", String.Empty)
+                @Html.ValidationMessageFor(model => model.idUsuario)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.idDepartamento, "idDepartamento", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idDepartamento", String.Empty)
+                @Html.ValidationMessageFor(model => model.idDepartamento)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

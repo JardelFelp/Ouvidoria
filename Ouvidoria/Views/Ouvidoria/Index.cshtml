@@ -2,7 +2,8 @@
 @{
     ViewBag.Title = "Ouvidoria";
 }
-<div class="content-end">
+
+<div class="container-fluid content-end">
     <div class="row" style="padding-left: 25px; padding-right: 25px; width: calc(100% - 50px)">
         <div class="col-md-3 col-sm-4 sidebar">
             <ul class="nav nav-stacked nav-pills" style="background-color: white;">
@@ -94,7 +95,7 @@
                     <div class="form-group">
                         <div class="col-md-offset-1 col-md-10" style="text-align: right">
                             <button class="btn btn-default">@Html.ActionLink("Voltar", "Index")</button>
-                            <input type="submit" value="Salvar Evento" class="btn btn-primary" id="btnSalvar"/>
+                            <input type="submit" value="Salvar Evento" class="btn btn-primary" id="btnSalvar" />
                         </div>
                     </div>
                 </div>
@@ -105,12 +106,6 @@
 </div>
 
 <script src="@Url.Content("/Scripts/jquery-3.3.1.js")"></script>
-<script src="@Url.Content("/Scripts/jquery-3.3.1.intellisense.js")"></script>
-<script src="@Url.Content("/Scripts/jquery-3.3.1.min.js")"></script>
-<script src="@Url.Content("/Scripts/jquery-3.3.1.min.map")"></script>
-<script src="@Url.Content("/Scripts/jquery-3.3.1.slim.js")"></script>
-<script src="@Url.Content("/Scripts/jquery-3.3.1.slim.min.js")"></script>
-<script src="@Url.Content("/Scripts/jquery-3.3.1.slim.min.map")"></script>
 
 <script>
     $(document).ready(function () {
@@ -123,7 +118,7 @@
             $("#divInicial").hide();
             $("#divFormulario").show();
             $("#smTipo").text("Registre abaixo a sua Reclamação");
-            $("#liPágina").text("Reclamação");
+            $(".active").text("Reclamação");
             $("#idEventoTipo").prop('selectedIndex', 2);
             $("#btnSalvar").val("Salvar Reclamação");
         });
@@ -132,7 +127,7 @@
             $("#divInicial").hide();
             $("#divFormulario").show();
             $("#smTipo").text("Registre abaixo a sua Sugestão");
-            $("#liPágina").text("Sugestão");
+            $(".active").text("Sugestão");
             $("#idEventoTipo").prop('selectedIndex', 3);
             $("#btnSalvar").val("Salvar Sugestão");
         });
@@ -141,7 +136,7 @@
             $("#divInicial").hide();
             $("#divFormulario").show();
             $("#smTipo").text("Registre abaixo o seu Elogio");
-            $("#liPágina").text("Elogio");
+            $(".active").text("Elogio");
             $("#idEventoTipo").prop('selectedIndex', 1);
             $("#btnSalvar").val("Salvar Elogio");
         });
@@ -150,7 +145,7 @@
             $("#divInicial").hide();
             $("#divFormulario").show();
             $("#smTipo").text("Registre abaixo a sua Denúncia");
-            $("#liPágina").text("Denúncia");
+            $(".active").text("Denúncia");
             $("#idEventoTipo").prop('selectedIndex', 0);
             $("#btnSalvar").val("Salvar Denúncia");
         });

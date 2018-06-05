@@ -1,0 +1,29 @@
+﻿@using (Html.BeginForm())
+{
+    <div class="col-md-3 col-sm-4 sidebar">
+        <ul class="nav nav-stacked nav-pills" style="background-color: white;">
+            <li>
+                @Html.ActionLink("Página Inicial", "Index", "Home")
+            </li>
+            <li>
+                @Html.ActionLink("Administração", "Index", "Administracao")
+            </li>
+            <li>
+                @Html.ActionLink("Departamentos", "Index", "Departamentos")
+            </li>
+            <li>
+                @Html.ActionLink("Depoimentos", "Index", "Depoimentos")
+            </li>
+            <li>
+                @Html.ActionLink("Eventos", "Index", "Eventos")
+            </li>
+            <li>
+                @Html.ActionLink("Usuários", "Index", "Usuarios")
+            </li>
+            <li>
+                @Html.ActionLink("Perfis de Usuários", "Index", "Perfis")
+            </li>
+        </ul>
+    </div>
+}
+

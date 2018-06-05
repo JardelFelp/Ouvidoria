@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="container-fluid content-end">
+
+    @{Html.RenderPartial("_PartialAdmSideBar"); }
+
+    <div class="col-md-9 col-sm-8 content-cad" id="divInicial">
+        <h1 class="page-header">
+            Administração
+            <small>Escolha ao lado a opção desejada</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("Administração", "Index", "Administracao")
+            </li>
+            <li class="active" id="liPagina">Inicio</li>
+        </ol>
+        <div>
+            <p>Escolha ao lado a opção desejada.</p>
+        </div>
+    </div>
+
+</div>

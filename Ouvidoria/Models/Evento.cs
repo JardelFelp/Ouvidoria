@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace Ouvidoria.Models
 {
     [Table("Evento")]
     public class Evento
     {
+
         [Key]
         public int id { get; set; }
 
@@ -20,7 +17,12 @@ namespace Ouvidoria.Models
         [Required]
         [MaxLength(4000, ErrorMessage = "Tamanho máximo de 4000 caracteres")]
         public string Descricao { get; set; }
-        
+
+        [MaxLength(4000, ErrorMessage = "Tamanho máximo de 4000 caracteres")]
+        public string Resposta { get; set; }
+
+        public bool Respondido { get; set; }
+
         [ForeignKey("EventoTipo")]
         public int idEventoTipo { get; set; }
 

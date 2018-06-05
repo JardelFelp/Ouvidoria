@@ -1,19 +1,14 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@ViewBag.Title</title>
+    <title>Ouvidoria</title>
 
-    <link href="@Url.Content("css/app.css")" rel="stylesheet">
-    <!-- Bootstrap -->
+    <link href="@Url.Content("/css/app.css")" rel="stylesheet">
     <link href="@Url.Content("/css/bootstrap.css")" rel="stylesheet">
     <link href="@Url.Content("/css/modern-business.css")" rel="stylesheet">
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
 
@@ -27,18 +22,13 @@
                     <span class="icon-bar"></span>
                 </button>
                 <img src="https://www.faculdadeam.edu.br/Content/images/amf.png" style="width: 50px;position: absolute;left: 5px;top: 5px;" />
-                <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
                 @Html.ActionLink("Ouvidoria", "Index", new { controller = "Home" }, new { @class = "navbar-brand" })
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li id="sidebarpage">
-                        @Html.ActionLink("Usuarios", "Index", "Usuarios")
-                    </li>
-                    <li id="sidebarpage">
-                        @Html.ActionLink("Eventos", "Index", "Eventos")
+                        @Html.ActionLink("Administração", "Index", "Administracao")
                     </li>
                     <li id="sidebarpage">
                         @Html.ActionLink("Registre sua opinião", "Index", "Ouvidoria")
@@ -51,29 +41,20 @@
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container -->
     </nav>
 
     @RenderBody()
 
     <footer class="content-footer">
-        <div class="row">
-            <p>Ouvidoria - AMF</p>
+        <div class="row" style="margin-right: 0px;">
+            <div class="col-md-3">
+                <p>Ouvidoria - AMF</p>
+            </div>
         </div>
     </footer>
-    <!-- /.container -->
 
     <script src="@Url.Content("/js/bootstrap.js")"></script>
-    <script src="@Url.Content("/js/modern-business.js")"></script>
-    <script src="@Url.Content("/js/bootstrap.js")"></script>
     <script src="@Url.Content("/Scripts/jquery-3.3.1.js")"></script>
-    <script src="@Url.Content("/Scripts/jquery-3.3.1.intellisense.js")"></script>
-    <script src="@Url.Content("/Scripts/jquery-3.3.1.min.js")"></script>
-    <script src="@Url.Content("/Scripts/jquery-3.3.1.min.map")"></script>
-    <script src="@Url.Content("/Scripts/jquery-3.3.1.slim.js")"></script>
-    <script src="@Url.Content("/Scripts/jquery-3.3.1.slim.min.js")"></script>
-    <script src="@Url.Content("/Scripts/jquery-3.3.1.slim.min.map")"></script>
 </body>
 </html>

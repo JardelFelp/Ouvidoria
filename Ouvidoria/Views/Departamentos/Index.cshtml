@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Ouvidoria.Models.Departamento>
+
+<div class="container-fluid content-end">
+
+    @{Html.RenderPartial("_PartialAdmSideBar"); }
+
+    <div class="col-md-9 col-sm-8 content-cad" id="divInicial">
+        <h2>Departamentos</h2>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr class="justify-content">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    </td>
+                </tr>
+            }
+        </table>
+
+        <p class="btn btn-default" style="border-bottom: 50px;">
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    </div>
+</div>
