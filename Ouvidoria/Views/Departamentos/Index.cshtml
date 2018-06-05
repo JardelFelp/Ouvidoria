@@ -6,13 +6,20 @@
 
     <div class="col-md-9 col-sm-8 content-cad" id="divInicial">
         <h2>Departamentos</h2>
+        <hr />
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("Departamentos", "Index", "Departamentos")
+            </li>
+            <li class="active" id="liPagina">Inicio</li>
+        </ol>
         <table class="table table-striped">
             <thead class="thead-dark">
                 <tr class="justify-content">
-                    <th>
+                    <th style="width: 92%;">
                         @Html.DisplayNameFor(model => model.Nome)
                     </th>
-                    <th>Ação</th>
+                    <th></th>
                 </tr>
             </thead>
             @foreach (var item in Model)
@@ -22,16 +29,24 @@
                         @Html.DisplayFor(modelItem => item.Nome)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                        <a href="@Url.Action("Edit", "Departamentos", new { id = item.id })">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </a>
+                        <a href="@Url.Action("Details", "Departamentos", new { id = item.id })">
+                            <i class="glyphicon glyphicon-zoom-in"></i>
+                        </a>
+                        <a href="@Url.Action("Delete", "Departamentos", new { id = item.id })">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </a>
                     </td>
                 </tr>
             }
         </table>
 
-        <p class="btn btn-default" style="border-bottom: 50px;">
-            @Html.ActionLink("Create New", "Create")
-        </p>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="text-align: right">
+                @Html.ActionLink("Novo Departamento", "Create", null, new { @class = "btn btn-primary" })
+            </div>
+        </div>
     </div>
 </div>

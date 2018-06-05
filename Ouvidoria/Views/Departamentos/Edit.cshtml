@@ -6,35 +6,37 @@
 
     <div class="col-md-9 col-sm-8 content-cad" id="divInicial">
 
+        <div class="form-horizontal">
+            <h2>Departamentos</h2>
+            <hr />
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Departamentos", "Index", "Departamentos")
+                </li>
+                <li class="active" id="liPagina">Editar</li>
+            </ol>
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-
-            <div class="form-horizontal">
-                <h4>Departamento</h4>
-                <hr />
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
                 @Html.HiddenFor(model => model.id)
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "col-md-offset-1 control-label col-md-1" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Nome)
+                        @Html.TextBoxFor(model => model.Nome, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Nome)
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Save" class="btn btn-default" />
+                    <div class="col-md-offset-2 col-md-10" style="text-align: right">
+                        @Html.ActionLink("Voltar", "Index", null, new { @class = "action-link btn btn-default" })
+                        <input type="submit" value="Salvar" class="btn btn-primary" />
                     </div>
                 </div>
-            </div>
-        }
-
-        <div>
-            @Html.ActionLink("Back to List", "Index")
+            }
         </div>
     </div>
 </div>
