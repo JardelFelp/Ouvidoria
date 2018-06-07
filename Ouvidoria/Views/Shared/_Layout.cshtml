@@ -37,7 +37,7 @@
                         <a href="#">Login</a>
                     </li>
                     <li id="sidebarpage">
-                        <a href="#">Registrar-se</a>
+                        @Html.ActionLink("Registrar-se", "Cadastrar", "Autenticacao")
                     </li>
                 </ul>
             </div>
@@ -56,5 +56,6 @@
 
     <script src="@Url.Content("/js/bootstrap.js")"></script>
     <script src="@Url.Content("/Scripts/jquery-3.3.1.js")"></script>
+    @RenderSection("scripts", false)
 </body>
 </html>

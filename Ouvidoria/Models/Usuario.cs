@@ -10,19 +10,17 @@ namespace Ouvidoria.Models
         public int id { get; set; }
 
         [Required]
-        [MaxLength(100, ErrorMessage = "Tamanho máximo de 100 caracteres")]
+        [MaxLength(100)]
         public string Nome { get; set; }
 
         [Required]
-        [MaxLength(100, ErrorMessage = "Tamanho máximo de 100 caracteres")]
+        [MaxLength(100)]
         public string Email { get; set; }
-
-        [Required]
-        [MaxLength(15, ErrorMessage = "Tamanho máximo de 15 caracteres")]
+        
+        [MaxLength(15)]
         public string Telefone { get; set; }
 
         [Required]
-        [MaxLength(20, ErrorMessage = "Tamanho máximo de 20 caracteres")]
         [MinLength(6, ErrorMessage = "Tamanho mínimo de 6 caracteres")]
         public string Senha { get; set; }
 
@@ -41,6 +39,7 @@ namespace Ouvidoria.Models
         public Usuario()
         {
             Ativo = true;
+            idUsuarioPerfil = 1;
         }
     }
 }
