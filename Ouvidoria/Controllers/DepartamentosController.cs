@@ -10,11 +10,13 @@ using Ouvidoria.Models;
 
 namespace Ouvidoria.Controllers
 {
+    [Authorize]
     public class DepartamentosController : Controller
     {
         private OuvidoriaContext db = new OuvidoriaContext();
 
         // GET: Departamentoes
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Departamento.ToList());
@@ -36,6 +38,7 @@ namespace Ouvidoria.Controllers
         }
 
         // GET: Departamentoes/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -78,6 +81,7 @@ namespace Ouvidoria.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "id,Nome")] Departamento departamento)
         {
             if (ModelState.IsValid)

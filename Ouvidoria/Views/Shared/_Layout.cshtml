@@ -27,18 +27,32 @@
 
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li id="sidebarpage">
-                        @Html.ActionLink("Administração", "Index", "Administracao")
-                    </li>
-                    <li id="sidebarpage">
-                        @Html.ActionLink("Registre sua opinião", "Index", "Ouvidoria")
-                    </li>
-                    <li id="sidebarpage">
-                        <a href="#">Login</a>
-                    </li>
-                    <li id="sidebarpage">
-                        @Html.ActionLink("Registrar-se", "Cadastrar", "Autenticacao")
-                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li id="sidebarpage">
+                            @Html.ActionLink("Administração", "Index", "Administracao")
+                        </li>
+                        <li id="sidebarpage">
+                            @Html.ActionLink("Registre sua opinião", "Index", "Ouvidoria")
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                @User.Identity.Name<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Sair", "Logout", "Autenticacao")</li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li id="sidebarpage">
+                            @Html.ActionLink("Login", "Login", "Autenticacao")
+                        </li>
+                        <li id="sidebarpage">
+                            @Html.ActionLink("Registrar-se", "Cadastrar", "Autenticacao")
+                        </li>
+                    }
                 </ul>
             </div>
         </div>
@@ -57,5 +71,8 @@
     <script src="@Url.Content("/js/bootstrap.js")"></script>
     <script src="@Url.Content("/Scripts/jquery-3.3.1.js")"></script>
     @RenderSection("scripts", false)
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -4,12 +4,11 @@ using System.Web.Mvc;
 
 namespace Ouvidoria.Controllers
 {
-
-
     public class OuvidoriaController : Controller
     {
         private OuvidoriaContext db = new OuvidoriaContext();
 
+        [Authorize]
         public ActionResult Index()
         {
             ViewBag.idEventoTipo = new SelectList(db.EventoTipo, "id", "Tipo");
@@ -17,6 +16,7 @@ namespace Ouvidoria.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Index([Bind(Include = "id,Titulo,Descricao,idEventoTipo,idUsuario")] Evento evento)

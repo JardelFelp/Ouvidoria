@@ -10,6 +10,7 @@ using Ouvidoria.Models;
 
 namespace Ouvidoria.Controllers
 {
+    [Authorize]
     public class DepoimentosController : Controller
     {
         private OuvidoriaContext db = new OuvidoriaContext();

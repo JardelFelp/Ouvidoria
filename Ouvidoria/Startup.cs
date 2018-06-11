@@ -14,7 +14,7 @@ namespace Ouvidoria
             //Define as opções de atenticação
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
-                AuthenticationType = "ApplocationCookie",
+                AuthenticationType = "ApplicationCookie",
                 LoginPath = new PathString("/Autenticacao/Login")
             });
             //ConfigureAuth(app);

@@ -48,3 +48,7 @@ body {
 .end-button .btn-primary:focus {
     background: #022b53
 }
+
+span{
+    color: red;
+}
