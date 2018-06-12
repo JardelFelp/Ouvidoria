@@ -21,25 +21,35 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img src="https://www.faculdadeam.edu.br/Content/images/amf.png" style="width: 50px;position: absolute;left: 5px;top: 5px;" />
-                @Html.ActionLink("Ouvidoria", "Index", new { controller = "Home" }, new { @class = "navbar-brand" })
+                <a href="https://faculdadeam.edu.br/">
+                    <img src="/img/logoBranca.png" style="width: 50px;position: absolute;left: 5px;top: 5px;" />
+                </a>
+                @Html.ActionLink("Ouvidoria", "Index", new { controller = "Home" }, new { @class = "navbar-brand", id = "navBrand" })
             </div>
 
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav navbar-right">
+
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li id="sidebarpage">
-                            @Html.ActionLink("Administração", "Index", "Administracao")
-                        </li>
-                        <li id="sidebarpage">
-                            @Html.ActionLink("Registre sua opinião", "Index", "Ouvidoria")
-                        </li>
+                        if (User.IsInRole("2"))
+                        {
+                            <li id="sidebarpage">
+                                @Html.ActionLink("Administração", "Index", "Administracao")
+                            </li>
+                        }
+                        if (User.IsInRole("1"))
+                        {
+                            <li id="sidebarpage">
+                                @Html.ActionLink("Registre sua opinião", "Index", "Ouvidoria")
+                            </li>
+                        }
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                @User.Identity.Name<span class="caret"></span>
+                                @User.Identity.Name <span class="caret" style="color: white;"></span>
                             </a>
                             <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Alterar senha", "AlterarSenha", "PainelUsuario")</li>
                                 <li>@Html.ActionLink("Sair", "Logout", "Autenticacao")</li>
                             </ul>
                         </li>

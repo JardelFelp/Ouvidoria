@@ -168,11 +168,22 @@
     <Compile Include="Controllers\EventosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OuvidoriaController.cs" />
-    <Compile Include="Controllers\PerfisController.cs" />
+    <Compile Include="Controllers\PainelUsuarioController.cs" />
+    <Compile Include="Controllers\PerfisUsuariosController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Filters\AutorizacaoFiltro.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806071914547_InitialCreate.cs" />
+    <Compile Include="Migrations\201806071914547_InitialCreate.Designer.cs">
+      <DependentUpon>201806071914547_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806121741599_idCurso.cs" />
+    <Compile Include="Migrations\201806121741599_idCurso.Designer.cs">
+      <DependentUpon>201806121741599_idCurso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Curso.cs" />
     <Compile Include="Models\Departamento.cs" />
     <Compile Include="Models\DepartamentoDepoimento.cs" />
@@ -185,6 +196,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\Hash.cs" />
+    <Compile Include="ViewModels\AlterarSenhaViewModel.cs" />
     <Compile Include="ViewModels\CadastroUsuarioViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
   </ItemGroup>
@@ -198,6 +210,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="img\logoBranca.png" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -242,11 +255,11 @@
     <Content Include="Views\Depoimentos\Edit.cshtml" />
     <Content Include="Views\Depoimentos\Index.cshtml" />
     <Content Include="Views\Administracao\Index.cshtml" />
-    <Content Include="Views\Perfis\Create.cshtml" />
-    <Content Include="Views\Perfis\Delete.cshtml" />
-    <Content Include="Views\Perfis\Details.cshtml" />
-    <Content Include="Views\Perfis\Edit.cshtml" />
-    <Content Include="Views\Perfis\Index.cshtml" />
+    <Content Include="Views\PerfisUsuarios\Create.cshtml" />
+    <Content Include="Views\PerfisUsuarios\Delete.cshtml" />
+    <Content Include="Views\PerfisUsuarios\Details.cshtml" />
+    <Content Include="Views\PerfisUsuarios\Edit.cshtml" />
+    <Content Include="Views\PerfisUsuarios\Index.cshtml" />
     <Content Include="Views\Cursos\Create.cshtml" />
     <Content Include="Views\Cursos\Delete.cshtml" />
     <Content Include="Views\Cursos\Details.cshtml" />
@@ -254,6 +267,7 @@
     <Content Include="Views\Cursos\Index.cshtml" />
     <Content Include="Views\Autenticacao\Cadastrar.cshtml" />
     <Content Include="Views\Autenticacao\Login.cshtml" />
+    <Content Include="Views\PainelUsuario\AlterarSenha.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -282,6 +296,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201806071914547_InitialCreate.resx">
+      <DependentUpon>201806071914547_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806121741599_idCurso.resx">
+      <DependentUpon>201806121741599_idCurso.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

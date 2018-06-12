@@ -11,7 +11,7 @@ using Ouvidoria.Models;
 namespace Ouvidoria.Controllers
 {
     [Authorize]
-    public class PerfisController : Controller
+    public class PerfisUsuariosController : Controller
     {
         private OuvidoriaContext db = new OuvidoriaContext();
 

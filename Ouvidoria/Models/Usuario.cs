@@ -16,7 +16,7 @@ namespace Ouvidoria.Models
         [Required]
         [MaxLength(100)]
         public string Email { get; set; }
-        
+
         [MaxLength(15)]
         public string Telefone { get; set; }
 
@@ -27,7 +27,7 @@ namespace Ouvidoria.Models
         public bool Ativo { get; set; }
 
         [ForeignKey("Curso")]
-        public int idCurso { get; set; }
+        public int? idCurso { get; set; }
 
         public virtual Curso Curso { get; set; }
 
@@ -40,6 +40,17 @@ namespace Ouvidoria.Models
         {
             Ativo = true;
             idUsuarioPerfil = 1;
+        }
+
+        public Usuario(string nome, string email, string telefone, string senha)
+        {
+            Nome = nome;
+            Email = email;
+            Telefone = telefone;
+            Senha = senha;
+            Ativo = true;
+            idUsuarioPerfil = 2;
+            idCurso = null;
         }
     }
 }

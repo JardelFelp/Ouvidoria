@@ -15,5 +15,14 @@ namespace Ouvidoria.Models
 
         [Required]
         public string Perfil { get; set; }
+
+        public UsuarioPerfil()
+        {
+        }
+
+        public UsuarioPerfil(string perfil)
+        {
+            Perfil = perfil;
+        }
     }
 }

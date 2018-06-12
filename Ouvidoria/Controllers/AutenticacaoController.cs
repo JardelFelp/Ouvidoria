@@ -16,6 +16,17 @@ namespace Ouvidoria.Controllers
         // GET: Autenticacao
         public ActionResult Cadastrar()
         {
+            var perfis = new SelectList(db.UsuarioPerfil, "id", "Perfil");
+            if (!perfis.Any())
+            {
+                UsuarioPerfil usuario = new UsuarioPerfil("Usuario");
+                UsuarioPerfil administrador = new UsuarioPerfil("Administrador");
+                Usuario admin = new Usuario("Admin", "ouvidoria@faculdadeam.edu.br", "(55) 3289-1139", "admin");
+                db.UsuarioPerfil.Add(usuario);
+                db.UsuarioPerfil.Add(administrador);
+                db.Usuario.Add(admin);
+                db.SaveChanges();
+            }
             ViewBag.idCurso = new SelectList(db.Curso, "id", "Nome");
             return View();
         }
@@ -48,10 +59,12 @@ namespace Ouvidoria.Controllers
 
             db.Usuario.Add(novoUsuario);
             db.SaveChanges();
-            
-            return RedirectToAction("Index", "Home");
+
+            TempData["Mensagem"] = "Cadastro realizado com sucesso. Por favor, efetue o login.";
+
+            return RedirectToAction("Login");
         }
-        
+
         public ActionResult Login(string ReturnUrl)
         {
             var viewModel = new LoginViewModel
@@ -77,7 +90,8 @@ namespace Ouvidoria.Controllers
             var identity = new ClaimsIdentity(new[]
             {
                 new Claim(ClaimTypes.Name, usuario.Nome),
-                new Claim("Email", usuario.Email)
+                new Claim("Email", usuario.Email),
+                new Claim(ClaimTypes.Role, usuario.idUsuarioPerfil.ToString())
             }, "ApplicationCookie");
 
             Request.GetOwinContext().Authentication.SignIn(identity);
@@ -92,9 +106,7 @@ namespace Ouvidoria.Controllers
         {
             Request.GetOwinContext().Authentication.SignOut("ApplicationCookie");
             return RedirectToAction("Index", "Home");
-
         }
-
 
         protected override void Dispose(bool disposing)
         {

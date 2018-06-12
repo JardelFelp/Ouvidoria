@@ -1,6 +1,7 @@
 ﻿using Microsoft.Owin;
 using Owin;
 using Microsoft.Owin.Security.Cookies;
+using System.Web.Helpers;
 
 [assembly: OwinStartupAttribute(typeof(Ouvidoria.Startup))]
 namespace Ouvidoria
@@ -17,6 +18,8 @@ namespace Ouvidoria
                 AuthenticationType = "ApplicationCookie",
                 LoginPath = new PathString("/Autenticacao/Login")
             });
+
+            AntiForgeryConfig.UniqueClaimTypeIdentifier = "Email";
             //ConfigureAuth(app);
         }
     }
