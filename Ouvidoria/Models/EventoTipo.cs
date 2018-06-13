@@ -15,5 +15,13 @@ namespace Ouvidoria.Models
 
         [Required]
         public string Tipo { get; set; }
+
+        public EventoTipo()
+        { }
+
+        public EventoTipo(string curso)
+        {
+            Tipo = curso;
+        }
     }
 }

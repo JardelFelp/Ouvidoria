@@ -16,5 +16,13 @@ namespace Ouvidoria.Models
         [Required]
         [MaxLength(50, ErrorMessage = "Máximo de caracteres: 50")]
         public string Nome { get; set; }
+
+        public Curso()
+        { }
+
+        public Curso(string nome)
+        {
+            Nome = nome;
+        }
     }
 }

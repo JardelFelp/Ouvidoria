@@ -1,4 +1,5 @@
 ﻿using Ouvidoria.Models;
+using Ouvidoria.Service;
 using Ouvidoria.Utils;
 using Ouvidoria.ViewModels;
 using System;
@@ -16,19 +17,10 @@ namespace Ouvidoria.Controllers
         // GET: Autenticacao
         public ActionResult Cadastrar()
         {
-            var perfis = new SelectList(db.UsuarioPerfil, "id", "Perfil");
-            if (!perfis.Any())
-            {
-                UsuarioPerfil usuario = new UsuarioPerfil("Usuario");
-                UsuarioPerfil administrador = new UsuarioPerfil("Administrador");
-                db.UsuarioPerfil.Add(usuario);
-                db.UsuarioPerfil.Add(administrador);
-                db.SaveChanges();
-                string senha = Hash.GerarHashMd5("administrador");
-                Usuario admin = new Usuario("Admin", "ouvidoria@faculdadeam.edu.br", "(55) 3289-1139", senha);
-                db.Usuario.Add(admin);
-                db.SaveChanges();
-            }
+            //Verifica se há perfis e cursos. Caso não haja cadastros, cria alguns registros padrões e também o perfil de admin
+            UsuarioService.VerificaPerfis();
+            CursoService.VerificaCurso();
+
             ViewBag.idCurso = new SelectList(db.Curso, "id", "Nome");
             return View();
         }
@@ -43,24 +35,14 @@ namespace Ouvidoria.Controllers
                 return View(viewModel);
             }
 
-            if (db.Usuario.Count(u => u.Email == viewModel.Email) > 0)
+            if (!UsuarioService.VerificaEmailValido(viewModel.Email))
             {
                 ModelState.AddModelError("Email", "Esse email já está em uso");
                 ViewBag.idCurso = new SelectList(db.Curso, "id", "Nome");
                 return View(viewModel);
             }
 
-            Usuario novoUsuario = new Usuario
-            {
-                Nome = viewModel.Nome,
-                Senha = Hash.GerarHashMd5(viewModel.Senha),
-                Email = viewModel.Email,
-                Telefone = viewModel.Telefone,
-                idCurso = Convert.ToInt32(viewModel.idCurso)
-            };
-
-            db.Usuario.Add(novoUsuario);
-            db.SaveChanges();
+            UsuarioService.CadastraUsuario(viewModel);
 
             TempData["Mensagem"] = "Cadastro realizado com sucesso. Por favor, efetue o login.";
 
@@ -92,6 +74,7 @@ namespace Ouvidoria.Controllers
             var identity = new ClaimsIdentity(new[]
             {
                 new Claim(ClaimTypes.Name, usuario.Nome),
+                new Claim(ClaimTypes.NameIdentifier, usuario.id.ToString()),
                 new Claim("Email", usuario.Email),
                 new Claim(ClaimTypes.Role, usuario.idUsuarioPerfil.ToString())
             }, "ApplicationCookie");
