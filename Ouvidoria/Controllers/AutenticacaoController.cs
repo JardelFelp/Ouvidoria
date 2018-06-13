@@ -21,9 +21,11 @@ namespace Ouvidoria.Controllers
             {
                 UsuarioPerfil usuario = new UsuarioPerfil("Usuario");
                 UsuarioPerfil administrador = new UsuarioPerfil("Administrador");
-                Usuario admin = new Usuario("Admin", "ouvidoria@faculdadeam.edu.br", "(55) 3289-1139", "admin");
                 db.UsuarioPerfil.Add(usuario);
                 db.UsuarioPerfil.Add(administrador);
+                db.SaveChanges();
+                string senha = Hash.GerarHashMd5("administrador");
+                Usuario admin = new Usuario("Admin", "ouvidoria@faculdadeam.edu.br", "(55) 3289-1139", senha);
                 db.Usuario.Add(admin);
                 db.SaveChanges();
             }

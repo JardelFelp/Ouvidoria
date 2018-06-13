@@ -1,28 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using Ouvidoria.Filters;
+using Ouvidoria.Models;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Ouvidoria.Models;
 
 namespace Ouvidoria.Controllers
 {
-    [Authorize]
+    [AutorizacaoFiltro("2")]
     public class DepartamentosController : Controller
     {
         private OuvidoriaContext db = new OuvidoriaContext();
-
-        // GET: Departamentoes
+        
         [Authorize]
         public ActionResult Index()
         {
             return View(db.Departamento.ToList());
         }
-
-        // GET: Departamentoes/Details/5
+        
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,17 +31,13 @@ namespace Ouvidoria.Controllers
             }
             return View(departamento);
         }
-
-        // GET: Departamentoes/Create
+        
         [Authorize]
         public ActionResult Create()
         {
             return View();
         }
-
-        // POST: Departamentoes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,Nome")] Departamento departamento)
@@ -60,8 +51,7 @@ namespace Ouvidoria.Controllers
 
             return View(departamento);
         }
-
-        // GET: Departamentoes/Edit/5
+        
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -75,10 +65,6 @@ namespace Ouvidoria.Controllers
             }
             return View(departamento);
         }
-
-        // POST: Departamentoes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
@@ -92,8 +78,7 @@ namespace Ouvidoria.Controllers
             }
             return View(departamento);
         }
-
-        // GET: Departamentoes/Delete/5
+        
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,8 +92,7 @@ namespace Ouvidoria.Controllers
             }
             return View(departamento);
         }
-
-        // POST: Departamentoes/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

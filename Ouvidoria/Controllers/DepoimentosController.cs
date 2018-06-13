@@ -1,28 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using Ouvidoria.Filters;
+using Ouvidoria.Models;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Ouvidoria.Models;
 
 namespace Ouvidoria.Controllers
 {
-    [Authorize]
+    [AutorizacaoFiltro("2")]
     public class DepoimentosController : Controller
     {
         private OuvidoriaContext db = new OuvidoriaContext();
-
-        // GET: Depoimentos
+        
         public ActionResult Index()
         {
             var departamentoDepoimento = db.DepartamentoDepoimento.Include(d => d.Departamento).Include(d => d.Usuario);
             return View(departamentoDepoimento.ToList());
         }
-
-        // GET: Depoimentos/Details/5
+        
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,18 +31,14 @@ namespace Ouvidoria.Controllers
             }
             return View(departamentoDepoimento);
         }
-
-        // GET: Depoimentos/Create
+        
         public ActionResult Create()
         {
             ViewBag.idDepartamento = new SelectList(db.Departamento, "id", "Nome");
             ViewBag.idUsuario = new SelectList(db.Usuario, "id", "Nome");
             return View();
         }
-
-        // POST: Depoimentos/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,Avaliacao,Comentario,idUsuario,idDepartamento")] DepartamentoDepoimento departamentoDepoimento)
@@ -63,8 +54,7 @@ namespace Ouvidoria.Controllers
             ViewBag.idUsuario = new SelectList(db.Usuario, "id", "Nome", departamentoDepoimento.idUsuario);
             return View(departamentoDepoimento);
         }
-
-        // GET: Depoimentos/Edit/5
+        
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,10 +70,7 @@ namespace Ouvidoria.Controllers
             ViewBag.idUsuario = new SelectList(db.Usuario, "id", "Nome", departamentoDepoimento.idUsuario);
             return View(departamentoDepoimento);
         }
-
-        // POST: Depoimentos/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,Avaliacao,Comentario,idUsuario,idDepartamento")] DepartamentoDepoimento departamentoDepoimento)
@@ -98,8 +85,7 @@ namespace Ouvidoria.Controllers
             ViewBag.idUsuario = new SelectList(db.Usuario, "id", "Nome", departamentoDepoimento.idUsuario);
             return View(departamentoDepoimento);
         }
-
-        // GET: Depoimentos/Delete/5
+        
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,8 +99,7 @@ namespace Ouvidoria.Controllers
             }
             return View(departamentoDepoimento);
         }
-
-        // POST: Depoimentos/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

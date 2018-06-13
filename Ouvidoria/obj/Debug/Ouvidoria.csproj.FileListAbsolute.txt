@@ -223,3 +223,6 @@ C:\Users\rhuan.drescher\Desktop\Faculdade\Ouvidoria\Ouvidoria\Ouvidoria\obj\Debu
 C:\Users\rhuan.drescher\Desktop\Faculdade\Ouvidoria\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.Migrations.InitialCreate.resources
 C:\Users\rhuan.drescher\Desktop\Faculdade\Ouvidoria\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.csproj.GenerateResource.Cache
 C:\Users\rhuan.drescher\Desktop\Faculdade\Ouvidoria\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.Migrations.idCurso.resources
+C:\Users\Rhuan\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.Migrations.InitialCreate.resources
+C:\Users\Rhuan\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.Migrations.idCurso.resources
+C:\Users\Rhuan\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.csproj.GenerateResource.Cache

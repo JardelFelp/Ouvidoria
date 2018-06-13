@@ -1,9 +1,12 @@
-﻿using Ouvidoria.Models;
+﻿using Ouvidoria.Filters;
+using Ouvidoria.Models;
 using System.Web.Mvc;
 
 
 namespace Ouvidoria.Controllers
 {
+
+    [AutorizacaoFiltro("1")]
     public class OuvidoriaController : Controller
     {
         private OuvidoriaContext db = new OuvidoriaContext();
