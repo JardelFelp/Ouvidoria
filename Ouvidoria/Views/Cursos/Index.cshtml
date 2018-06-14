@@ -4,30 +4,57 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="container-fluid content-end">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th></th>
-    </tr>
+    @{Html.RenderPartial("_PartialAdmSideBar"); }
+    <div class="content-sides">
+        <div class="col-md-9 col-sm-8 content-cad" id="divInicial">
+            <h2>Departamentos</h2>
+            <hr />
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Departamentos", "Index", "Departamentos")
+                </li>
+                <li class="active" id="liPagina">Inicio</li>
+            </ol>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <table class="table table-striped">
+                <thead>
+                    <tr class="the">
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nome)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Cursos", new { id = item.id })">
+                                <i class="glyphicon glyphicon-pencil" style="color: black"></i>
+                            </a>
+                            <a href="@Url.Action("Details", "Cursos", new { id = item.id })">
+                                <i class="glyphicon glyphicon-zoom-in"></i>
+                            </a>
+                            <a href="@Url.Action("Delete", "Cursos", new { id = item.id })">
+                                <i class="glyphicon glyphicon-remove" style="color: red;"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
 
-</table>
+
+            </table>
+        </div>
+    </div>
+</div>
+

@@ -59,8 +59,14 @@ body {
     background: #022b53
 }
 
-
-
 span{
     color: red;
+}
+
+.login {
+    height: 100vh;
+} 
+
+.login h2 {
+    text-align: center;
 }

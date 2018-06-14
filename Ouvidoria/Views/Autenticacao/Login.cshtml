@@ -4,7 +4,6 @@
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
 
 @if (TempData["Mensagem"] != null)
 {
@@ -17,29 +16,32 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.UrlRetorno)
+    <div class="form-horizontal login content-end"> 
+        <div class="row">
+            <div class="col-xs-4 col-md-offset-4 content-cad">
+                <div class="form-group col-xs-12">
+                    <img src="https://faculdadeam.edu.br/Content/images/amf.png" style="max-width: 30%; margin-left: 35%; margin-top: 25px;"/>
+                    <h2>Login</h2>
+                    <hr />
+                    @Html.ValidationSummary(true)
+                    @Html.HiddenFor(model => model.UrlRetorno)
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email)
-                @Html.ValidationMessageFor(model => model.Email)
-            </div>
-        </div>
+                <div class="form-group col-xs-12">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control input-sm", placeholder="Usuário" })
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Senha)
-                @Html.ValidationMessageFor(model => model.Senha)
-            </div>
-        </div>
+                <div class="form-group col-xs-12">
+                    @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label" })
+                    @Html.PasswordFor(model => model.Senha, new { @class = "form-control input-sm", placeholder = "Senha" })
+                    @Html.ValidationMessageFor(model => model.Senha)
+                </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Login" class="btn btn-default" />
+                <div class="form-group col-xs-12">
+                        <input type="submit" value="Login" class="btn btn-primary pull-right" />
+                </div>
             </div>
         </div>
     </div>

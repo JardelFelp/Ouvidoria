@@ -4,23 +4,40 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Curso</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
+<div class="container-fluid content-end">
 
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
+    @{Html.RenderPartial("_PartialAdmSideBar"); }
 
-    </dl>
+    <div class="col-md-9 col-sm-8 content-cad" id="divInicial">
+
+
+        <h2>Departamentos</h2>
+        <hr />
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("Departamentos", "Index", "Departamentos")
+            </li>
+            <li class="active" id="liPagina">Exibir</li>
+        </ol>
+        <div>
+            <h4>Curso</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Nome)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

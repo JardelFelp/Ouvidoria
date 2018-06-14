@@ -4,34 +4,51 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<div class="container-fluid content-end">
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Curso</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.id)
+    @{Html.RenderPartial("_PartialAdmSideBar"); }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nome)
-                @Html.ValidationMessageFor(model => model.Nome)
-            </div>
-        </div>
+    <div class="col-md-9 col-sm-8 content-cad" id="divInicial">
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+        <div class="form-horizontal">
+            <h2>Departamentos</h2>
+            <hr />
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Departamentos", "Index", "Departamentos")
+                </li>
+                <li class="active" id="liPagina">Editar</li>
+            </ol>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>Curso</h4>
+                    <hr />
+                    @Html.ValidationSummary(true)
+                    @Html.HiddenFor(model => model.id)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Nome)
+                            @Html.ValidationMessageFor(model => model.Nome)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
             </div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
+
