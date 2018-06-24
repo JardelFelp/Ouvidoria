@@ -11,19 +11,16 @@
                     @Html.ActionLink("Página Inicial", "Index", "Home")
                 </li>
                 <li>
-                    <a href="#" id="mostraOuvidoria">Ouvidoria</a>
+                    @Html.ActionLink("Registre seu Feedback", "Feedback", "Ouvidoria")
                 </li>
                 <li>
-                    <a href="#" id="mostraReclamacao">Reclamações</a>
+                    @Html.ActionLink("Feedbacks Registrados", "MeusFeedbacks", "Ouvidoria")
                 </li>
                 <li>
-                    <a href="#" id="mostraSugestao">Sugestões</a>
+                    @Html.ActionLink("Registre seu Depoimento", "Depoimento", "Ouvidoria")
                 </li>
                 <li>
-                    <a href="#" id="mostraElogio">Elogios</a>
-                </li>
-                <li>
-                    <a href="#" id="mostraDenuncia">Denúncias</a>
+                    @Html.ActionLink("Depoimentos Registrados", "MeusDepoimentos", "Ouvidoria")
                 </li>
             </ul>
         </div>
@@ -43,111 +40,5 @@
                 <p>Escolha ao lado a opção desejada.</p>
             </div>
         </div>
-
-        <div class="col-md-9 col-sm-8 content-cad" id="divFormulario" hidden="hidden">
-            <h1 class="page-header">
-                Ouvidoria
-                <small id="smTipo">Registre abaixo a sua reclamação</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li>
-                    @Html.ActionLink("Ouvidoria", "Index", "Ouvidoria")
-                </li>
-                <li class="active" id="liPagina">Reclamações</li>
-            </ol>
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-                <div class="form-horizontal">
-                    @Html.ValidationSummary(true)
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-9">
-                            @Html.TextBoxFor(model => model.Titulo, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Titulo)
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-9">
-                            @Html.TextAreaFor(model => model.Descricao, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Descricao)
-                        </div>
-                    </div>
-
-                    <div class="form-group" hidden="hidden">
-                        @Html.LabelFor(model => model.idEventoTipo, "Tipo de Evento", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-9">
-                            @Html.DropDownList("idEventoTipo", (IEnumerable<SelectListItem>)ViewBag.PriorityID, new { @class = "form-control btn btn-default" })
-                            @Html.ValidationMessageFor(model => model.idEventoTipo)
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.idUsuario, "Usuário", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-9">
-                            @Html.DropDownList("idUsuario", (IEnumerable<SelectListItem>)ViewBag.PriorityID, new { @class = "form-control btn btn-default" })
-                            @Html.ValidationMessageFor(model => model.idUsuario)
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-offset-1 col-md-10" style="text-align: right">
-                            <button class="btn btn-default">@Html.ActionLink("Voltar", "Index")</button>
-                            <input type="submit" value="Salvar Evento" class="btn btn-primary" id="btnSalvar" />
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
     </div>
-    <!-- /.row -->
 </div>
-
-<script src="@Url.Content("/Scripts/jquery-3.3.1.js")"></script>
-
-<script>
-    $(document).ready(function () {
-        $("#mostraOuvidoria").click(function () {
-            $("#divInicial").show();
-            $("#divFormulario").hide();
-        });
-
-        $("#mostraReclamacao").click(function () {
-            $("#divInicial").hide();
-            $("#divFormulario").show();
-            $("#smTipo").text("Registre abaixo a sua Reclamação");
-            $(".active").text("Reclamação");
-            $("#idEventoTipo").prop('selectedIndex', 2);
-            $("#btnSalvar").val("Salvar Reclamação");
-        });
-
-        $("#mostraSugestao").click(function () {
-            $("#divInicial").hide();
-            $("#divFormulario").show();
-            $("#smTipo").text("Registre abaixo a sua Sugestão");
-            $(".active").text("Sugestão");
-            $("#idEventoTipo").prop('selectedIndex', 3);
-            $("#btnSalvar").val("Salvar Sugestão");
-        });
-
-        $("#mostraElogio").click(function () {
-            $("#divInicial").hide();
-            $("#divFormulario").show();
-            $("#smTipo").text("Registre abaixo o seu Elogio");
-            $(".active").text("Elogio");
-            $("#idEventoTipo").prop('selectedIndex', 1);
-            $("#btnSalvar").val("Salvar Elogio");
-        });
-
-        $("#mostraDenuncia").click(function () {
-            $("#divInicial").hide();
-            $("#divFormulario").show();
-            $("#smTipo").text("Registre abaixo a sua Denúncia");
-            $(".active").text("Denúncia");
-            $("#idEventoTipo").prop('selectedIndex', 0);
-            $("#btnSalvar").val("Salvar Denúncia");
-        });
-    });
-</script>

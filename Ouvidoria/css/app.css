@@ -70,3 +70,19 @@ span{
 .login h2 {
     text-align: center;
 }
+
+.estrelas input[type=radio] {
+    display: none;
+}
+
+.estrelas label i.fas:before {
+    color: #FC0;
+}
+
+.estrelas input[type=radio]:checked ~ label i.fas:before {
+    color: #CCC;
+}
+
+td, th{
+    word-wrap: break-word;
+}

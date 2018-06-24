@@ -1,0 +1,127 @@
+﻿@model Ouvidoria.Models.DepartamentoDepoimento
+@{
+    ViewBag.Title = "Ouvidoria";
+}
+
+<div class="container-fluid content-end">
+    <div class="row" style="padding-left: 25px; padding-right: 25px; width: calc(100% - 50px)">
+        <div class="col-md-3 col-sm-4 sidebar">
+            <ul class="nav nav-stacked nav-pills" style="background-color: white;">
+                <li>
+                    @Html.ActionLink("Página Inicial", "Index", "Home")
+                </li>
+                <li>
+                    @Html.ActionLink("Registre seu Feedback", "Feedback", "Ouvidoria")
+                </li>
+                <li>
+                    @Html.ActionLink("Feedbacks Registrados", "MeusFeedbacks", "Ouvidoria")
+                </li>
+                <li>
+                    @Html.ActionLink("Registre seu Depoimento", "Depoimento", "Ouvidoria")
+                </li>
+                <li>
+                    @Html.ActionLink("Depoimentos Registrados", "MeusDepoimentos", "Ouvidoria")
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="col-md-9 col-sm-8 content-cad" id="divFormulario">
+            <h1 class="page-header">
+                Ouvidoria
+                <small id="smTipo">Registre abaixo o seu Feedback</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Ouvidoria", "Index", "Ouvidoria")
+                </li>
+                <li class="active" id="liPagina">Feedback</li>
+            </ol>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true)
+
+                    <div class="form-group">
+                        <label for="idDepartamento" class="control-label col-md-2">Selecione o Departamento</label>
+                        <div class="col-md-9">
+                            @Html.DropDownList("idDepartamento", (IEnumerable<SelectListItem>)ViewBag.PriorityID, new { @class = "form-control btn btn-default" })
+                            @Html.ValidationMessageFor(model => model.idDepartamento)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                            <small>(Opcional)</small>
+                            <label for="Comentario">
+                                Comentário
+                            </label>
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextAreaFor(model => model.Comentario, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Comentario)
+                        </div>
+                    </div>
+
+                    <div class="form-group" hidden="hidden">
+                        @Html.EditorFor(model => model.Avaliacao)
+                    </div>
+
+                    <div class="form-group estrelas">
+                        <label class="control-label col-md-2">Avaliação</label>
+                        <div class="col-md-10 form-control-static">
+                            <input type="radio" id="vazio" name="estrela" value="0" checked />
+                            <label for="estrela_um"><i class="fas fa-star" id="icon_estrela_um"></i></label>
+                            <input type="radio" id="estrela_um" name="estrela" value="1" />
+                            <label for="estrela_dois"><i class="fas fa-star" id="icon_estrela_dois"></i></label>
+                            <input type="radio" id="estrela_dois" name="estrela" value="2" />
+                            <label for="estrela_tres"><i class="fas fa-star" id="icon_estrela_tres"></i></label>
+                            <input type="radio" id="estrela_tres" name="estrela" value="3" />
+                            <label for="estrela_quatro"><i class="fas fa-star" id="icon_estrela_quatro"></i></label>
+                            <input type="radio" id="estrela_quatro" name="estrela" value="4" />
+                            <label for="estrela_cinco"><i class="fas fa-star" id="icon_estrela_cinco"></i></label>
+                            <input type="radio" id="estrela_cinco" name="estrela" value="5" />
+                            @Html.ValidationMessageFor(model => model.Avaliacao)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-9" style="text-align: right">
+                            <button class="btn btn-default">@Html.ActionLink("Voltar", "Index")</button>
+                            <input type="submit" value="Salvar Feedback" class="btn btn-primary" id="btnSalvar" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<script src="@Url.Content("/Scripts/jquery-3.3.1.js")"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#Avaliacao").val(null);
+
+        $("#icon_estrela_um").click(function () {
+            $("#Avaliacao").val(1);
+        });
+
+        $("#icon_estrela_dois").click(function () {
+            $("#Avaliacao").val(2);
+        });
+
+        $("#icon_estrela_tres").click(function () {
+            $("#Avaliacao").val(3);
+        });
+
+        $("#icon_estrela_quatro").click(function () {
+            $("#Avaliacao").val(4);
+        });
+
+        $("#icon_estrela_cinco").click(function () {
+            $("#Avaliacao").val(5);
+        });
+    });
+</script>

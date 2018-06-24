@@ -1,0 +1,44 @@
+﻿@model Ouvidoria.Models.Evento
+
+
+
+<div class="container-fluid content-end">
+    <div class="container">
+
+        <div class="alert alert-danger content-cad" role="alert">
+            <h3 style="color: #b94a48;">Você tem certeza que deseja excluir este depoimento?</h3>
+            <hr />
+
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Titulo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Titulo)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Descricao)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Descricao)
+                </dd>
+            </dl>
+        </div>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                
+                <div class="form-group">
+                    <div class="col-md-12" style="text-align: right">
+                        @Html.ActionLink("Voltar", "MeusDepoimentos", null, new { @class = "action-link btn btn-default" })
+                        <input type="submit" value="Deletar" class="btn btn-danger" />
+                    </div>
+                </div>
+            }
+    </div>
+</div>
+

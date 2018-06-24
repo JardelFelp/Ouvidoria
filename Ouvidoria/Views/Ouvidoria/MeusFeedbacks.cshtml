@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Ouvidoria.Models.DepartamentoDepoimento>
+
+
+<div class="container-fluid content-end">
+    <div class="row" style="padding-left: 25px; padding-right: 25px; width: calc(100% - 50px)">
+        <div class="col-md-3 col-sm-4 sidebar">
+            <ul class="nav nav-stacked nav-pills" style="background-color: white;">
+                <li>
+                    @Html.ActionLink("Página Inicial", "Index", "Home")
+                </li>
+                <li>
+                    @Html.ActionLink("Registre seu Feedback", "Feedback", "Ouvidoria")
+                </li>
+                <li>
+                    @Html.ActionLink("Feedbacks Registrados", "MeusFeedbacks", "Ouvidoria")
+                </li>
+                <li>
+                    @Html.ActionLink("Registre seu Depoimento", "Depoimento", "Ouvidoria")
+                </li>
+                <li>
+                    @Html.ActionLink("Depoimentos Registrados", "MeusDepoimentos", "Ouvidoria")
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="content-sides">
+            <div class="col-md-9 col-sm-8 content-cad" id="divInicial">
+                <h2>Meus Feedbacks</h2>
+                <hr />
+                <ol class="breadcrumb">
+                    <li>
+                        @Html.ActionLink("Ouvidoria", "Index", "Ouvidoria")
+                    </li>
+                    <li class="active" id="liPagina">Meus Feedbacks</li>
+                </ol>
+                <div class="row">
+                    <div style="padding-left: 15px; padding-right:15px;">
+
+                        <table class="table table-striped" role="grid" aria-describedby="example_info" style="width: 100%;table-layout:fixed">
+                            <thead class="thead-dark">
+                                <tr class="justify-content">
+                                    <th style="width: 10%;">Departamento</th>
+                                    <th style="width: 80%;">Comentário</th>
+                                    <th style="width: 10%;">Avaliação</th>
+                                </tr>
+                            </thead>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Departamento.Nome)
+                                    </td>
+                                    <td style="width: 50%;">
+                                        @Html.DisplayFor(modelItem => item.Comentario)
+                                    </td>
+                                    <td>
+                                        @for (var i = item.Avaliacao; i > 0; i--)
+                                        {
+                                            <i class="fas fa-star" style="color: gold;"></i>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10" style="text-align: right">
+                        @Html.ActionLink("Novo Feedback", "Feedback", null, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.row -->
+</div>
