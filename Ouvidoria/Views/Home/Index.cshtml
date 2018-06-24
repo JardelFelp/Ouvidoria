@@ -1,79 +1,82 @@
 ﻿@{
     ViewBag.Title = "Home";
 }
-<div id="myCarousel" class="carousel slide">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
+<div class="content-end">
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-        <div class="item active">
-            <div class="fill" style="background-image:url('../../img/home1.jpg');"></div>
+    <div id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="fill" style="background-image:url('../../img/home1.jpg');"></div>
+            </div>
+            <div class="item">
+                <div class="fill" style="background-image:url('http://www.colatina.es.gov.br/ti/ouvidoria/imagens/ouvidoria.png');"></div>
+            </div>
+            <div class="item">
+                <div class="fill" style="background-image:url('../../img/home3.jpg');"></div>
+            </div>
         </div>
-        <div class="item">
-            <div class="fill" style="background-image:url('http://www.colatina.es.gov.br/ti/ouvidoria/imagens/ouvidoria.png');"></div>
-        </div>
-        <div class="item">
-            <div class="fill" style="background-image:url('../../img/home3.jpg');"></div>
-        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev" style="color: white;"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next" style="color: white;"></span>
+        </a>
     </div>
 
-    <!-- Controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-        <span class="icon-prev" style="color: white;"></span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-        <span class="icon-next" style="color: white;"></span>
-    </a>
-</div>
+    <div class="section">
 
-<div class="section">
+        <div class="container">
 
-    <div class="container">
-
-        <div class="row">
-            <div class="col-lg-3 col-md-3">
-                <h3><i class="fa fa-check-circle"></i> Reclame</h3>
-                <p>Faça aqui uma reclamação daquele professor ou funcionário super legal!</p>
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <h3><i class="fa fa-frown"></i> Reclame</h3>
+                    <p>Faça aqui uma reclamação daquele professor ou funcionário super legal!</p>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <h3><i class="fa fa-lightbulb"></i> Sugestione </h3>
+                    <p>Faça uma sugestão para a instituição!</p>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <h3><i class="fa fa-thumbs-up"></i> Elogie </h3>
+                    <p>Faça um elogio aos lanches da Iara Café!</p>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <h3><i class="fa fa-bullhorn"></i> Denuncie </h3>
+                    <p>Faça aqui suas denúncias de abuso feita por aquele professor que tirou sua nota! </p>
+                </div>
             </div>
-            <div class="col-lg-3 col-md-3">
-                <h3><i class="fa fa-pencil"></i> Sugestione </h3>
-                <p>Faça uma sugestão para a instituição!</p>
-            </div>
-            <div class="col-lg-3 col-md-3">
-                <h3><i class="fa fa-folder-open"></i> Elogie </h3>
-                <p>Faça um elogio aos lanches da Iara Café!</p>
-            </div>
-            <div class="col-lg-3 col-md-3">
-                <h3><i class="fa fa-folder-open"></i> Denuncie </h3>
-                <p>Faça aqui suas denúncias de abuso feita por aquele professor que tirou sua nota! </p>
-            </div>
+            <!-- /.row -->
         </div>
-        <!-- /.row -->
+        <!-- /.container -->
     </div>
-    <!-- /.container -->
-</div>
-<!-- /.section -->
+    <!-- /.section -->
 
-<div class="section-colored text-center">
+    <div class="section-colored text-center">
 
-    <div class="container">
+        <div class="container">
 
-        <div class="row">
-            <div class="col-lg-12">
-                <h2>Ouvidoria AMF</h2>
-                <p>Aqui você interage da melhor maneira com a instituição.</p>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Ouvidoria AMF</h2>
+                    <p>Aqui você interage da melhor maneira com a instituição.</p>
+                </div>
             </div>
+            <!-- /.row -->
         </div>
-        <!-- /.row -->
+        <!-- /.container -->
     </div>
-    <!-- /.container -->
-</div>
 
+</div>
 @if (TempData["ErroAutorizacao"] != null)
 {
     <script type="text/javascript">
