@@ -3,39 +3,36 @@
 <div class="container-fluid content-end">
 
     @{Html.RenderPartial("_PartialAdmSideBar"); }
+    <div class="content-sides">
 
-    <div class="col-md-9 col-sm-8 content-cad" id="divInicial">
-        <h2>Departamentos</h2>
-        <hr />
-        <ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("Departamentos", "Index", "Departamentos")
-            </li>
-            <li class="active" id="liPagina">Excluir</li>
-        </ol>
-        <h3>Você tem certeza que deseja excluir o seguinte Departamento?</h3>
-        <br />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Nome)
-            </dt>
+        <div class="col-md-9 col-sm-8 content-cad" id="divInicial">
+            <h2>Departamentos</h2>
+            <hr />
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Departamentos", "Index", "Departamentos")
+                </li>
+                <li class="active" id="liPagina">Excluir</li>
+            </ol>
+            <div class="col-md-10 col-lg-offset-1">
 
-            <dd>
-                @Html.DisplayFor(model => model.Nome)
-            </dd>
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-danger">Você tem certeza que deseja exlcuir o Departamento abaixo?</li>
+                    <li class="list-group-item">@Html.DisplayNameFor(model => model.Nome): @Html.DisplayFor(model => model.Nome)</li>
+                </ul>
 
-        </dl>
+                @using (Html.BeginForm())
+            {
+                    @Html.AntiForgeryToken()
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10" style="text-align: right">
-                    @Html.ActionLink("Voltar", "Index", null, new { @class = "action-link btn btn-default" })
-                    <input type="submit" value="Excluir" class="btn btn-primary" />
-                </div>
+                    <div class="form-group">
+                        <div class="text-right" style="text-align: right">
+                            @Html.ActionLink("Voltar", "Index", null, new { @class = "action-link btn btn-default" })
+                            <input type="submit" value="Excluir" class="btn btn-danger" />
+                        </div>
+                    </div>
+                }
             </div>
-        }
+        </div>
     </div>
 </div>

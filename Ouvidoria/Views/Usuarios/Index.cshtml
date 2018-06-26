@@ -1,35 +1,41 @@
 ﻿@model IEnumerable<Ouvidoria.Models.Usuario>
 
-@{ViewBag.Title = "Index"; }
-
 <div class="container-fluid content-end">
-    <div class="row">
-        <div class="content-cad col-md-offset-2 col-md-8 col-xs-12">
+    @{Html.RenderPartial("_PartialAdmSideBar"); }
+    <div class="content-sides">
+        <div class="col-md-9 col-sm-8 content-cad">
             <h2>Usuários</h2>
-            <button class="btn btn-default" style="position: absolute;top: 20px;right: 15px;">@Html.ActionLink("Novo Usuário", "Create")</button>
-            <hr/>
-            <h4>Listagem de Usuários</h4>
-            <table class="table">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Curso.Nome)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.UsuarioPerfil.Perfil)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Nome)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Email)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Telefone)
-                    </th>
-                    <th></th>
-                </tr>
-
-                @foreach (var item in Model) {
+            <hr />
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Usuários", "Index", "Usuarios")
+                </li>
+                <li class="active" id="liPagina">Inicio</li>
+            </ol>
+            <table class="table table-striped" role="grid" aria-describedby="example_info" style="width: 100%;table-layout:fixed">
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="width: 11%;">
+                            Curso
+                        </th>
+                        <th style="width: 10%;">
+                            @Html.DisplayNameFor(model => model.UsuarioPerfil.Perfil)
+                        </th>
+                        <th style="width: 27%;">
+                            @Html.DisplayNameFor(model => model.Nome)
+                        </th>
+                        <th style="width: 27%;">
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
+                        <th style="width: 15%;">
+                            @Html.DisplayNameFor(model => model.Telefone)
+                        </th>
+                        <th style="width: 5%;">Ativo</th>
+                        <th style="width: 5%;"></th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.Curso.Nome)
@@ -46,10 +52,23 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Telefone)
                         </td>
+                        <td class="text-center">
+                            @if (item.Ativo == true)
+                            {
+                                <i class="fas fa-thumbs-up" style="color: green;"></i>
+                            }
+                            else
+                            {
+                                <i class="fas fa-thumbs-down" style="color: red;"></i>
+                            }
+                        </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-                            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+                            <a href="@Url.Action("Edit", "Usuarios", new { id = item.id })">
+                                <i class="glyphicon glyphicon-pencil" style="color: black"></i>
+                            </a>
+                            <a href="@Url.Action("Details", "Usuarios", new { id = item.id })">
+                                <i class="glyphicon glyphicon-zoom-in"></i>
+                            </a>
                         </td>
                     </tr>
                 }

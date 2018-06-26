@@ -67,7 +67,13 @@ namespace Ouvidoria.Controllers
 
             if (usuario == null || usuario.Senha != Hash.GerarHashMd5(viewModel.Senha))
             {
-                ModelState.AddModelError("Login", "Login ou senha incorreta");
+                ModelState.AddModelError("Email", "Login ou senha incorreta");
+                return View(viewModel);
+            }
+
+            if(usuario.Ativo == false)
+            {
+                ModelState.AddModelError("Email", "Usuário inativo, favor entrar em contato com algum administrador ou enviar email para ouvidoria@faculdadeam.edu.br");
                 return View(viewModel);
             }
 

@@ -1,35 +1,26 @@
 ﻿@model Ouvidoria.Models.Departamento
 
 <div class="container-fluid content-end">
-
     @{Html.RenderPartial("_PartialAdmSideBar"); }
-
-    <div class="col-md-9 col-sm-8 content-cad" id="divInicial">
-
-
-        <h2>Departamentos</h2>
-        <hr />
-        <ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("Departamentos", "Index", "Departamentos")
-            </li>
-            <li class="active" id="liPagina">Exibir</li>
-        </ol>
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Nome)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Nome)
-            </dd>
-
-        </dl>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10" style="text-align: right">
-                @Html.ActionLink("Voltar", "Index", null, new { @class = "action-link btn btn-default" })
-                @Html.ActionLink("Editar", "Edit", new { id = Model.id }, new { @class = "btn btn-primary" })
+    <div class="content-sides">
+        <div class="col-md-9 col-sm-8 content-cad" id="divInicial">
+            <h2>Departamentos</h2>
+            <hr />
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Departamentos", "Index", "Departamentos")
+                </li>
+                <li class="active" id="liPagina">Detalhes</li>
+            </ol>
+            <div class="col-md-10 col-lg-offset-1">
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-info">Detalhes do Departamento</li>
+                    <li class="list-group-item">@Html.DisplayNameFor(model => model.Nome): @Html.DisplayFor(model => model.Nome)</li>
+                </ul>
+                <div class="text-right">
+                    @Html.ActionLink("Voltar", "Index", null, new { @class = "action-link btn btn-default" })
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.id }, new { @class = "btn btn-primary" })
+                </div>
             </div>
         </div>
     </div>

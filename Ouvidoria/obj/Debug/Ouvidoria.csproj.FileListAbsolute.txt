@@ -290,3 +290,7 @@ C:\Users\Pichau\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\bin\X.PagedList.dll
 C:\Users\Pichau\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\bin\X.PagedList.Mvc.dll
 C:\Users\Pichau\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\bin\X.PagedList.Mvc.Bootstrap4.dll
 C:\Users\Pichau\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\bin\X.PagedList.Mvc.Common.dll
+C:\Users\Rhuan\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\bin\X.PagedList.dll
+C:\Users\Rhuan\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\bin\X.PagedList.Mvc.Bootstrap4.dll
+C:\Users\Rhuan\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\bin\X.PagedList.Mvc.dll
+C:\Users\Rhuan\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\bin\X.PagedList.Mvc.Common.dll

@@ -24,7 +24,11 @@ namespace Ouvidoria.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuario.Find(id);
+            Usuario usuario = db.Usuario
+                              .Include(u => u.Curso)
+                              .Include(u => u.UsuarioPerfil)
+                              .SingleOrDefault(x => x.id == id);
+                              //.Find(id);
             if (usuario == null)
             {
                 return HttpNotFound();
@@ -73,7 +77,7 @@ namespace Ouvidoria.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,Nome,Email,Telefone,idCurso,idUsuarioPerfil")] Usuario usuario)
+        public ActionResult Edit([Bind(Include = "id,Nome,Email,Telefone,Senha, Ativo, idCurso,idUsuarioPerfil")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -84,30 +88,6 @@ namespace Ouvidoria.Controllers
             ViewBag.idCurso = new SelectList(db.Curso, "id", "Nome", usuario.idCurso);
             ViewBag.idUsuarioPerfil = new SelectList(db.UsuarioPerfil, "id", "Perfil", usuario.idUsuarioPerfil);
             return View(usuario);
-        }
-        
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Usuario usuario = db.Usuario.Find(id);
-            if (usuario == null)
-            {
-                return HttpNotFound();
-            }
-            return View(usuario);
-        }
-        
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Usuario usuario = db.Usuario.Find(id);
-            db.Usuario.Remove(usuario);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

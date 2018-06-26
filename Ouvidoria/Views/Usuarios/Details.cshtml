@@ -1,58 +1,46 @@
 ﻿@model Ouvidoria.Models.Usuario
 
-@{
-    ViewBag.Title = "Details";
-}
-
-<h2>Details</h2>
-
-<div>
-    <h4>Usuario</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Curso.Nome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Curso.Nome)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UsuarioPerfil.Perfil)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UsuarioPerfil.Perfil)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Telefone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Telefone)
-        </dd>
-
-    </dl>
+<div class="container-fluid content-end">
+    @{Html.RenderPartial("_PartialAdmSideBar"); }
+    <div class="content-sides">
+        <div class="col-md-9 col-sm-8 content-cad" id="divInicial">
+            <h2>Detalhes do Usuário</h2>
+            <hr />
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Usuários", "Index", "Usuarios")
+                </li>
+                <li class="active" id="liPagina">Detalhes</li>
+            </ol>
+            <div class="col-md-10 col-lg-offset-1">
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-info">Detalhes do Usuário</li>
+                    <li class="list-group-item">
+                        <label class="control-label">@Html.DisplayNameFor(model => model.Nome):</label> 
+                        @Html.DisplayFor(model => model.Nome)
+                    </li>
+                    <li class="list-group-item">
+                        <label class="control-label">Curso: </label>
+                        @Html.DisplayFor(model => model.Curso.Nome)
+                    </li>
+                    <li class="list-group-item">
+                        <label class="control-label">@Html.DisplayNameFor(model => model.UsuarioPerfil.Perfil): </label> 
+                        @Html.DisplayFor(model => model.UsuarioPerfil.Perfil)
+                    </li>
+                    <li class="list-group-item">
+                        <label class="control-label">@Html.DisplayNameFor(model => model.Email): </label>
+                        @Html.DisplayFor(model => model.Email)
+                    </li>
+                    <li class="list-group-item">
+                        <label class="control-label">@Html.DisplayNameFor(model => model.Telefone): </label>
+                        @Html.DisplayFor(model => model.Telefone)
+                    </li>
+                </ul>
+                <div class="text-right">
+                    @Html.ActionLink("Voltar", "Index", null, new { @class = "action-link btn btn-default" })
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.id }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
