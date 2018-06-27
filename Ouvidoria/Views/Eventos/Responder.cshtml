@@ -1,0 +1,76 @@
+﻿@model Ouvidoria.Models.Evento
+
+<div class="container-fluid content-end">
+
+    <div class="row" style="padding-left: 25px; padding-right: 25px; width: calc(100% - 50px)">
+        <div class="container">
+
+            <div class="col-md-9 col-md-offset-2 content-cad">
+                <div class="form-horizontal">
+                    <h1 class="page-header">
+                        Responder Depoimento
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li>
+                            @Html.ActionLink("Eventos", "Index", "Eventos")
+                        </li>
+                        <li class="active" id="liPagina">Responder</li>
+                    </ol>@using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.id)
+                        @Html.HiddenFor(model => model.Titulo)
+                        @Html.HiddenFor(model => model.Descricao)
+                        @Html.HiddenFor(model => model.idEventoTipo)
+                        @Html.HiddenFor(model => model.idUsuario)
+
+                        <div class="form-group">
+                            <label for="Titulo" class="control-label col-md-2">Título</label>
+                            <div class="col-md-9">
+                                @Html.DisplayFor(model => model.Titulo)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Descricao" class="control-label col-md-2">Descrição</label>
+                            <div class="col-md-9">
+                                @Html.DisplayFor(model => model.Descricao)
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="idEventoTipo" class="control-label col-md-2">Tipo do depoimento</label>
+                            <div class="col-md-9">
+                                @Html.DisplayFor(model => model.EventoTipo.Tipo)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="idUsuario" class="control-label col-md-2">Usuário</label>
+                            <div class="col-md-9">
+                                @Html.DisplayFor(model => model.Usuario.Nome)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Resposta, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Resposta, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Resposta, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-1 col-md-10 text-right">
+                                <button class="btn btn-default">@Html.ActionLink("Voltar", "Index")</button>
+                                <input type="submit" value="Salvar Resposta" class="btn btn-primary" id="btnSalvar" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

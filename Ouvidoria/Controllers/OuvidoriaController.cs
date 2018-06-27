@@ -82,21 +82,24 @@ namespace Ouvidoria.Controllers
                         .ToList()
                         .Where(d => d.idUsuario == Convert.ToInt32(User.Identity.GetUserId())));
         }
+        
 
         public ActionResult EditarDepoimento(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("MeusDepoimentos");
             }
             Evento evento = db.Evento.Find(id);
-            if (evento == null)
+            if (evento == null || evento.idUsuario != Convert.ToInt32(User.Identity.GetUserId()))
             {
-                return HttpNotFound();
+                TempData["Error"] = "Depoimento nao encontrado";
+                return RedirectToAction("MeusDepoimentos");
             }
-            if (evento.idUsuario != Convert.ToInt32(User.Identity.GetUserId()) || evento.Respondido == true)
+            if (evento.Respondido == true)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                TempData["Error"] = "Depoimento ja respondido";
+                return RedirectToAction("MeusDepoimentos");
             }
             ViewBag.idEventoTipo = new SelectList(db.EventoTipo, "id", "Tipo", evento.idEventoTipo);
             return View(evento);

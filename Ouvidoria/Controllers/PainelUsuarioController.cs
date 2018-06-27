@@ -32,7 +32,7 @@ namespace Ouvidoria.Controllers
 
             if (Hash.GerarHashMd5(viewModel.Senha) != usuario.Senha)
             {
-                ModelState.AddModelError("SenhaAtual", "Senha incorreta");
+                ModelState.AddModelError("Senha", "Senha incorreta");
                 return View();
             }
 

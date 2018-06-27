@@ -1,73 +1,78 @@
 ﻿@model Ouvidoria.ViewModels.CadastroUsuarioViewModel
 
-@{
-    ViewBag.Title = "Cadastrar";
-}
 
-<h2>Cadastrar</h2>
+<div class="container-fluid content-end">
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+    <div class="row" style="padding-left: 25px; padding-right: 25px; width: calc(100% - 50px)">
+        <div class="container">
 
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true)
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nome)
-                @Html.ValidationMessageFor(model => model.Nome)
-            </div>
-        </div>
+            <div class="col-md-9 col-md-offset-2 content-cad">
+                <div class="form-horizontal">
+                    <h2 class="page-header">
+                        Cadastro de Usuário
+                    </h2>
+                    @using (Html.BeginForm())
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.Nome, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email)
-                @Html.ValidationMessageFor(model => model.Email)
-            </div>
-        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.Email, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Telefone)
-                @Html.ValidationMessageFor(model => model.Telefone)
-            </div>
-        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.Telefone, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-1 col-md-offset-1">Curso</label>
-            <div class="col-md-9">
-                @Html.DropDownList("idCurso", (IEnumerable<SelectListItem>)ViewBag.PriorityID, new { @class = "form-control btn btn-default" })
-                @Html.ValidationMessageFor(model => model.idCurso)
-            </div>
-        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-1 col-md-offset-1">Curso</label>
+                            <div class="col-md-9">
+                                @Html.DropDownList("idCurso", (IEnumerable<SelectListItem>)ViewBag.PriorityID, new { @class = "form-control btn btn-default" })
+                                @Html.ValidationMessageFor(model => model.idCurso, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Senha)
-                @Html.ValidationMessageFor(model => model.Senha)
-            </div>
-        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+                                @Html.PasswordFor(model => model.Senha, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ConfirmaSenha, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ConfirmaSenha)
-                @Html.ValidationMessageFor(model => model.ConfirmaSenha)
-            </div>
-        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ConfirmaSenha, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+                                @Html.PasswordFor(model => model.ConfirmaSenha, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ConfirmaSenha, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                        <div class="form-group">
+                            <div class="col-md-offset-1 col-md-10 text-right">
+                                <input type="submit" value="Realizar Cadastro" class="btn btn-primary" id="btnSalvar" />
+                            </div>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
     </div>
-}
+</div>
+
 
 @section  scripts{
     <script src="~/Scripts/jquery.validate.min.js"></script>

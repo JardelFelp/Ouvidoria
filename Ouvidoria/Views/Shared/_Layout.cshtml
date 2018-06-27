@@ -35,13 +35,19 @@
                     {
                         if (User.IsInRole("2"))
                         {
-                            <li id="sidebarpage">
+                            <li id="">
+                                @Html.ActionLink("Feedbacks", "Index", "Feedbacks")
+                            </li>
+                            <li id="">
+                                @Html.ActionLink("Depoimentos", "Index", "Eventos")
+                            </li>
+                            <li id="">
                                 @Html.ActionLink("Administração", "Index", "Administracao")
                             </li>
                         }
                         if (User.IsInRole("1"))
                         {
-                            <li id="sidebarpage">
+                            <li id="">
                                 @Html.ActionLink("Registre sua opinião", "Index", "Ouvidoria")
                             </li>
                         }

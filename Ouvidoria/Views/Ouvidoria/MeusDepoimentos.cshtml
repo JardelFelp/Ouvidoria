@@ -1,4 +1,12 @@
 ﻿@model IEnumerable<Ouvidoria.Models.Evento>
+
+@if (TempData["Error"] != null)
+{
+    <script type="text/javascript">
+        alert('@TempData["Error"]');
+    </script>
+}
+
 <div class="container-fluid content-end">
     <div class="row" style="padding-left: 25px; padding-right: 25px; width: calc(100% - 50px)">
         <div class="col-md-3 col-sm-4 sidebar">

@@ -1,0 +1,89 @@
+﻿
+<link href="@Url.Content("/Content/DataTables/css/dataTables.bootstrap.min.css")" rel="stylesheet" />
+
+@if (TempData["Error"] != null)
+{
+    <script type="text/javascript">
+        alert('@TempData["Error"]');
+    </script>
+}
+
+<div class="container-fluid content-end">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default content-cad">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <table id="myDataTable" class="table table-striped" role="grid" aria-describedby="example_info" style="width: 100%;table-layout:fixed">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%;">#</th>
+                                            <th style="width: 10%;">Departamento</th>
+                                            <th style="width: 15%;">Usuário</th>
+                                            <th style="width: 60%;">Comentário</th>
+                                            <th style="width: 10%;">Avaliação</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+    <script src="@Url.Content("/Scripts/DataTables/jquery.dataTables.min.js")"></script>
+    <script src="@Url.Content("/Scripts/DataTables/dataTables.bootstrap.min.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var oTable = $("#myDataTable").DataTable({
+
+                "language": {
+                    "lengthMenu": "Exibe _MENU_ Registros por página",
+                    "search": "Procurar",
+                    "paginate": { "previous": "Retornar", "next": "Avançar" },
+                    "zeroRecords": "Nada foi encontrado",
+                    "info": "Exibindo página _PAGE_ de _PAGES_",
+                    "infoEmpty": "Sem registros",
+                    "infoFiltered": "(filtrado de _MAX_ regitros totais)"
+                },
+
+                "processing": true,
+                "filter": true,
+                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Todos"]],
+                "pageLength": 5,
+
+                "ajax": {
+                    "url": "/Feedbacks/GetFeedbacks",
+                    "type": "GET",
+                    "dataType": "json"
+                },
+                "columns": [
+                    { "data": "id", "autowidth": false },
+                    { "data": "Departamento.Nome", "autowidth": false },
+                    { "data": "Usuario.Nome", "autowidth": false },
+                    { "data": "Comentario", "autowidth": false },
+                    {
+                        "render": function (data, type, full, meta)
+                        { return ''; }
+                    },
+                ],
+                "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                    var btn = '';
+                    for (var i = aData.Avaliacao; i > 0; i--)
+                    {
+                        btn += '<i class="fas fa-star" style="color: gold;"></i>'
+                    }
+                    $('td:eq(4)', nRow).html(btn);
+                }
+
+            });
+        });
+    </script>
+}   

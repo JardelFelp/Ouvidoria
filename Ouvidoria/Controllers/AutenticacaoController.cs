@@ -26,7 +26,6 @@ namespace Ouvidoria.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Cadastrar(CadastroUsuarioViewModel viewModel)
         {
             if (!ModelState.IsValid)
