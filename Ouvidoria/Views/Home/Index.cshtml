@@ -2,6 +2,7 @@
     ViewBag.Title = "Home";
 }
 
+@*
 <div id="myCarousel" class="carousel slide">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -31,26 +32,41 @@
         <span class="icon-next" style="color: white;"></span>
     </a>
 </div>
+*@
 
 <div class="section">
 
     <div class="container">
-
         <div class="row">
-            <div class="col-lg-3 col-md-3">
-                <h3><i class="fa fa-frown"></i> Reclame</h3>
-                <p>Faça aqui uma reclamação daquele professor ou funcionário super legal!</p>
+            <div class="col-xs-12 text-center welcome">
+                <h1>Bem-vindo</h1>
+
+                <h1>Pronto para fazer
+                <span class="txt-rotate"
+                      style="font-weight: bold;"
+                      data-rotate='[ "seu elogio?", "sua sugestão?", "sua reclamação?", "sua denúncia?" ]'></span>
+                </h1>
             </div>
+        </div>
+        <div class="row icons">
             <div class="col-lg-3 col-md-3">
-                <h3><i class="fa fa-lightbulb"></i> Sugestione </h3>
-                <p>Faça uma sugestão para a instituição!</p>
-            </div>
-            <div class="col-lg-3 col-md-3">
-                <h3><i class="fa fa-thumbs-up"></i> Elogie </h3>
+                <h1><i class="fa fa-thumbs-up"></i></h1>
+                <h3>Elogie </h3>
                 <p>Faça um elogio aos lanches da Iara Café!</p>
             </div>
             <div class="col-lg-3 col-md-3">
-                <h3><i class="fa fa-bullhorn"></i> Denuncie </h3>
+                <h1><i class="fa fa-lightbulb"></i></h1>
+                <h3>Sugestione </h3>
+                <p>Faça uma sugestão para a instituição!</p>
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <h1><i class="fa fa-frown"></i></h1>
+                <h3>Reclame</h3>
+                <p>Faça aqui uma reclamação daquele professor ou funcionário super legal!</p>
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <h1><i class="fa fa-bullhorn"></i></h1>
+                <h3>Denuncie </h3>
                 <p>Faça aqui suas denúncias de abuso feita por aquele professor que tirou sua nota! </p>
             </div>
         </div>
@@ -75,10 +91,19 @@
     <!-- /.container -->
 </div>
 
+<style>
+    .section {
+        padding: 0;
+        min-height: 175px;
+    }
+</style>
+
 @if (TempData["ErroAutorizacao"] != null)
 {
     <script type="text/javascript">
         alert('@TempData["ErroAutorizacao"]');
     </script>
 }
+
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
 <!-- /.section-colored -->
