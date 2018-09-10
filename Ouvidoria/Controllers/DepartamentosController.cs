@@ -1,5 +1,6 @@
 ﻿using Ouvidoria.Filters;
 using Ouvidoria.Models;
+using Ouvidoria.Service;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -15,11 +16,12 @@ namespace Ouvidoria.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return View(db.Departamento.ToList());
+            return View(DepartamentoService.RetornaTodosDepartamentos());
         }
         
         public ActionResult Details(int? id)
         {
+            DepartamentoService.ValidaDepartamento(id);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
