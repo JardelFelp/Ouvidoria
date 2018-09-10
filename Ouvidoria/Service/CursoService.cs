@@ -1,5 +1,6 @@
 ﻿using Ouvidoria.Models;
 using Ouvidoria.Repository;
+using System;
 using System.Collections.Generic;
 
 namespace Ouvidoria.Service
@@ -30,6 +31,36 @@ namespace Ouvidoria.Service
                     new Curso("Sistemas de Informacao")
                 };
             CursoRepository.Cadastrar(cursos);
+        }
+
+        public static List<Curso> RetornaCursos()
+        {
+            return CursoRepository.RetornaCursos();
+        }
+
+        public static string ValidaCurso(int? id)
+        {
+            return CursoRepository.ValidaCurso(id);
+        }
+
+        public static Curso RetornaCurso(int? id)
+        {
+            return CursoRepository.RetornaCurso(id);
+        }
+
+        public static void CadastrarCurso(Curso curso)
+        {
+            CursoRepository.CadastrarCurso(curso);
+        }
+
+        internal static void EditarCurso(Curso curso)
+        {
+            CursoRepository.EditarCurso(curso);
+        }
+
+        internal static void DeletarCurso(int id)
+        {
+            CursoRepository.DeletarCurso(id);
         }
     }
 }

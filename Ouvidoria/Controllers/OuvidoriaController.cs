@@ -25,6 +25,7 @@ namespace Ouvidoria.Controllers
         {
             EventoService.VerificaEventos();
             ViewBag.idEventoTipo = new SelectList(db.EventoTipo, "id", "Tipo");
+            //ViewBag.idEventoTipo = DepartamentoService.RetornaDepartamentos(null);
             return View();
         }
 
@@ -35,18 +36,18 @@ namespace Ouvidoria.Controllers
             if (ModelState.IsValid)
             {
                 evento.idUsuario = Convert.ToInt32(User.Identity.GetUserId());
-                db.Evento.Add(evento);
-                db.SaveChanges();
+                EventoService.CadastraEvento(evento);
                 return RedirectToAction("MeusDepoimentos");
             }
-
-            ViewBag.idEventoTipo = new SelectList(db.EventoTipo, "id", "Tipo", evento.idEventoTipo);
+            ViewBag.idDepartamento = new SelectList(db.Departamento, "id", "Nome", evento.idEventoTipo);
+            //ViewBag.idEventoTipo = DepartamentoService.RetornaDepartamentos(evento.idEventoTipo);
             return View(evento);
         }
-
+         
         public ActionResult Feedback()
         {
             ViewBag.idDepartamento = new SelectList(db.Departamento, "id", "Nome");
+            //DepartamentoService.RetornaDepartamentos(null);
             return View();
         }
 
@@ -57,30 +58,25 @@ namespace Ouvidoria.Controllers
             if (ModelState.IsValid)
             {
                 depoimento.idUsuario = Convert.ToInt32(User.Identity.GetUserId());
-                db.DepartamentoDepoimento.Add(depoimento);
-                db.SaveChanges();
+                DepartamentoDepoimentoService.CadastraDepoimento(depoimento);
                 return RedirectToAction("MeusFeedbacks");
             }
 
             ViewBag.idDepartamento = new SelectList(db.Departamento, "id", "Nome");
+            //ViewBag.idDepartamento = DepartamentoService.RetornaDepartamentos(null);
             return View(depoimento);
         }
 
         public ActionResult MeusFeedbacks()
         {
-            return View(db.DepartamentoDepoimento
-                        .Include(d => d.Departamento)
-                        .ToList()
-                        .Where(d => d.idUsuario == Convert.ToInt32(User.Identity.GetUserId())));
-
+            var feedbacks = DepartamentoDepoimentoService.RetornaFeedbacks(Convert.ToInt32(User.Identity.GetUserId()));
+            return View(feedbacks);
         }
 
         public ActionResult MeusDepoimentos()
         {
-            return View(db.Evento
-                        .Include(d => d.EventoTipo)
-                        .ToList()
-                        .Where(d => d.idUsuario == Convert.ToInt32(User.Identity.GetUserId())));
+            var depoimentos = EventoService.RetornaEventos(Convert.ToInt32(User.Identity.GetUserId()));
+            return View(depoimentos);
         }
         
 
@@ -90,18 +86,18 @@ namespace Ouvidoria.Controllers
             {
                 return RedirectToAction("MeusDepoimentos");
             }
-            Evento evento = db.Evento.Find(id);
-            if (evento == null || evento.idUsuario != Convert.ToInt32(User.Identity.GetUserId()))
+
+            var retorno = EventoService.ValidaDepoimento(id, Convert.ToInt32(User.Identity.GetUserId()));
+
+            if (retorno != "")
             {
-                TempData["Error"] = "Depoimento nao encontrado";
+                TempData["Error"] = retorno;
                 return RedirectToAction("MeusDepoimentos");
             }
-            if (evento.Respondido == true)
-            {
-                TempData["Error"] = "Depoimento ja respondido";
-                return RedirectToAction("MeusDepoimentos");
-            }
-            ViewBag.idEventoTipo = new SelectList(db.EventoTipo, "id", "Tipo", evento.idEventoTipo);
+
+            Evento evento = EventoService.EncontrarEvento(id);
+            ViewBag.idEventoTipo = new SelectList(db.EventoTipo, "id", "Tipo", id);
+            //ViewBag.idEventoTipo = EventoTipoService.RetornaEventoTipo(evento.idEventoTipo);
             return View(evento);
         }
 
@@ -111,14 +107,11 @@ namespace Ouvidoria.Controllers
         {
             if (ModelState.IsValid)
             {
-                evento.Respondido = false;
-                evento.idUsuario = Convert.ToInt32(User.Identity.GetUserId());
-                evento.Resposta = null;
-                db.Entry(evento).State = EntityState.Modified;
-                db.SaveChanges();
+                EventoService.EditarEvento(evento);
                 return RedirectToAction("MeusDepoimentos");
             }
             ViewBag.idEventoTipo = new SelectList(db.EventoTipo, "id", "Tipo", evento.idEventoTipo);
+            //ViewBag.idEventoTipo = EventoTipoService.RetornaEventoTipo(evento.idEventoTipo);
             return View(evento);
         }
 
@@ -126,18 +119,18 @@ namespace Ouvidoria.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("MeusDepoimentos");
             }
-            Evento evento = db.Evento.Find(id);
-            if (evento == null)
+            var retorno = EventoService.ValidaDepoimento(id, Convert.ToInt32(User.Identity.GetUserId()));
+
+            if (retorno != "")
             {
-                return HttpNotFound();
+                TempData["Error"] = retorno;
+                return RedirectToAction("MeusDepoimentos");
             }
-            if (evento.idUsuario != Convert.ToInt32(User.Identity.GetUserId()) || evento.Respondido == true)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            Evento evento = EventoService.EncontrarEvento(id);
             ViewBag.idEventoTipo = new SelectList(db.EventoTipo, "id", "Tipo", evento.idEventoTipo);
+            //ViewBag.idEventoTipo = EventoTipoService.RetornaEventoTipo(evento.idEventoTipo);
             return View(evento);
         }
 
@@ -145,19 +138,8 @@ namespace Ouvidoria.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ExcluirDepoimento(int id)
         {
-            Evento evento = db.Evento.Find(id);
-            db.Evento.Remove(evento);
-            db.SaveChanges();
+            EventoService.ExcluirEvento(id);
             return RedirectToAction("MeusDepoimentos");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

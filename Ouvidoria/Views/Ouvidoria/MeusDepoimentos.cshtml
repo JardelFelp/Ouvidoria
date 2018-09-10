@@ -3,8 +3,9 @@
 @if (TempData["Error"] != null)
 {
     <script type="text/javascript">
-        alert('@TempData["Error"]');
+            alert('@TempData["Error"]');
     </script>
+
 }
 
 <div class="container-fluid content-end">
@@ -77,14 +78,14 @@
                                     </td>
                                     @if (item.Respondido == false)
                                     {
-                                    <td>
-                                        <a href="@Url.Action("EditarDepoimento", "Ouvidoria", new { id = item.id })">
-                                            <i class="glyphicon glyphicon-pencil" style="color: black"></i>
-                                        </a>
-                                        <a href="@Url.Action("ExcluirDepoimento", "Ouvidoria", new { id = item.id })">
-                                            <i class="glyphicon glyphicon-remove" style="color: red;"></i>
-                                        </a>
-                                    </td>
+                                        <td>
+                                            <a href="@Url.Action("EditarDepoimento", "Ouvidoria", new { id = item.id })">
+                                                <i class="glyphicon glyphicon-pencil" style="color: black"></i>
+                                            </a>
+                                            <a href="@Url.Action("ExcluirDepoimento", "Ouvidoria", new { id = item.id })">
+                                                <i class="glyphicon glyphicon-remove" style="color: red;"></i>
+                                            </a>
+                                        </td>
                                     }
                                     else
                                     {
