@@ -1,8 +1,6 @@
 ﻿using Ouvidoria.Filters;
 using Ouvidoria.Models;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
+using Ouvidoria.Service;
 using System.Web.Mvc;
 
 namespace Ouvidoria.Controllers
@@ -10,116 +8,94 @@ namespace Ouvidoria.Controllers
     [AutorizacaoFiltro("2")]
     public class CursosController : Controller
     {
-        private OuvidoriaContext db = new OuvidoriaContext();
-
-        // GET: Cursoes
         public ActionResult Index()
         {
-            return View(db.Curso.ToList());
+            return View(CursoService.RetornaCursos());
         }
 
-        // GET: Cursoes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
-            Curso curso = db.Curso.Find(id);
-            if (curso == null)
+            var retorno = CursoService.ValidaCurso(id);
+            if (retorno != "")
             {
-                return HttpNotFound();
+                TempData["Error"] = retorno;
+                return RedirectToAction("Index");
             }
-            return View(curso);
+            return View(CursoService.RetornaCurso(id));
         }
 
-        // GET: Cursoes/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Cursoes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,Nome")] Curso curso)
         {
             if (ModelState.IsValid)
             {
-                db.Curso.Add(curso);
-                db.SaveChanges();
+                CursoService.CadastrarCurso(curso);
                 return RedirectToAction("Index");
             }
 
             return View(curso);
         }
 
-        // GET: Cursoes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
-            Curso curso = db.Curso.Find(id);
-            if (curso == null)
+            var retorno = CursoService.ValidaCurso(id);
+            if (retorno != "")
             {
-                return HttpNotFound();
+                TempData["Error"] = retorno;
+                return RedirectToAction("Index");
             }
-            return View(curso);
+            return View(CursoService.RetornaCurso(id));
         }
 
-        // POST: Cursoes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,Nome")] Curso curso)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(curso).State = EntityState.Modified;
-                db.SaveChanges();
+                CursoService.EditarCurso(curso);
                 return RedirectToAction("Index");
             }
             return View(curso);
         }
 
-        // GET: Cursoes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
-            Curso curso = db.Curso.Find(id);
-            if (curso == null)
+            var retorno = CursoService.ValidaCurso(id);
+            if (retorno != "")
             {
-                return HttpNotFound();
+                TempData["Error"] = retorno;
+                return RedirectToAction("Index");
             }
-            return View(curso);
+            return View(CursoService.RetornaCurso(id));
         }
 
-        // POST: Cursoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Curso curso = db.Curso.Find(id);
-            db.Curso.Remove(curso);
-            db.SaveChanges();
+            CursoService.DeletarCurso(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

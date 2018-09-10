@@ -394,6 +394,7 @@
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\brands.js" />
     <Content Include="js\fontawesome.js" />
+    <Content Include="js\main.js" />
     <Content Include="js\regular.js" />
     <Content Include="js\solid.js" />
     <Content Include="js\v4-shims.js" />

@@ -1,5 +1,14 @@
 ﻿@model IEnumerable<Ouvidoria.Models.Curso>
 
+@if (TempData["Error"] != null)
+{
+    <script type="text/javascript">
+            alert('@TempData["Error"]');
+    </script>
+
+}
+
+
 <div class="container-fluid content-end">
 
     @{Html.RenderPartial("_PartialAdmSideBar"); }
