@@ -113,7 +113,7 @@ h1, h2, h3, h4, h5, span, label  {
 .item {
     margin: 35px 0 35px 0;
     background-color: #fcfcfc;
-    min-height: 175px !important;
+    min-height: 200px !important;
     box-shadow: 2px 2px 15px #2c2a2a;
     border-radius: 10px;
 }
