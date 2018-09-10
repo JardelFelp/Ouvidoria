@@ -19,25 +19,5 @@ namespace Ouvidoria.Repository
 
             }
         }
-
-        internal static IEnumerable<Departamento> RetornaTodosDepartamentos()
-        {
-            using (var db = new OuvidoriaContext())
-            {
-                return db.Departamento.ToList();
-            }
-        }
-
-        internal static string ValidaDepartamento(int? id)
-        {
-            using (var db = new OuvidoriaContext())
-            {
-                var departamento = db.Departamento.Find(id);
-                if (departamento == null)
-                    return "Departamento não encontrado";
-                else
-                    return "";
-            }
-        }
     }
 }
