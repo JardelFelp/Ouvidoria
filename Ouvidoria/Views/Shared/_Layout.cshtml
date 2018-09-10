@@ -12,9 +12,8 @@
     <link href="@Url.Content("/css/all.css")" rel="stylesheet">
 </head>
 <body>
-
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -77,15 +76,20 @@
 
     @RenderBody()
 
-    <footer class="content-footer">
-        <div class="row" style="margin-right: 0px;">
-            <div class="col-md-3">
-                <p>Ouvidoria - AMF</p>
-            </div>
+
+    <footer class="page-footer font-small" style="margin: 0; padding: 15px 0; background-color: #363535">
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">
+            <h2>Ouvidoria AMF</h2>
+            <p style="color: white">Aqui você interage da melhor maneira com a instituição.</p>
         </div>
+        <!-- Copyright -->
+
     </footer>
 
     <script src="@Url.Content("/Scripts/jquery-3.3.1.js")"></script>
+    <script src="@Url.Content("/js/main.js")"></script>
     <script src="@Url.Content("/js/bootstrap.min.js")"></script>
     @RenderSection("scripts", false)
 </body>
