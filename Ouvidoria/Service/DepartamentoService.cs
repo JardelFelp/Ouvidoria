@@ -13,5 +13,15 @@ namespace Ouvidoria.Service
         {
             return DepartamentoRepository.RetornaDepartamentos(id);
         }
+
+        internal static object RetornaTodosDepartamentos()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void ValidaDepartamento(int? id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -198,11 +198,17 @@
     <Compile Include="Models\UsuarioPerfil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CursoRepository.cs" />
+    <Compile Include="Repository\DepartamentoDepoimentoRepository.cs" />
+    <Compile Include="Repository\DepartamentoRepository.cs" />
     <Compile Include="Repository\EventoRepository.cs" />
+    <Compile Include="Repository\EventoTipoRepository.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
     <Compile Include="Repository\UsuarioRepository.cs" />
     <Compile Include="Service\CursoService.cs" />
+    <Compile Include="Service\DepartamentoDepoimentoService.cs" />
+    <Compile Include="Service\DepartamentoService.cs" />
     <Compile Include="Service\EventoService.cs" />
+    <Compile Include="Service\EventoTipoService.cs" />
     <Compile Include="Service\UsuarioService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\Hash.cs" />
@@ -1859,6 +1865,10 @@
     <Content Include="Views\Eventos\Index.cshtml" />
     <Content Include="Views\Eventos\Responder.cshtml" />
     <Content Include="Views\Feedbacks\Index.cshtml" />
+    <Content Include="Views\Ouvidoria\Elogio.cshtml" />
+    <Content Include="Views\Ouvidoria\Sugestione.cshtml" />
+    <Content Include="Views\Ouvidoria\Reclame.cshtml" />
+    <Content Include="Views\Ouvidoria\Denuncie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

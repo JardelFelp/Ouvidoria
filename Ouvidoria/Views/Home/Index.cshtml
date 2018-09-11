@@ -56,32 +56,32 @@
 
     <div class="container-fluid" style="background-image: linear-gradient(#04519b, #044687 60%, #033769)">
         <div class="row icons">
-            <div class="col-md-2 col-xs-12 col-sm-6 col-md-offset-1 col-xs-offset-1 col-sm-offset-0">
+            <div class="col-md-2 col-xs-12 col-sm-6 col-md-offset-1 col-xs-offset-0 col-sm-offset-0">
                 @if (User.Identity.IsAuthenticated && User.IsInRole("1"))
                 {
-                    <div class="col-xs-12 item btn-active">
+                    <a class="col-xs-12 item btn-active" href="@Url.Action("Feedback", "Ouvidoria")">
+                        <h1><i class="glyphicon glyphicon-star"></i></h1>
+                        <h3>Feedback </h3>
+                        <p>Faça seu Feedback de algum departamento!</p>
+                    </a>
+                }
+                else
+                {
+                    <div class="col-xs-12 item">
                         <h1><i class="glyphicon glyphicon-star"></i></h1>
                         <h3>Feedback </h3>
                         <p>Faça seu Feedback de algum departamento!</p>
                     </div>
                 }
-                else
-                {
-                    <div class="col-xs-12 item">
-                        <h1><i class="glyphicon glyphicon-star"></i></h1>
-                        <h3>Feedback </h3>
-                        <p>Faça seu Feedback de algum departamento!</p>
-                    </div>
-                }
             </div>
             <div class="col-md-2 col-xs-12 col-sm-6">
                 @if (User.Identity.IsAuthenticated && User.IsInRole("1"))
                 {
-                    <div class="col-xs-12 item btn-active">
+                    <a class="col-xs-12 item btn-active" href="@Url.Action("Elogio", "Ouvidoria")">
                         <h1><i class="fa fa-thumbs-up"></i></h1>
                         <h3>Elogie </h3>
                         <p>Faça um elogio aos lanches da Iara Café!</p>
-                    </div>
+                    </a>
                 }
                 else
                 {
@@ -95,11 +95,11 @@
             <div class="col-md-2 col-xs-12 col-sm-6">
                 @if (User.Identity.IsAuthenticated && User.IsInRole("1"))
                 {
-                    <div class="col-xs-12 item btn-active">
+                    <a class="col-xs-12 item btn-active" href="@Url.Action("Sugestione", "Ouvidoria")">
                         <h1><i class="fa fa-lightbulb"></i></h1>
                         <h3>Sugestione </h3>
                         <p>Faça uma sugestão para a instituição!</p>
-                    </div>
+                    </a>
                 }
                 else
                 {
@@ -113,11 +113,11 @@
             <div class="col-md-2 col-xs-12 col-sm-6">
                 @if (User.Identity.IsAuthenticated && User.IsInRole("1"))
                 {
-                    <div class="col-xs-12 item btn-active">
+                    <a class="col-xs-12 item btn-active" href="@Url.Action("Reclame", "Ouvidoria")">
                         <h1><i class="fa fa-frown"></i></h1>
                         <h3>Reclame</h3>
                         <p>Faça aqui uma reclamação daquele professor ou funcionário super legal!</p>
-                    </div>
+                    </a>
                 }
                 else
                 {
@@ -131,11 +131,11 @@
             <div class="col-md-2 col-xs-12 col-sm-6 col-md-offset-0 col-xs-offset-0 col-sm-offset-3">
                 @if (User.Identity.IsAuthenticated && User.IsInRole("1"))
                 {
-                    <div class="col-xs-12 item btn-active">
+                    <a class="col-xs-12 item btn-active" href="@Url.Action("Denuncie", "Ouvidoria")">
                         <h1><i class="fa fa-bullhorn"></i></h1>
                         <h3>Denuncie </h3>
                         <p>Faça aqui suas denúncias de abuso feita por aquele professor que tirou sua nota! </p>
-                    </div>
+                    </a>
                 }
                 else
                 {

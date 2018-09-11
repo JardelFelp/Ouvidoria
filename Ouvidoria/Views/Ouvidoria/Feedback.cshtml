@@ -3,40 +3,24 @@
     ViewBag.Title = "Ouvidoria";
 }
 
-<div class="container-fluid content-end">
-    <div class="row" style="padding-left: 25px; padding-right: 25px; width: calc(100% - 50px)">
-        <div class="col-md-3 col-sm-4 sidebar">
-            <ul class="nav nav-stacked nav-pills" style="background-color: white;">
-                <li>
-                    @Html.ActionLink("Página Inicial", "Index", "Home")
-                </li>
-                <li>
-                    @Html.ActionLink("Registre seu Feedback", "Feedback", "Ouvidoria")
-                </li>
-                <li>
-                    @Html.ActionLink("Feedbacks Registrados", "MeusFeedbacks", "Ouvidoria")
-                </li>
-                <li>
-                    @Html.ActionLink("Registre seu Depoimento", "Depoimento", "Ouvidoria")
-                </li>
-                <li>
-                    @Html.ActionLink("Depoimentos Registrados", "MeusDepoimentos", "Ouvidoria")
-                </li>
-            </ul>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <h1>
+                <i class="glyphicon glyphicon-star type-gyphi"></i>
+            </h1>
         </div>
+        <div class="col-xs-12 text-center">
+            <h1 class="name-giphy">Feedback</h1>
+        </div>
+    </div>
 
-
-        <div class="col-md-9 col-sm-8 content-cad" id="divFormulario">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1" id="divFormulario">
             <h1 class="page-header">
                 Ouvidoria
                 <small id="smTipo">Registre abaixo o seu Feedback</small>
             </h1>
-            <ol class="breadcrumb">
-                <li>
-                    @Html.ActionLink("Ouvidoria", "Index", "Ouvidoria")
-                </li>
-                <li class="active" id="liPagina">Feedback</li>
-            </ol>
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()

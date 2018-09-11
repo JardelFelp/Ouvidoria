@@ -43,7 +43,27 @@ namespace Ouvidoria.Controllers
             //ViewBag.idEventoTipo = DepartamentoService.RetornaDepartamentos(evento.idEventoTipo);
             return View(evento);
         }
-         
+
+        public ActionResult Elogio()
+        {
+            return View();
+        }
+
+        public ActionResult Sugestione()
+        {
+            return View();
+        }
+
+        public ActionResult Reclame()
+        {
+            return View();
+        }
+
+        public ActionResult Denuncie()
+        {
+            return View();
+        }
+
         public ActionResult Feedback()
         {
             ViewBag.idDepartamento = new SelectList(db.Departamento, "id", "Nome");
