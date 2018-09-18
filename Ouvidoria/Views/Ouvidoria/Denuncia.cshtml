@@ -1,6 +1,6 @@
 ﻿@model Ouvidoria.Models.Evento
 @{
-    ViewBag.Title = "Elogio";
+    ViewBag.Title = "Denuncia";
 }
 
 <div class="container-fluid">
@@ -42,13 +42,13 @@
                         </div>
                     </div>
 
-                    @*
-                        <div class="form-group" hidden="hidden">
-                            @Html.DropDownList("idEventoTipo", (IEnumerable<SelectListItem>)ViewBag.PriorityID, new { @class = "form-control btn btn-default" })
-                        </div>
-                    *@
+                    <div>
+                        class="form-group" hidden="hidden">
+                        @Html.TextBoxFor(model => model.idEventoTipo)
+                    </div>
 
-                    <div class="form-group">
+                    <div>
+                        class="form-group">
                         <div class="col-md-offset-1 col-md-10 text-right">
                             <button class="btn btn-default">@Html.ActionLink("Voltar", "Index")</button>
                             <input type="submit" value="Salvar Denúncia" class="btn btn-primary" id="btnSalvar" />

@@ -6,7 +6,6 @@ namespace Ouvidoria.Models
     [Table("Evento")]
     public class Evento
     {
-
         [Key]
         public int id { get; set; }
 

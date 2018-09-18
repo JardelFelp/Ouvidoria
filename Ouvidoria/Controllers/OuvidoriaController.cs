@@ -15,6 +15,63 @@ namespace Ouvidoria.Controllers
     {
         private OuvidoriaContext db = new OuvidoriaContext();
 
+        public ActionResult Denuncia()
+        {
+            ViewBag.denuncias = EventoService.RetornaEventos(Convert.ToInt32(User.Identity.GetUserId()));
+
+            Evento evento = new Evento
+            {
+                idEventoTipo = 1
+            };
+
+            return View(evento);
+        }
+
+        public ActionResult Elogio()
+        {
+            ViewBag.registros = EventoService.RetornaEventos(Convert.ToInt32(User.Identity.GetUserId()));
+
+            Evento evento = new Evento
+            {
+                idEventoTipo = 2
+            };
+
+            return View(evento);
+        }
+
+        public ActionResult Reclamacao()
+        {
+            Evento evento = new Evento
+            {
+                idEventoTipo = 3
+            };
+
+            return View(evento);
+        }
+
+        public ActionResult Sugestao()
+        {
+            Evento evento = new Evento
+            {
+                idEventoTipo = 4
+            };
+
+            return View(evento);
+        }
+
+        public ActionResult Feedback()
+        {
+            ViewBag.idDepartamento = new SelectList(db.Departamento, "id", "Nome");
+            //DepartamentoService.RetornaDepartamentos(null);
+            return View();
+        }
+
+
+
+
+
+
+
         [Authorize]
         public ActionResult Index()
         {
@@ -42,33 +99,6 @@ namespace Ouvidoria.Controllers
             ViewBag.idDepartamento = new SelectList(db.Departamento, "id", "Nome", evento.idEventoTipo);
             //ViewBag.idEventoTipo = DepartamentoService.RetornaDepartamentos(evento.idEventoTipo);
             return View(evento);
-        }
-
-        public ActionResult Elogio()
-        {
-            return View();
-        }
-
-        public ActionResult Sugestione()
-        {
-            return View();
-        }
-
-        public ActionResult Reclame()
-        {
-            return View();
-        }
-
-        public ActionResult Denuncie()
-        {
-            return View();
-        }
-
-        public ActionResult Feedback()
-        {
-            ViewBag.idDepartamento = new SelectList(db.Departamento, "id", "Nome");
-            //DepartamentoService.RetornaDepartamentos(null);
-            return View();
         }
 
         [HttpPost]

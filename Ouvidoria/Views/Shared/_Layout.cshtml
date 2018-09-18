@@ -46,11 +46,36 @@
                         }
                         if (User.IsInRole("1"))
                         {
-                            <li><a title="Feedback" class="glyphicon glyphicon-star" href="@Url.Action("Feedback", "Ouvidoria")"></a></li>
-                            <li><a title="Elogio" class="fa fa-thumbs-up" href="@Url.Action("Elogio", "Ouvidoria")"></a></li>
-                            <li><a title="Sugestão" class="fa fa-lightbulb" href="@Url.Action("Sugestione", "Ouvidoria")"></a></li>
-                            <li><a title="Reclamação" class="fa fa-frown" href="@Url.Action("Reclame", "Ouvidoria")"></a></li>
-                            <li><a title="Denuncia" class="fa fa-bullhorn" href="@Url.Action("Denuncie", "Ouvidoria")"></a></li>
+                            <li>
+                                <a href="@Url.Action("Feedback", "Ouvidoria")">
+                                    Feedback
+                                    <i class="glyphicon glyphicon-star"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Elogio", "Ouvidoria")">
+                                    Elogio
+                                    <i class="fa fa-thumbs-up"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Sugestao", "Ouvidoria")">
+                                    Sugestão
+                                    <i class="fa fa-lightbulb"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Reclamacao", "Ouvidoria")">
+                                    Reclamação
+                                    <i class="fa fa-frown"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Denuncia", "Ouvidoria")">
+                                    Denúncia
+                                    <i class="fa fa-bullhorn"></i>
+                                </a>
+                            </li>
                         }
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">

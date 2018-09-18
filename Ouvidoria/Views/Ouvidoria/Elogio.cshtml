@@ -19,42 +19,41 @@
         <div class="col-xs-10 col-xs-offset-1" id="divFormulario">
             <h1 class="page-header">
                 Ouvidoria
-                <small id="smTipo">Registre abaixo o seu Elogio</small>
+                <small id="smTipo">Registre abaixo o seu Elogio ou <a href="#">acesse os Cadastrados</a> </small>
             </h1>
+
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
-            <div class="form-horizontal">
-                @Html.ValidationSummary(true)
-                <div class="form-group">
-                    <label for="Titulo" class="control-label col-md-2">Título</label>
-                    <div class="col-md-9">
-                        @Html.TextBoxFor(model => model.Titulo, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Titulo)
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true)
+                    <div class="form-group">
+                        <label for="Titulo" class="control-label col-md-2">Título</label>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.Titulo, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Titulo)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Descricao" class="control-label col-md-2">Descrição</label>
+                        <div class="col-md-9">
+                            @Html.TextAreaFor(model => model.Descricao, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Descricao)
+                        </div>
+                    </div>
+
+                    <div class="form-group" hidden="hidden">
+                        @Html.TextBoxFor(model => model.idEventoTipo)
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-1 col-md-10 text-right">
+                            <button class="btn btn-default">@Html.ActionLink("Voltar", "Index")</button>
+                            <input type="submit" value="Salvar Denúncia" class="btn btn-primary" id="btnSalvar" />
+                        </div>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="Descricao" class="control-label col-md-2">Descrição</label>
-                    <div class="col-md-9">
-                        @Html.TextAreaFor(model => model.Descricao, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Descricao)
-                    </div>
-                </div>
-
-                @*
-                <div class="form-group" hidden="hidden">
-                    @Html.DropDownList("idEventoTipo", (IEnumerable<SelectListItem>)ViewBag.PriorityID, new { @class = "form-control btn btn-default" })
-                </div>
-                *@
-
-                <div class="form-group">
-                    <div class="col-md-offset-1 col-md-10 text-right">
-                        <button class="btn btn-default">@Html.ActionLink("Voltar", "Index")</button>
-                        <input type="submit" value="Salvar Denúncia" class="btn btn-primary" id="btnSalvar" />
-                    </div>
-                </div>
-            </div>
             }
         </div>
     </div>
