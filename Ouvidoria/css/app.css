@@ -173,3 +173,19 @@ h1, h2, h3, h4, h5, span, label  {
 .name-giphy {
     margin-top: 0;
 }
+
+.estrelas label {
+    cursor: pointer;
+}
+
+.modal-header {
+    background-image: linear-gradient(#04519b, #044687 60%, #033769);
+    border-radius: 5px 5px 0 0;
+    position: relative;
+    width: calc(100% + 0.5px);
+    text-align: center;
+}
+
+.modal-header h4, .modal-header button {
+    color: white;
+}
