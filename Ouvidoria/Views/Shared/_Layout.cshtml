@@ -28,7 +28,7 @@
             </div>
 
             <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav navbar-right">
+                <ul id="acessos" class="nav navbar-nav navbar-right">
 
                     @if (User.Identity.IsAuthenticated)
                     {
@@ -46,31 +46,31 @@
                         }
                         if (User.IsInRole("1"))
                         {
-                            <li>
+                            <li class="op" url="Feedback">
                                 <a href="@Url.Action("Feedback", "Ouvidoria")">
                                     Feedback
                                     <i class="glyphicon glyphicon-star"></i>
                                 </a>
                             </li>
-                            <li>
+                            <li class="op" url="Elogio">
                                 <a href="@Url.Action("Elogio", "Ouvidoria")">
                                     Elogio
                                     <i class="fa fa-thumbs-up"></i>
                                 </a>
                             </li>
-                            <li>
+                            <li class="op" url="Sugestao">
                                 <a href="@Url.Action("Sugestao", "Ouvidoria")">
                                     Sugestão
                                     <i class="fa fa-lightbulb"></i>
                                 </a>
                             </li>
-                            <li>
+                            <li class="op" url="Reclamacao">
                                 <a href="@Url.Action("Reclamacao", "Ouvidoria")">
                                     Reclamação
                                     <i class="fa fa-frown"></i>
                                 </a>
                             </li>
-                            <li>
+                            <li class="op" url="Denuncia">
                                 <a href="@Url.Action("Denuncia", "Ouvidoria")">
                                     Denúncia
                                     <i class="fa fa-bullhorn"></i>

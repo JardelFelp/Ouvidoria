@@ -1,56 +1,51 @@
 ﻿@model Ouvidoria.ViewModels.AlterarSenhaViewModel
 
+<div class="container-fluid">
+    <div class="col-md-6 col-md-offset-3 content-cad">
 
-<div class="container-fluid content-end">
-    <div class="row" style="padding-left: 25px; padding-right: 25px; width: calc(100% - 50px)">
-        <div class="container">
-            <div class="col-md-9 col-md-offset-2 content-cad">
+        <h1 class="page-header text-center">
+            Alterar Senha <br />
+            <small id="smTipo">Abaixo, informe sua nova senha</small>
+        </h1>
 
-                <h1 class="page-header text-center">
-                    Alterar Senha <br />
-                    <small id="smTipo">Abaixo, informe sua nova senha</small>
-                </h1>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-
-                    <div class="form-horizontal">
-                        @Html.ValidationSummary(true)
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-3" })
-                            <div class="col-md-8">
-                                @Html.PasswordFor(model => model.Senha, htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Senha)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.NovaSenha, htmlAttributes: new { @class = "control-label col-md-3" })
-                            <div class="col-md-8">
-                                @Html.PasswordFor(model => model.NovaSenha, htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.NovaSenha)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.ConfirmarSenha, htmlAttributes: new { @class = "control-label col-md-3" })
-                            <div class="col-md-8">
-                                @Html.PasswordFor(model => model.ConfirmarSenha, htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.ConfirmarSenha)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-offset-1 col-md-10" style="text-align: right">
-                                <button class="btn btn-default">@Html.ActionLink("Página inicial", "Index", "Home")</button>
-                                <input type="submit" value="Salvar Alterações" class="btn btn-primary" id="btnSalvar" />
-                            </div>
-                        </div>
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-8">
+                        @Html.PasswordFor(model => model.Senha, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Senha)
                     </div>
-                }
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NovaSenha, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-8">
+                        @Html.PasswordFor(model => model.NovaSenha, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.NovaSenha)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ConfirmarSenha, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-8">
+                        @Html.PasswordFor(model => model.ConfirmarSenha, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ConfirmarSenha)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-1 col-md-10" style="text-align: right">
+                        <button class="btn btn-default">@Html.ActionLink("Página inicial", "Index", "Home")</button>
+                        <input type="submit" value="Salvar Alterações" class="btn btn-primary" id="btnSalvar" />
+                    </div>
+                </div>
             </div>
-        </div>
+        }
     </div>
 </div>
 
