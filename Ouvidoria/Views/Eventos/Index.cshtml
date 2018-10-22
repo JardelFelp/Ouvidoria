@@ -62,13 +62,13 @@
                 "pageLength": 5,    
 
                 "ajax": {
-                    "url": "/Eventos/GetEventos",
+                    "url": "/Depoimentos/GetDepoimentos",
                     "type": "GET",
                     "dataType": "json"
                 },
                 "columns": [
                     { "data": "id", "autowidth": false },
-                    { "data": "EventoTipo.Tipo", "autowidth": false },
+                    { "data": "TipoDepoimento.Tipo", "autowidth": false },
                     { "data": "Usuario.Nome", "autowidth": false },
                     { "data": "Titulo", "autowidth": false },
                     { "data": "Descricao", "autowidth": false },
@@ -81,7 +81,7 @@
                 "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
                     if (aData.Respondido == false)
                     {
-                        var btn = '<a href="/Eventos/Responder/' + aData.id + '"><i class="fa fa-comment-dots" style="font-size: 1.73em;" rel="tooltip" title="Responder"></i></a>';
+                        var btn = '<a href="/Depoimentos/Responder/' + aData.id + '"><i class="fa fa-comment-dots" style="font-size: 1.73em;" rel="tooltip" title="Responder"></i></a>';
                         $('td:eq(6)', nRow).html(btn);
                         $('td:eq(6)', nRow).addClass('text-center');
                     }            

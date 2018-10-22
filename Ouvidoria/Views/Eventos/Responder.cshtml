@@ -1,4 +1,4 @@
-﻿@model Ouvidoria.Models.Evento
+﻿@model Ouvidoria.Models.Depoimento
 
 <div class="container-fluid content-end">
 
@@ -12,7 +12,7 @@
                     </h1>
                     <ol class="breadcrumb">
                         <li>
-                            @Html.ActionLink("Eventos", "Index", "Eventos")
+                            @Html.ActionLink("Depoimentos", "Index", "Depoimentos")
                         </li>
                         <li class="active" id="liPagina">Responder</li>
                     </ol>@using (Html.BeginForm())
@@ -22,7 +22,7 @@
                         @Html.HiddenFor(model => model.id)
                         @Html.HiddenFor(model => model.Titulo)
                         @Html.HiddenFor(model => model.Descricao)
-                        @Html.HiddenFor(model => model.idEventoTipo)
+                        @Html.HiddenFor(model => model.idTipoDepoimento)
                         @Html.HiddenFor(model => model.idUsuario)
 
                         <div class="form-group">
@@ -41,9 +41,9 @@
 
 
                         <div class="form-group">
-                            <label for="idEventoTipo" class="control-label col-md-2">Tipo do depoimento</label>
+                            <label for="idTipoDepoimento" class="control-label col-md-2">Tipo do depoimento</label>
                             <div class="col-md-9">
-                                @Html.DisplayFor(model => model.EventoTipo.Tipo)
+                                @Html.DisplayFor(model => model.TipoDepoimento.Tipo)
                             </div>
                         </div>
 

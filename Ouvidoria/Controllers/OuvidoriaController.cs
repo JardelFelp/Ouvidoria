@@ -17,11 +17,11 @@ namespace Ouvidoria.Controllers
 
         public ActionResult Denuncia()
         {
-            ViewBag.denuncias = EventoService.RetornaEventos(Convert.ToInt32(User.Identity.GetUserId()));
+            ViewBag.denuncias = DepoimentoService.RetornaDepoimentos(Convert.ToInt32(User.Identity.GetUserId()));
 
-            Evento evento = new Evento
+            Depoimento evento = new Depoimento
             {
-                idEventoTipo = 1
+                idTipoDepoimento = 1
             };
 
             return View(evento);
@@ -29,11 +29,11 @@ namespace Ouvidoria.Controllers
 
         public ActionResult Elogio()
         {
-            ViewBag.registros = EventoService.RetornaEventos(Convert.ToInt32(User.Identity.GetUserId()));
+            ViewBag.registros = DepoimentoService.RetornaDepoimentos(Convert.ToInt32(User.Identity.GetUserId()));
 
-            Evento evento = new Evento
+            Depoimento evento = new Depoimento
             {
-                idEventoTipo = 2
+                idTipoDepoimento = 2
             };
 
             return View(evento);
@@ -41,9 +41,9 @@ namespace Ouvidoria.Controllers
 
         public ActionResult Reclamacao()
         {
-            Evento evento = new Evento
+            Depoimento evento = new Depoimento
             {
-                idEventoTipo = 3
+                idTipoDepoimento = 3
             };
 
             return View(evento);
@@ -51,9 +51,9 @@ namespace Ouvidoria.Controllers
 
         public ActionResult Sugestao()
         {
-            Evento evento = new Evento
+            Depoimento evento = new Depoimento
             {
-                idEventoTipo = 4
+                idTipoDepoimento = 4
             };
 
             return View(evento);
@@ -66,12 +66,6 @@ namespace Ouvidoria.Controllers
             return View();
         }
 
-
-
-
-
-
-
         [Authorize]
         public ActionResult Index()
         {
@@ -80,35 +74,35 @@ namespace Ouvidoria.Controllers
 
         public ActionResult Depoimento()
         {
-            EventoService.VerificaEventos();
-            ViewBag.idEventoTipo = new SelectList(db.EventoTipo, "id", "Tipo");
+            DepoimentoService.VerificaDepoimentos();
+            ViewBag.idTipoDepoimento = new SelectList(db.TipoDepoimento, "id", "Tipo");
             //ViewBag.idEventoTipo = DepartamentoService.RetornaDepartamentos(null);
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Depoimento([Bind(Include = "id,Titulo,Descricao,idEventoTipo")] Evento evento)
+        public ActionResult Depoimento([Bind(Include = "id,Titulo,Descricao,idTipoDepoimento")] Depoimento evento)
         {
             if (ModelState.IsValid)
             {
                 evento.idUsuario = Convert.ToInt32(User.Identity.GetUserId());
-                EventoService.CadastraEvento(evento);
+                DepoimentoService.CadastraDepoimento(evento);
                 return RedirectToAction("MeusDepoimentos");
             }
-            ViewBag.idDepartamento = new SelectList(db.Departamento, "id", "Nome", evento.idEventoTipo);
+            ViewBag.idDepartamento = new SelectList(db.Departamento, "id", "Nome", evento.idTipoDepoimento);
             //ViewBag.idEventoTipo = DepartamentoService.RetornaDepartamentos(evento.idEventoTipo);
             return View(evento);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Feedback([Bind(Include = "id,Avaliacao,Comentario,idDepartamento")] DepartamentoDepoimento depoimento)
+        public ActionResult Feedback([Bind(Include = "id,Avaliacao,Comentario,idDepartamento")] Feedback depoimento)
         {
             if (ModelState.IsValid)
             {
                 depoimento.idUsuario = Convert.ToInt32(User.Identity.GetUserId());
-                DepartamentoDepoimentoService.CadastraDepoimento(depoimento);
+                FeedbackService.CadastraDepoimento(depoimento);
                 return RedirectToAction("MeusFeedbacks");
             }
 
@@ -119,13 +113,13 @@ namespace Ouvidoria.Controllers
 
         public ActionResult MeusFeedbacks()
         {
-            var feedbacks = DepartamentoDepoimentoService.RetornaFeedbacks(Convert.ToInt32(User.Identity.GetUserId()));
+            var feedbacks = FeedbackService.RetornaFeedbacks(Convert.ToInt32(User.Identity.GetUserId()));
             return View(feedbacks);
         }
 
         public ActionResult MeusDepoimentos()
         {
-            var depoimentos = EventoService.RetornaEventos(Convert.ToInt32(User.Identity.GetUserId()));
+            var depoimentos = DepoimentoService.RetornaDepoimentos(Convert.ToInt32(User.Identity.GetUserId()));
             return View(depoimentos);
         }
         
@@ -137,7 +131,7 @@ namespace Ouvidoria.Controllers
                 return RedirectToAction("MeusDepoimentos");
             }
 
-            var retorno = EventoService.ValidaDepoimento(id, Convert.ToInt32(User.Identity.GetUserId()));
+            var retorno = DepoimentoService.ValidaDepoimento(id, Convert.ToInt32(User.Identity.GetUserId()));
 
             if (retorno != "")
             {
@@ -145,22 +139,22 @@ namespace Ouvidoria.Controllers
                 return RedirectToAction("MeusDepoimentos");
             }
 
-            Evento evento = EventoService.EncontrarEvento(id);
-            ViewBag.idEventoTipo = new SelectList(db.EventoTipo, "id", "Tipo", id);
+            Depoimento evento = DepoimentoService.EncontrarDepoimento(id);
+            ViewBag.idTipoDepoimento = new SelectList(db.TipoDepoimento, "id", "Tipo", id);
             //ViewBag.idEventoTipo = EventoTipoService.RetornaEventoTipo(evento.idEventoTipo);
             return View(evento);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditarDepoimento([Bind(Include = "id,Titulo,Descricao,idEventoTipo")] Evento evento)
+        public ActionResult EditarDepoimento([Bind(Include = "id,Titulo,Descricao,idTipoDepoimento")] Depoimento evento)
         {
             if (ModelState.IsValid)
             {
-                EventoService.EditarEvento(evento);
+                DepoimentoService.EditarDepoimento(evento);
                 return RedirectToAction("MeusDepoimentos");
             }
-            ViewBag.idEventoTipo = new SelectList(db.EventoTipo, "id", "Tipo", evento.idEventoTipo);
+            ViewBag.idTipoDepoimento = new SelectList(db.TipoDepoimento, "id", "Tipo", evento.idTipoDepoimento);
             //ViewBag.idEventoTipo = EventoTipoService.RetornaEventoTipo(evento.idEventoTipo);
             return View(evento);
         }
@@ -171,15 +165,15 @@ namespace Ouvidoria.Controllers
             {
                 return RedirectToAction("MeusDepoimentos");
             }
-            var retorno = EventoService.ValidaDepoimento(id, Convert.ToInt32(User.Identity.GetUserId()));
+            var retorno = DepoimentoService.ValidaDepoimento(id, Convert.ToInt32(User.Identity.GetUserId()));
 
             if (retorno != "")
             {
                 TempData["Error"] = retorno;
                 return RedirectToAction("MeusDepoimentos");
             }
-            Evento evento = EventoService.EncontrarEvento(id);
-            ViewBag.idEventoTipo = new SelectList(db.EventoTipo, "id", "Tipo", evento.idEventoTipo);
+            Depoimento evento = DepoimentoService.EncontrarDepoimento(id);
+            ViewBag.idTipoDepoimento = new SelectList(db.TipoDepoimento, "id", "Tipo", evento.idTipoDepoimento);
             //ViewBag.idEventoTipo = EventoTipoService.RetornaEventoTipo(evento.idEventoTipo);
             return View(evento);
         }
@@ -188,7 +182,7 @@ namespace Ouvidoria.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ExcluirDepoimento(int id)
         {
-            EventoService.ExcluirEvento(id);
+            DepoimentoService.ExcluirDepoimento(id);
             return RedirectToAction("MeusDepoimentos");
         }
     }

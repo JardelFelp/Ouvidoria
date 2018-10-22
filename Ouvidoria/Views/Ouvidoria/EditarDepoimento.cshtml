@@ -1,4 +1,4 @@
-﻿@model Ouvidoria.Models.Evento
+﻿@model Ouvidoria.Models.Depoimento
 @{
     ViewBag.Title = "Ouvidoria";
 }
@@ -61,10 +61,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="idEventoTipo" class="control-label col-md-2">Selecione o tipo do Depoimento</label>
+                        <label for="idTipoDepoimento" class="control-label col-md-2">Selecione o tipo do Depoimento</label>
                         <div class="col-md-9">
-                            @Html.DropDownList("idEventoTipo", (IEnumerable<SelectListItem>)ViewBag.PriorityID, new { @class = "form-control btn btn-default" })
-                            @Html.ValidationMessageFor(model => model.idEventoTipo, "", new { @class = "text-danger" })
+                            @Html.DropDownList("idTipoDepoimento", (IEnumerable<SelectListItem>)ViewBag.PriorityID, new { @class = "form-control btn btn-default" })
+                            @Html.ValidationMessageFor(model => model.idTipoDepoimento, "", new { @class = "text-danger" })
                         </div>
                     </div>
 

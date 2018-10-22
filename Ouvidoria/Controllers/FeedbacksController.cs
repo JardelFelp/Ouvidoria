@@ -19,7 +19,7 @@ namespace Ouvidoria.Controllers
 
         public ActionResult GetFeedbacks()
         {
-            var feedbacks = db.DepartamentoDepoimento.Include(e => e.Departamento).Include(e => e.Usuario).ToList();
+            var feedbacks = db.Feedback.Include(e => e.Departamento).Include(e => e.Usuario).ToList();
             return Json(new { data = feedbacks }, JsonRequestBehavior.AllowGet);
         }
     }

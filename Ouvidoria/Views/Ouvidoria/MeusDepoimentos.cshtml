@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Ouvidoria.Models.Evento>
+﻿@model IEnumerable<Ouvidoria.Models.Depoimento>
 
 @if (TempData["Error"] != null)
 {
@@ -65,7 +65,7 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.EventoTipo.Tipo)
+                                        @Html.DisplayFor(modelItem => item.TipoDepoimento.Tipo)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Titulo)

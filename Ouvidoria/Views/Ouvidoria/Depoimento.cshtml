@@ -1,4 +1,4 @@
-﻿@model Ouvidoria.Models.Evento
+﻿@model Ouvidoria.Models.Depoimento
 @{
     ViewBag.Title = "Ouvidoria";
 }
@@ -71,7 +71,7 @@
                     </div>
 
                     <div class="form-group" hidden="hidden">
-                        @Html.DropDownList("idEventoTipo", (IEnumerable<SelectListItem>)ViewBag.PriorityID, new { @class = "form-control btn btn-default" })
+                        @Html.DropDownList("idTipoDepoimento", (IEnumerable<SelectListItem>)ViewBag.PriorityID, new { @class = "form-control btn btn-default" })
                     </div>
 
                     <div class="form-group">
@@ -96,28 +96,28 @@
         $("#mostraReclamacao").click(function () {
             $("#smTipo").text("Registre abaixo a sua Reclamação");
             $(".active").text("Reclamação");
-            $("#idEventoTipo").prop('selectedIndex', 2);
+            $("#idTipoDepoimento").prop('selectedIndex', 2);
             $("#btnSalvar").val("Salvar Reclamação");
         });
 
         $("#mostraSugestao").click(function () {
             $("#smTipo").text("Registre abaixo a sua Sugestão");
             $(".active").text("Sugestão");
-            $("#idEventoTipo").prop('selectedIndex', 3);
+            $("#idTipoDepoimento").prop('selectedIndex', 3);
             $("#btnSalvar").val("Salvar Sugestão");
         });
 
         $("#mostraElogio").click(function () {
             $("#smTipo").text("Registre abaixo o seu Elogio");
             $(".active").text("Elogio");
-            $("#idEventoTipo").prop('selectedIndex', 1);
+            $("#idTipoDepoimento").prop('selectedIndex', 1);
             $("#btnSalvar").val("Salvar Elogio");
         });
 
         $("#mostraDenuncia").click(function () {
             $("#smTipo").text("Registre abaixo a sua Denúncia");
             $(".active").text("Denúncia");
-            $("#idEventoTipo").prop('selectedIndex', 0);
+            $("#idTipoDepoimento").prop('selectedIndex', 0);
             $("#btnSalvar").val("Salvar Denúncia");
         });
     });
