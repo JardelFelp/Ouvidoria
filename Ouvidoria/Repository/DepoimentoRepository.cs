@@ -34,11 +34,11 @@ namespace Ouvidoria.Repository
             }
         }
 
-        internal static void CadastraDepoimento(Depoimento evento)
+        internal static void CadastraDepoimento(Depoimento depoimento)
         {
             using (var db = new OuvidoriaContext())
             {
-                db.Depoimento.Add(evento);
+                db.Depoimento.Add(depoimento);
                 db.SaveChanges();
             }
         }
@@ -55,34 +55,59 @@ namespace Ouvidoria.Repository
             }
         }
 
-        internal static Depoimento EncontrarDepoimento(int? id)
+        internal static Depoimento RetornaDepoimento(int? id)
         {
             using (var db = new OuvidoriaContext())
-            {                
+            {
+                return db.Depoimento
+                       .Include(e => e.TipoDepoimento)
+                       .Include(e => e.Usuario)
+                       .SingleOrDefault(x => x.id == id);
+            }
+        }
+
+        internal static Depoimento EncontraDepoimento(int? id)
+        {
+            using (var db = new OuvidoriaContext())
+            {
                 return db.Depoimento.Find(id);
             }
         }
 
-        internal static void EditarDepoimento(Depoimento evento)
+        internal static void EditaDepoimento(Depoimento depoimento)
         {
             using (var db = new OuvidoriaContext())
             {
-                var eventoOriginal = db.Depoimento.FirstOrDefault(x => x.id == evento.id);
-                eventoOriginal.idTipoDepoimento = evento.idTipoDepoimento;
-                eventoOriginal.Titulo = evento.Titulo;
-                eventoOriginal.Descricao = evento.Descricao;
-                db.Entry(eventoOriginal).State = EntityState.Modified;
+                var depoimentoOriginal = db.Depoimento.FirstOrDefault(x => x.id == depoimento.id);
+                depoimentoOriginal.idTipoDepoimento = depoimento.idTipoDepoimento;
+                depoimentoOriginal.Titulo = depoimento.Titulo;
+                depoimentoOriginal.Descricao = depoimento.Descricao;
+                db.Entry(depoimentoOriginal).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
 
-        internal static void ExcluirDepoimento(int id)
+        internal static void ExcluiDepoimento(int id)
         {
             using (var db = new OuvidoriaContext())
             {
-                var evento = db.Depoimento.Find(id);
-                db.Depoimento.Remove(evento);
+                var depoimento = db.Depoimento.Find(id);
+                db.Depoimento.Remove(depoimento);
                 db.SaveChanges();
+            }
+        }
+
+        internal static string ValidaDepoimento(int? id)
+        {
+            using (var db = new OuvidoriaContext())
+            {
+                var depoimento = EncontraDepoimento(id);
+                if (depoimento == null)
+                    return "Depoimento nao encontrado";
+                if (depoimento.Respondido == true)
+                    return "Depoimento ja respondido";
+                else
+                    return "";
             }
         }
 
@@ -90,10 +115,10 @@ namespace Ouvidoria.Repository
         {
             using (var db = new OuvidoriaContext())
             {
-                var evento = EncontrarDepoimento(id);
-                if (evento == null || evento.idUsuario != usuario)
+                var depoimento = EncontraDepoimento(id);
+                if (depoimento == null || depoimento.idUsuario != usuario)
                     return "Depoimento nao encontrado";
-                if (evento.Respondido == true)
+                if (depoimento.Respondido == true)
                     return "Depoimento ja respondido";
                 else
                     return "";

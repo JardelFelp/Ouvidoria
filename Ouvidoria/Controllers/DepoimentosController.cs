@@ -1,5 +1,6 @@
 ﻿using Ouvidoria.Filters;
 using Ouvidoria.Models;
+using Ouvidoria.Service;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -29,23 +30,18 @@ namespace Ouvidoria.Controllers
             {
                 return RedirectToAction("Index");
             }
-            Depoimento evento = db.Depoimento
-                              .Include(e => e.TipoDepoimento)
-                              .Include(e => e.Usuario)
-                              .SingleOrDefault(x => x.id == id);
-            if (evento == null)
+            var retorno = DepoimentoService.ValidaDepoimento(id);
+
+            if (retorno != "")
             {
-                TempData["Error"] = "Depoimento nao encontrado";
+                TempData["Error"] = retorno;
                 return RedirectToAction("Index");
             }
-            if (evento.Respondido == true)
-            {
-                TempData["Error"] = "Depoimento ja respondido";
-                return RedirectToAction("Index");
-            }
-            ViewBag.idTipoDepoimento = new SelectList(db.TipoDepoimento, "id", "Tipo", evento.idTipoDepoimento);
-            ViewBag.idUsuario = new SelectList(db.Usuario, "id", "Nome", evento.idUsuario);
-            return View(evento);
+
+            var depoimento = DepoimentoService.RetornaDepoimento(id);
+            ViewBag.idTipoDepoimento = new SelectList(db.TipoDepoimento, "id", "Tipo", depoimento.idTipoDepoimento);
+            ViewBag.idUsuario = new SelectList(db.Usuario, "id", "Nome", depoimento.idUsuario);
+            return View(depoimento);
         }
         
         [HttpPost]

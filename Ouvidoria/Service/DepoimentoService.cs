@@ -13,7 +13,7 @@ namespace Ouvidoria.Service
             return DepoimentoRepository.BuscaTipoDepoimento();
         }
 
-        public static void VerificaDepoimentos()
+        public static void VerificaEventos()
         {
             if (!TemDepoimento())
             {
@@ -28,14 +28,14 @@ namespace Ouvidoria.Service
 
         private static void CadastrarPadroes()
         {
-            List<TipoDepoimento> eventos = new List<TipoDepoimento>()
+            List<TipoDepoimento> depoimento = new List<TipoDepoimento>()
             {
                 new TipoDepoimento("Denuncia"),
                 new TipoDepoimento("Elogio"),
                 new TipoDepoimento("Reclamacao"),
                 new TipoDepoimento("Sugestao"),
             };
-            DepoimentoRepository.CadastraPadroes(eventos);
+            DepoimentoRepository.CadastraPadroes(depoimento);
         }
 
         public static void CadastraDepoimento(Depoimento evento)
@@ -43,9 +43,19 @@ namespace Ouvidoria.Service
             DepoimentoRepository.CadastraDepoimento(evento);
         }
 
+        public static Depoimento RetornaDepoimento(int? id)
+        {
+            return DepoimentoRepository.RetornaDepoimento(id);
+        }
+
         public static IEnumerable<Depoimento> RetornaDepoimentos(int id)
         {
             return DepoimentoRepository.RetornaDepoimentos(id);
+        }
+
+        public static string ValidaDepoimento(int? id)
+        {
+            return DepoimentoRepository.ValidaDepoimento(id);
         }
 
         public static string ValidaDepoimento(int? id, int usuario)
@@ -53,19 +63,19 @@ namespace Ouvidoria.Service
             return DepoimentoRepository.ValidaDepoimento(id, usuario);
         }
 
-        public static Depoimento EncontrarDepoimento(int? id)
+        public static Depoimento EncontraDepoimento(int? id)
         {
-            return DepoimentoRepository.EncontrarDepoimento(id);
+            return DepoimentoRepository.EncontraDepoimento(id);
         }
 
-        public static void EditarDepoimento(Depoimento evento)
+        public static void EditaDepoimento(Depoimento evento)
         {
-            DepoimentoRepository.EditarDepoimento(evento);
+            DepoimentoRepository.EditaDepoimento(evento);
         }
 
-        public static void ExcluirDepoimento(int id)
+        public static void ExcluiDepoimento(int id)
         {
-            DepoimentoRepository.ExcluirDepoimento(id);
+            DepoimentoRepository.ExcluiDepoimento(id);
         }
     }
 }

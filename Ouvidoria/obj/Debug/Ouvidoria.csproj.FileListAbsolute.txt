@@ -419,5 +419,5 @@ C:\Users\Rhuan\Desktop\Ouvidoriav2\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.cspro
 C:\Users\Rhuan\Desktop\Ouvidoriav2\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.csproj.CopyComplete
 C:\Users\Rhuan\Desktop\Ouvidoriav2\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.dll
 C:\Users\Rhuan\Desktop\Ouvidoriav2\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.pdb
-C:\Users\Rhuan\Desktop\Ouvidoriav2\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.csprojAssemblyReference.cache
 C:\Users\Rhuan\Desktop\Ouvidoriav2\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.Migrations.Remodel.resources
+C:\Users\Rhuan\Desktop\Ouvidoriav2\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.csprojAssemblyReference.cache

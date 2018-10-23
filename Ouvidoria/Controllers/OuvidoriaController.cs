@@ -3,10 +3,7 @@ using Ouvidoria.Filters;
 using Ouvidoria.Models;
 using Ouvidoria.Service;
 using System;
-using System.Linq;
 using System.Web.Mvc;
-using System.Data.Entity;
-using System.Net;
 
 namespace Ouvidoria.Controllers
 {
@@ -15,17 +12,37 @@ namespace Ouvidoria.Controllers
     {
         private OuvidoriaContext db = new OuvidoriaContext();
 
+        [Authorize]
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         public ActionResult Denuncia()
         {
             ViewBag.denuncias = DepoimentoService.RetornaDepoimentos(Convert.ToInt32(User.Identity.GetUserId()));
 
             Depoimento evento = new Depoimento
             {
-                idTipoDepoimento = 1
+                idTipoDepoimento = 1,
+                idUsuario = Convert.ToInt32(User.Identity.GetUserId())
             };
 
             return View(evento);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Denuncia(Depoimento denuncia)
+        {
+            if (ModelState.IsValid)
+            {
+                DepoimentoService.CadastraDepoimento(denuncia);
+                return RedirectToAction("Index");
+            }
+            return View(denuncia);
+        }
+
 
         public ActionResult Elogio()
         {
@@ -33,30 +50,69 @@ namespace Ouvidoria.Controllers
 
             Depoimento evento = new Depoimento
             {
-                idTipoDepoimento = 2
+                idTipoDepoimento = 2,
+                idUsuario = Convert.ToInt32(User.Identity.GetUserId())
             };
 
             return View(evento);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Elogio(Depoimento elogio)
+        {
+            if (ModelState.IsValid)
+            {
+                DepoimentoService.CadastraDepoimento(elogio);
+                return RedirectToAction("Index");
+            }
+            return View(elogio);
         }
 
         public ActionResult Reclamacao()
         {
             Depoimento evento = new Depoimento
             {
-                idTipoDepoimento = 3
+                idTipoDepoimento = 3,
+                idUsuario = Convert.ToInt32(User.Identity.GetUserId())
             };
 
             return View(evento);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Reclamacao(Depoimento reclamacao)
+        {
+            if (ModelState.IsValid)
+            {
+                DepoimentoService.CadastraDepoimento(reclamacao);
+                return RedirectToAction("Index");
+            }
+            return View(reclamacao);
         }
 
         public ActionResult Sugestao()
         {
             Depoimento evento = new Depoimento
             {
-                idTipoDepoimento = 4
+                idTipoDepoimento = 4,
+                idUsuario = Convert.ToInt32(User.Identity.GetUserId())
             };
 
             return View(evento);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Sugestao(Depoimento sugestao)
+        {
+            if (ModelState.IsValid)
+            {
+                DepoimentoService.CadastraDepoimento(sugestao);
+                return RedirectToAction("Index");
+            }
+            return View(sugestao);
         }
 
         public ActionResult Feedback()
@@ -66,15 +122,9 @@ namespace Ouvidoria.Controllers
             return View();
         }
 
-        [Authorize]
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public ActionResult Depoimento()
         {
-            DepoimentoService.VerificaDepoimentos();
+            DepoimentoService.VerificaEventos();
             ViewBag.idTipoDepoimento = new SelectList(db.TipoDepoimento, "id", "Tipo");
             //ViewBag.idEventoTipo = DepartamentoService.RetornaDepartamentos(null);
             return View();
@@ -139,29 +189,27 @@ namespace Ouvidoria.Controllers
                 return RedirectToAction("MeusDepoimentos");
             }
 
-            Depoimento evento = DepoimentoService.EncontrarDepoimento(id);
+            Depoimento depoimento = DepoimentoService.EncontraDepoimento(id);
             ViewBag.idTipoDepoimento = new SelectList(db.TipoDepoimento, "id", "Tipo", id);
-            //ViewBag.idEventoTipo = EventoTipoService.RetornaEventoTipo(evento.idEventoTipo);
-            return View(evento);
+            return View(depoimento);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditarDepoimento([Bind(Include = "id,Titulo,Descricao,idTipoDepoimento")] Depoimento evento)
+        public ActionResult EditarDepoimento([Bind(Include = "id,Titulo,Descricao,idTipoDepoimento")] Depoimento depoimento)
         {
             if (ModelState.IsValid)
             {
-                DepoimentoService.EditarDepoimento(evento);
+                DepoimentoService.EditaDepoimento(depoimento);
                 return RedirectToAction("MeusDepoimentos");
             }
-            ViewBag.idTipoDepoimento = new SelectList(db.TipoDepoimento, "id", "Tipo", evento.idTipoDepoimento);
-            //ViewBag.idEventoTipo = EventoTipoService.RetornaEventoTipo(evento.idEventoTipo);
-            return View(evento);
+            ViewBag.idTipoDepoimento = new SelectList(db.TipoDepoimento, "id", "Tipo", depoimento.idTipoDepoimento);
+            return View(depoimento);
         }
 
         public ActionResult ExcluirDepoimento(int? id)
         {
-            if (id == null)
+            if(id == null)
             {
                 return RedirectToAction("MeusDepoimentos");
             }
@@ -172,17 +220,16 @@ namespace Ouvidoria.Controllers
                 TempData["Error"] = retorno;
                 return RedirectToAction("MeusDepoimentos");
             }
-            Depoimento evento = DepoimentoService.EncontrarDepoimento(id);
-            ViewBag.idTipoDepoimento = new SelectList(db.TipoDepoimento, "id", "Tipo", evento.idTipoDepoimento);
-            //ViewBag.idEventoTipo = EventoTipoService.RetornaEventoTipo(evento.idEventoTipo);
-            return View(evento);
+            Depoimento depoimento = DepoimentoService.EncontraDepoimento(id);
+            ViewBag.idTipoDepoimento = new SelectList(db.TipoDepoimento, "id", "Tipo", depoimento.idTipoDepoimento);
+            return View(depoimento);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ExcluirDepoimento(int id)
         {
-            DepoimentoService.ExcluirDepoimento(id);
+            DepoimentoService.ExcluiDepoimento(id);
             return RedirectToAction("MeusDepoimentos");
         }
     }

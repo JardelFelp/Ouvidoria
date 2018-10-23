@@ -1,4 +1,5 @@
-﻿using Ouvidoria.Repository;
+﻿using Ouvidoria.Models;
+using Ouvidoria.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +15,34 @@ namespace Ouvidoria.Service
             return DepartamentoRepository.RetornaDepartamentos(id);
         }
 
-        internal static object RetornaTodosDepartamentos()
+        public static List<Departamento> RetornaTodosDepartamentos()
         {
-            throw new NotImplementedException();
+            return DepartamentoRepository.RetornaTodosDepartamentos();
         }
 
-        internal static void ValidaDepartamento(int? id)
+        public static string ValidaDepartamento(int? id)
         {
-            throw new NotImplementedException();
+            return DepartamentoRepository.ValidaDepartamento(id);
+        }
+
+        public static Departamento RetornaDepartamento(int? id)
+        {
+            return DepartamentoRepository.RetornaDepartamento(id);
+        }
+
+        public static void CadastraDepartamento(Departamento departamento)
+        {
+            DepartamentoRepository.CadastraDepartamento(departamento);
+        }
+
+        public static void EditaDepartamento(Departamento departamento)
+        {
+            DepartamentoRepository.EditaDepartamento(departamento);
+        }
+
+        public static void ExcluiDepartamento(int id)
+        {
+            DepartamentoRepository.ExcluiDepartamento(id);
         }
     }
 }

@@ -171,7 +171,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OuvidoriaController.cs" />
     <Compile Include="Controllers\PainelUsuarioController.cs" />
-    <Compile Include="Controllers\PerfisUsuariosController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Filters\AutorizacaoFiltro.cs" />
     <Compile Include="Global.asax.cs">
@@ -1813,11 +1812,6 @@
     <Content Include="Views\Depoimentos\Edit.cshtml" />
     <Content Include="Views\Depoimentos\Index.cshtml" />
     <Content Include="Views\Administracao\Index.cshtml" />
-    <Content Include="Views\PerfisUsuarios\Create.cshtml" />
-    <Content Include="Views\PerfisUsuarios\Delete.cshtml" />
-    <Content Include="Views\PerfisUsuarios\Details.cshtml" />
-    <Content Include="Views\PerfisUsuarios\Edit.cshtml" />
-    <Content Include="Views\PerfisUsuarios\Index.cshtml" />
     <Content Include="Views\Cursos\Create.cshtml" />
     <Content Include="Views\Cursos\Delete.cshtml" />
     <Content Include="Views\Cursos\Details.cshtml" />
@@ -1868,9 +1862,9 @@
     <Content Include="Views\Eventos\Responder.cshtml" />
     <Content Include="Views\Feedbacks\Index.cshtml" />
     <Content Include="Views\Ouvidoria\Elogio.cshtml" />
-    <Content Include="Views\Ouvidoria\Sugestione.cshtml" />
-    <Content Include="Views\Ouvidoria\Reclame.cshtml" />
-    <Content Include="Views\Ouvidoria\Denuncie.cshtml" />
+    <Content Include="Views\Ouvidoria\Sugestao.cshtml" />
+    <Content Include="Views\Ouvidoria\Reclamacao.cshtml" />
+    <Content Include="Views\Ouvidoria\Denuncia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

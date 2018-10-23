@@ -21,17 +21,16 @@ namespace Ouvidoria.Controllers
         
         public ActionResult Details(int? id)
         {
-            DepartamentoService.ValidaDepartamento(id);
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                RedirectToAction("Index");
             }
-            Departamento departamento = db.Departamento.Find(id);
-            if (departamento == null)
+            var retorno = DepartamentoService.ValidaDepartamento(id);
+            if (retorno == "")
             {
-                return HttpNotFound();
+                RedirectToAction("Index");
             }
-            return View(departamento);
+            return View(DepartamentoService.RetornaDepartamento(id));
         }
         
         [Authorize]
@@ -46,8 +45,7 @@ namespace Ouvidoria.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Departamento.Add(departamento);
-                db.SaveChanges();
+                DepartamentoService.CadastraDepartamento(departamento);
                 return RedirectToAction("Index");
             }
 
@@ -58,15 +56,16 @@ namespace Ouvidoria.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                RedirectToAction("Index");
             }
-            Departamento departamento = db.Departamento.Find(id);
-            if (departamento == null)
+            var retorno = DepartamentoService.ValidaDepartamento(id);
+            if (retorno == "")
             {
-                return HttpNotFound();
+                RedirectToAction("Index");
             }
-            return View(departamento);
+            return View(DepartamentoService.RetornaDepartamento(id));
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
@@ -74,8 +73,7 @@ namespace Ouvidoria.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(departamento).State = EntityState.Modified;
-                db.SaveChanges();
+                DepartamentoService.EditaDepartamento(departamento);
                 return RedirectToAction("Index");
             }
             return View(departamento);
@@ -85,33 +83,22 @@ namespace Ouvidoria.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                RedirectToAction("Index");
             }
-            Departamento departamento = db.Departamento.Find(id);
-            if (departamento == null)
+            var retorno = DepartamentoService.ValidaDepartamento(id);
+            if (retorno == "")
             {
-                return HttpNotFound();
+                RedirectToAction("Index");
             }
-            return View(departamento);
+            return View(DepartamentoService.RetornaDepartamento(id));
         }
         
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Departamento departamento = db.Departamento.Find(id);
-            db.Departamento.Remove(departamento);
-            db.SaveChanges();
+            DepartamentoService.ExcluiDepartamento(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

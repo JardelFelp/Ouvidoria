@@ -17,5 +17,22 @@ namespace Ouvidoria.Repository
                 return eventoTipo;
             }
         }
+
+        internal static bool TemTipos()
+        {
+            using (var db = new OuvidoriaContext())
+            {
+                return db.TipoDepoimento.Any();
+            }
+        }
+
+        internal static void CadastraPadroes(List<TipoDepoimento> depoimentos)
+        {
+            using (var db = new OuvidoriaContext())
+            {
+                db.TipoDepoimento.AddRange(depoimentos);
+                db.SaveChanges();
+            }
+        }
     }
 }
