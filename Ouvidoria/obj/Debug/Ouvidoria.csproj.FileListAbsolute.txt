@@ -326,7 +326,6 @@ D:\Arquivos\Documentos\Arquivos Faculdade\6° Semestre\Gestão de Qualidade de S
 D:\Arquivos\Documentos\Arquivos Faculdade\6° Semestre\Gestão de Qualidade de Software\Sistema_Ouvidoria\Ouvidoria\bin\X.PagedList.dll
 D:\Arquivos\Documentos\Arquivos Faculdade\6° Semestre\Gestão de Qualidade de Software\Sistema_Ouvidoria\Ouvidoria\bin\X.PagedList.Mvc.Bootstrap4.dll
 D:\Arquivos\Documentos\Arquivos Faculdade\6° Semestre\Gestão de Qualidade de Software\Sistema_Ouvidoria\Ouvidoria\bin\X.PagedList.Mvc.dll
-D:\Arquivos\Documentos\Arquivos Faculdade\6° Semestre\Gestão de Qualidade de Software\Sistema_Ouvidoria\Ouvidoria\bin\X.PagedList.Mvc.Common.dll
 D:\Arquivos\Documentos\Arquivos Faculdade\6° Semestre\Gestão de Qualidade de Software\Sistema_Ouvidoria\Ouvidoria\bin\EntityFramework.xml
 D:\Arquivos\Documentos\Arquivos Faculdade\6° Semestre\Gestão de Qualidade de Software\Sistema_Ouvidoria\Ouvidoria\bin\EntityFramework.SqlServer.xml
 D:\Arquivos\Documentos\Arquivos Faculdade\6° Semestre\Gestão de Qualidade de Software\Sistema_Ouvidoria\Ouvidoria\bin\Microsoft.Owin.xml
@@ -420,4 +419,8 @@ C:\Users\Rhuan\Desktop\Ouvidoriav2\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.cspro
 C:\Users\Rhuan\Desktop\Ouvidoriav2\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.dll
 C:\Users\Rhuan\Desktop\Ouvidoriav2\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.pdb
 C:\Users\Rhuan\Desktop\Ouvidoriav2\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.Migrations.Remodel.resources
+<<<<<<< Updated upstream
 C:\Users\Rhuan\Desktop\Ouvidoriav2\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.csprojAssemblyReference.cache
+=======
+D:\Arquivos\Documentos\Arquivos Faculdade\6° Semestre\Gestão de Qualidade de Software\Sistema_Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.Migrations.Remodel.resources
+>>>>>>> Stashed changes

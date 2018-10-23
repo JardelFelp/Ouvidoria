@@ -71,6 +71,14 @@ namespace Ouvidoria.Controllers
             return View(evento);
         }
 
+        public ActionResult getDepoimentosRespondidos()
+        {
+            var respondidos = DepoimentoService.GetDepoimentosRespondidos();
+            var naoRespondidos = DepoimentoService.GetDepoimentosNaoRespondidos();
+
+            return Json(new { respondidos, naoRespondidos }, JsonRequestBehavior.AllowGet);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

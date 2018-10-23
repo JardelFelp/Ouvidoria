@@ -396,6 +396,7 @@
     <Content Include="img\home1.jpg" />
     <Content Include="img\home3.jpg" />
     <Content Include="img\logoBranca.png" />
+    <Content Include="js\admin.js" />
     <Content Include="js\all.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />

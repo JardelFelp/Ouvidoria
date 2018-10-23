@@ -86,8 +86,24 @@ namespace Ouvidoria.Repository
                 db.SaveChanges();
             }
         }
+        
+        internal static int GetDepoimentosRespondidos()
+        {
+            using (var db = new OuvidoriaContext())
+            {
+                return db.Depoimento.Where(x => x.Respondido == true).Count();
+            }
+        }
 
-        internal static void ExcluiDepoimento(int id)
+        internal static int GetDepoimentosNaoRespondidos()
+        {
+            using (var db = new OuvidoriaContext())
+            {
+                return db.Depoimento.Where(x => x.Respondido == false).Count();
+            }
+        }
+
+        internal static void ExcluirDepoimento(int id)
         {
             using (var db = new OuvidoriaContext())
             {

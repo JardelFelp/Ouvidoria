@@ -77,5 +77,15 @@ namespace Ouvidoria.Service
         {
             DepoimentoRepository.ExcluiDepoimento(id);
         }
+
+        internal static int GetDepoimentosRespondidos()
+        {
+            return DepoimentoRepository.GetDepoimentosRespondidos();
+        }
+
+        internal static int GetDepoimentosNaoRespondidos()
+        {
+            return DepoimentoRepository.GetDepoimentosNaoRespondidos();
+        }
     }
 }

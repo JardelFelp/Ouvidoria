@@ -35,13 +35,22 @@
                         if (User.IsInRole("2"))
                         {
                             <li id="">
-                                @Html.ActionLink("Feedbacks", "Index", "Feedbacks")
+                                <a href="@Url.Action("Index", "Feedbacks")">
+                                    Feedback
+                                    <i class="glyphicon glyphicon-star"></i>
+                                </a>
                             </li>
                             <li id="">
-                                @Html.ActionLink("Depoimentos", "Index", "Depoimentos")
+                                <a href="@Url.Action("Index", "Depoimentos")">
+                                    Depoimentos
+                                    <i class="fa fa-comments"></i>
+                                </a>
                             </li>
                             <li id="">
-                                @Html.ActionLink("Administração", "Index", "Administracao")
+                                <a href="@Url.Action("Index", "Administracao")">
+                                    Administração
+                                    <i class="fa fa-cogs"></i>
+                                </a>
                             </li>
                         }
                         if (User.IsInRole("1"))

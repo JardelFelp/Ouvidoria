@@ -194,3 +194,14 @@ h1, h2, h3, h4, h5, span, label  {
     border-radius: 25px !important;
     font-size: 17px !important;
 }
+
+.relatorio {
+    border: 1px solid;
+    border-radius: 13px;
+    background: white;
+}
+
+.relatorios {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
