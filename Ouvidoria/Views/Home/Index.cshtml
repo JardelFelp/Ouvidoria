@@ -164,10 +164,14 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div id="chart_div"></div>
+                    <div class="col-md-12 relatorio">
+                        <div id="total"></div>
+                    </div>
                 </div>
                 <div class="col-md-4">
-                    <div id="chart_div"></div>
+                    <div class="col-md-12 relatorio">
+                        <div id="abertos"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -217,35 +221,19 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
     google.charts.load('current', {packages: ['corechart', 'bar']});
-    google.charts.setOnLoadCallback(CarregaDados);
-
-    function CarregaDados() {
-        $.ajax({
-            url: '@Url.Action("getDepoimentosRespondidos", "Depoimentos")',
-            dataType: "json",
-            type: "GET",
-            error: function(xhr, status, error) {
-                var err = eval("(" + xhr.responseText + ")");
-                toastr.error(err.message);
-            },
-            success: function (data) {
-                GraficoPopulacional(data);
-                return false;
-            }
-        });
-        return false;
-    }
+    google.charts.setOnLoadCallback(GraficoPopulacional);
+    google.charts.setOnLoadCallback(GraficoTotal);
+    google.charts.setOnLoadCallback(GraficoAbertos);
+    
 
     function GraficoPopulacional(data) {
-        console.log(data);
-
         // Create the data table.
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Topping');
         data.addColumn('number', 'Slices');
         data.addRows([
-            ['Respondidos', data.respondidos],
-            ['Não Respondidos', data.naoRespondidos],
+            ['Respondidos', 50],
+            ['Não Respondidos', 15],
         ]);
         
         var options = {
@@ -256,6 +244,48 @@
         var chart = new google.visualization.PieChart(document.getElementById('respondidos'));
         chart.draw(data, options);
     }
+
+    function GraficoTotal() {
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+            ['Elogios', 30],
+            ['Sugestões', 5],
+            ['Reclamação', 10],
+            ['Denúncias', 10],
+        ]);
+
+        var options = {
+            'title': 'Gráfico de Depoimentos',
+            'height': '250',
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('total'));
+        chart.draw(data, options);
+    }
+
+    function GraficoAbertos() {
+        var data = google.visualization.arrayToDataTable([
+            ['Mês/Ano', 'Quantidade'],
+            ['08/2018', 17],
+            ['09/2018', 10],
+            ['10/2018', 38],
+        ]);
+
+        var options = {
+            title: 'Depoimentos Abertos',
+            curveType: 'function',
+            legend: { position: 'bottom' },
+            'height': '250',
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('abertos'));
+
+        chart.draw(data, options);
+    }
+
 </script>
 
 <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
