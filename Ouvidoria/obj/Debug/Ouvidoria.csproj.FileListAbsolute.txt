@@ -160,7 +160,6 @@ C:\Users\rhuan.drescher\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\bin\Microsoft.Owin
 C:\Users\rhuan.drescher\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\rhuan.drescher\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\rhuan.drescher\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\rhuan.drescher\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.csprojResolveAssemblyReference.cache
 C:\Users\rhuan.drescher\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.csproj.CoreCompileInputs.cache
 C:\Users\rhuan.drescher\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.dll
 C:\Users\rhuan.drescher\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.pdb
@@ -419,8 +418,13 @@ C:\Users\Rhuan\Desktop\Ouvidoriav2\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.cspro
 C:\Users\Rhuan\Desktop\Ouvidoriav2\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.dll
 C:\Users\Rhuan\Desktop\Ouvidoriav2\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.pdb
 C:\Users\Rhuan\Desktop\Ouvidoriav2\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.Migrations.Remodel.resources
-<<<<<<< Updated upstream
 C:\Users\Rhuan\Desktop\Ouvidoriav2\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.csprojAssemblyReference.cache
-=======
 D:\Arquivos\Documentos\Arquivos Faculdade\6° Semestre\Gestão de Qualidade de Software\Sistema_Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.Migrations.Remodel.resources
->>>>>>> Stashed changes
+C:\Users\rhuan.drescher\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.Migrations.InitialCreate.resources
+C:\Users\rhuan.drescher\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.Migrations.idCurso.resources
+C:\Users\rhuan.drescher\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.Migrations.Remodel.resources
+C:\Users\rhuan.drescher\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.csproj.GenerateResource.Cache
+C:\Users\rhuan.drescher\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\bin\X.PagedList.dll
+C:\Users\rhuan.drescher\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\bin\X.PagedList.Mvc.Bootstrap4.dll
+C:\Users\rhuan.drescher\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\bin\X.PagedList.Mvc.dll
+C:\Users\rhuan.drescher\Desktop\Ouvidoria\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.csprojResolveAssemblyReference.cache

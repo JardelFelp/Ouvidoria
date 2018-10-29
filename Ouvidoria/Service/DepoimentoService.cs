@@ -13,7 +13,7 @@ namespace Ouvidoria.Service
             return DepoimentoRepository.BuscaTipoDepoimento();
         }
 
-        public static void VerificaEventos()
+        public static void VerificaDepoimentos()
         {
             if (!TemDepoimento())
             {
@@ -75,7 +75,7 @@ namespace Ouvidoria.Service
 
         public static void ExcluiDepoimento(int id)
         {
-            DepoimentoRepository.ExcluiDepoimento(id);
+            DepoimentoRepository.ExcluirDepoimento(id);
         }
 
         internal static int GetDepoimentosRespondidos()

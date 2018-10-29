@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Ouvidoria.Models;
+using Ouvidoria.Service;
+using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Ouvidoria.Controllers
@@ -11,6 +11,14 @@ namespace Ouvidoria.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult getDepoimentosRespondidos()
+        {
+            var respondidos = DepoimentoService.GetDepoimentosRespondidos();
+            var naoRespondidos = DepoimentoService.GetDepoimentosNaoRespondidos();
+
+            return Json(new { respondidos, naoRespondidos }, JsonRequestBehavior.AllowGet);
         }
     }
 }

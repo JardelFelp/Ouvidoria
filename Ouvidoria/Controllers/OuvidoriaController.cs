@@ -115,16 +115,10 @@ namespace Ouvidoria.Controllers
             return View(sugestao);
         }
 
-        public ActionResult Feedback()
-        {
-            ViewBag.idDepartamento = new SelectList(db.Departamento, "id", "Nome");
-            //DepartamentoService.RetornaDepartamentos(null);
-            return View();
-        }
 
         public ActionResult Depoimento()
         {
-            DepoimentoService.VerificaEventos();
+            DepoimentoService.VerificaDepoimentos();
             ViewBag.idTipoDepoimento = new SelectList(db.TipoDepoimento, "id", "Tipo");
             //ViewBag.idEventoTipo = DepartamentoService.RetornaDepartamentos(null);
             return View();
@@ -143,6 +137,18 @@ namespace Ouvidoria.Controllers
             ViewBag.idDepartamento = new SelectList(db.Departamento, "id", "Nome", evento.idTipoDepoimento);
             //ViewBag.idEventoTipo = DepartamentoService.RetornaDepartamentos(evento.idEventoTipo);
             return View(evento);
+        }
+
+        public ActionResult Feedback()
+        {
+            if (!DepartamentoService.TemDepartamento())
+            {
+                TempData["Error"] = "Nao ha departamentos cadastrados. Favor entrar em contato com um administrador.";
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBag.idDepartamento = new SelectList(db.Departamento, "id", "Nome");
+            //DepartamentoService.RetornaDepartamentos(null);
+            return View();
         }
 
         [HttpPost]
