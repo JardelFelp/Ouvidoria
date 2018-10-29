@@ -218,13 +218,37 @@
     </script>
 }
 
+@if (TempData["Error"] != null)
+{
+    <script type="text/javascript">
+        alert('@TempData["Error"]');
+    </script>
+}
+
+
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
     google.charts.load('current', {packages: ['corechart', 'bar']});
     google.charts.setOnLoadCallback(GraficoPopulacional);
     google.charts.setOnLoadCallback(GraficoTotal);
     google.charts.setOnLoadCallback(GraficoAbertos);
-    
+
+    function CarregaDados() {
+        $.ajax({
+            url: '@Url.Action("getDepoimentosRespondidos", "Home")',
+            dataType: "json",
+            type: "GET",
+            error: function(xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                toastr.error(err.message);
+            },
+            success: function (data) {
+                GraficoPopulacional(data);
+                return false;
+            }
+        });
+        return false;
+    }
 
     function GraficoPopulacional(data) {
         // Create the data table.
@@ -235,12 +259,12 @@
             ['Respondidos', 50],
             ['Não Respondidos', 15],
         ]);
-        
+
         var options = {
             'title': 'Gráfico de Depoimentos Respondidos',
             'height': '250',
         };
-        
+
         var chart = new google.visualization.PieChart(document.getElementById('respondidos'));
         chart.draw(data, options);
     }

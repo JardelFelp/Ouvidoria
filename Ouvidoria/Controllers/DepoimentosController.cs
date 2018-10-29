@@ -20,10 +20,14 @@ namespace Ouvidoria.Controllers
 
         public ActionResult GetDepoimentos()
         {
-            var evento = db.Depoimento.Include(e => e.TipoDepoimento).Include(e => e.Usuario).ToList();
-            return Json(new { data = evento }, JsonRequestBehavior.AllowGet);
+            using (var db = new OuvidoriaContext())
+            {
+                var evento = db.Depoimento.Include(e => e.TipoDepoimento).Include(e => e.Usuario).ToList();
+                return Json(new { data = evento }, JsonRequestBehavior.AllowGet);
+
+            }
         }
-        
+
         public ActionResult Responder(int? id)
         {
             if (id == null)
@@ -69,14 +73,6 @@ namespace Ouvidoria.Controllers
             ViewBag.idTipoDepoimento = new SelectList(db.TipoDepoimento, "id", "Tipo", evento.idTipoDepoimento);
             ViewBag.idUsuario = new SelectList(db.Usuario, "id", "Nome", evento.idUsuario);
             return View(evento);
-        }
-
-        public ActionResult getDepoimentosRespondidos()
-        {
-            var respondidos = DepoimentoService.GetDepoimentosRespondidos();
-            var naoRespondidos = DepoimentoService.GetDepoimentosNaoRespondidos();
-
-            return Json(new { respondidos, naoRespondidos }, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

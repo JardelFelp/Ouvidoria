@@ -1807,11 +1807,6 @@
     <Content Include="Views\Departamentos\Details.cshtml" />
     <Content Include="Views\Departamentos\Edit.cshtml" />
     <Content Include="Views\Departamentos\Index.cshtml" />
-    <Content Include="Views\Depoimentos\Create.cshtml" />
-    <Content Include="Views\Depoimentos\Delete.cshtml" />
-    <Content Include="Views\Depoimentos\Details.cshtml" />
-    <Content Include="Views\Depoimentos\Edit.cshtml" />
-    <Content Include="Views\Depoimentos\Index.cshtml" />
     <Content Include="Views\Administracao\Index.cshtml" />
     <Content Include="Views\Cursos\Create.cshtml" />
     <Content Include="Views\Cursos\Delete.cshtml" />
@@ -1859,8 +1854,8 @@
     <Content Include="Views\Ouvidoria\ExcluirDepoimento.cshtml" />
     <Content Include="Views\Usuarios\Edit.cshtml" />
     <Content Include="Views\Usuarios\Details.cshtml" />
-    <Content Include="Views\Eventos\Index.cshtml" />
-    <Content Include="Views\Eventos\Responder.cshtml" />
+    <Content Include="Views\Depoimentos\Index.cshtml" />
+    <Content Include="Views\Depoimentos\Responder.cshtml" />
     <Content Include="Views\Feedbacks\Index.cshtml" />
     <Content Include="Views\Ouvidoria\Elogio.cshtml" />
     <Content Include="Views\Ouvidoria\Sugestao.cshtml" />

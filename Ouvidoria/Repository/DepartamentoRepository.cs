@@ -20,6 +20,14 @@ namespace Ouvidoria.Repository
             }
         }
 
+        internal static bool TemDepartamento()
+        {
+            using (var db = new OuvidoriaContext())
+            {
+                return db.Departamento.Any();
+            }
+        }
+
         internal static List<Departamento> RetornaTodosDepartamentos()
         {
             using (var db = new OuvidoriaContext())

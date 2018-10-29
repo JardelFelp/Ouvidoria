@@ -1,51 +1,98 @@
-﻿@model IEnumerable<Ouvidoria.Models.Feedback>
+﻿
+<link href="@Url.Content("/Content/DataTables/css/dataTables.bootstrap.min.css")" rel="stylesheet" />
 
-@{
-    ViewBag.Title = "Index";
+@if (TempData["Error"] != null)
+{
+    <script type="text/javascript">
+        alert('@TempData["Error"]');
+    </script>
 }
 
-<h2>Index</h2>
+<div class="container-fluid content-end">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default content-cad">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <table id="myDataTable" class="table table-striped" role="grid" aria-describedby="example_info" style="width: 100%;table-layout:fixed">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%;">#</th>
+                                            <th style="width: 10%;">Tipo</th>
+                                            <th style="width: 15%;">Usuário</th>
+                                            <th style="width: 15%;">Título</th>
+                                            <th style="width: 25%;">Descrição</th>
+                                            <th style="width: 25%;">Resposta</th>
+                                            <th style="width: 5%;">Ação</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Departamento.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Usuario.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Avaliacao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Comentario)
-        </th>
-        <th></th>
-    </tr>
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Departamento.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Usuario.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Avaliacao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Comentario)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+@section Scripts{
+    <script src="@Url.Content("/Scripts/DataTables/jquery.dataTables.min.js")"></script>
+    <script src="@Url.Content("/Scripts/DataTables/dataTables.bootstrap.min.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var oTable = $("#myDataTable").DataTable({
 
-</table>
+                "language": {
+                    "lengthMenu": "Exibe _MENU_ Registros por página",
+                    "search": "Procurar",
+                    "paginate": { "previous": "Retornar", "next": "Avançar" },
+                    "zeroRecords": "Nada foi encontrado",
+                    "info": "Exibindo página _PAGE_ de _PAGES_",
+                    "infoEmpty": "Sem registros",
+                    "infoFiltered": "(filtrado de _MAX_ regitros totais)"
+                },
+
+                "processing": true, 
+                "filter": true,
+                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Todos"]],
+                "pageLength": 5,    
+
+                "ajax": {
+                    "url": "/Depoimentos/GetDepoimentos",
+                    "type": "GET",
+                    "dataType": "json"
+                },
+                "columns": [
+                    { "data": "id", "autowidth": false },
+                    { "data": "TipoDepoimento.Tipo", "autowidth": false },
+                    { "data": "Usuario.Nome", "autowidth": false },
+                    { "data": "Titulo", "autowidth": false },
+                    { "data": "Descricao", "autowidth": false },
+                    { "data": "Resposta", "autowidth": false },
+                    {
+                        "render": function (data, type, full, meta)
+                        { return ''; }
+                    },
+                ],
+                "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                    if (aData.Respondido == false)
+                    {
+                        var btn = '<a href="/Depoimentos/Responder/' + aData.id + '"><i class="fa fa-comment-dots" style="font-size: 1.73em;" rel="tooltip" title="Responder"></i></a>';
+                        $('td:eq(6)', nRow).html(btn);
+                        $('td:eq(6)', nRow).addClass('text-center');
+                    }            
+                    else         
+                    {            
+                        $('td:eq(6)', nRow).html();
+                    }
+                    
+                }
+
+            });
+        });
+    </script>
+}   

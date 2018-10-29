@@ -10,6 +10,11 @@ namespace Ouvidoria.Service
 {
     public class DepartamentoService
     {
+        public static bool TemDepartamento()
+        {
+            return DepartamentoRepository.TemDepartamento();
+        }
+
         public static SelectList RetornaDepartamentos(int? id)
         {
             return DepartamentoRepository.RetornaDepartamentos(id);
