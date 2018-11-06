@@ -8,91 +8,64 @@
     </script>
 }
 
-<div class="container-fluid content-end">
-    <div id="page-wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default content-cad">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <table id="myDataTable" class="table table-striped" role="grid" aria-describedby="example_info" style="width: 100%;table-layout:fixed">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 5%;">#</th>
-                                            <th style="width: 10%;">Tipo</th>
-                                            <th style="width: 15%;">Usuário</th>
-                                            <th style="width: 15%;">Título</th>
-                                            <th style="width: 25%;">Descrição</th>
-                                            <th style="width: 25%;">Resposta</th>
-                                            <th style="width: 5%;">Ação</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <h1>
+                <i class="fa fa-comment-dots type-gyphi"></i>
+            </h1>
+        </div>
+        <div class="col-xs-12 text-center">
+            <h1 class="name-giphy">Depoimentos</h1>
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="list-group">
+                @foreach (var item in ViewBag.registros)
+                {
+                    string estilo = "white";
+                    if (@ViewBag.registros.IndexOf(item) % 2 == 0)
+                    {
+                        estilo = "#eaeaea";
+                    }
+                    <div class="list-group-item" style="background: @estilo">
+                        <h4 class="list-group-item-heading">
+                            <b>Departamento: </b>@item.Departamento.Nome
+                            <label class="pull-right">
+                                @for (int i = 0; i < @item.Avaliacao; i++)
+                                {
+                                    <i class="glyphicon glyphicon-star" style="color: #FFEB3B;"></i>
+                                }
+                            </label>
+                        </h4>
+                        <h4 class="list-group-item-heading"><b>Usuário: </b>@item.Usuario.Nome</h4>
+                        <p class="list-group-item-text"><b>Comentário: </b>@item.Comentario</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
 </div>
 
 @section Scripts{
     <script src="@Url.Content("/Scripts/DataTables/jquery.dataTables.min.js")"></script>
     <script src="@Url.Content("/Scripts/DataTables/dataTables.bootstrap.min.js")"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            var oTable = $("#myDataTable").DataTable({
-
-                "language": {
-                    "lengthMenu": "Exibe _MENU_ Registros por página",
-                    "search": "Procurar",
-                    "paginate": { "previous": "Retornar", "next": "Avançar" },
-                    "zeroRecords": "Nada foi encontrado",
-                    "info": "Exibindo página _PAGE_ de _PAGES_",
-                    "infoEmpty": "Sem registros",
-                    "infoFiltered": "(filtrado de _MAX_ regitros totais)"
-                },
-
-                "processing": true, 
-                "filter": true,
-                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Todos"]],
-                "pageLength": 5,    
-
-                "ajax": {
-                    "url": "/Depoimentos/GetDepoimentos",
-                    "type": "GET",
-                    "dataType": "json"
-                },
-                "columns": [
-                    { "data": "id", "autowidth": false },
-                    { "data": "TipoDepoimento.Tipo", "autowidth": false },
-                    { "data": "Usuario.Nome", "autowidth": false },
-                    { "data": "Titulo", "autowidth": false },
-                    { "data": "Descricao", "autowidth": false },
-                    { "data": "Resposta", "autowidth": false },
-                    {
-                        "render": function (data, type, full, meta)
-                        { return ''; }
-                    },
-                ],
-                "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-                    if (aData.Respondido == false)
-                    {
-                        var btn = '<a href="/Depoimentos/Responder/' + aData.id + '"><i class="fa fa-comment-dots" style="font-size: 1.73em;" rel="tooltip" title="Responder"></i></a>';
-                        $('td:eq(6)', nRow).html(btn);
-                        $('td:eq(6)', nRow).addClass('text-center');
-                    }            
-                    else         
-                    {            
-                        $('td:eq(6)', nRow).html();
-                    }
-                    
-                }
-
-            });
-        });
+        /*
+        "columns": [
+            { "data": "id", "autowidth": false },
+            { "data": "TipoDepoimento.Tipo", "autowidth": false },
+            { "data": "Usuario.Nome", "autowidth": false },
+            { "data": "Titulo", "autowidth": false },
+            { "data": "Descricao", "autowidth": false },
+            { "data": "Resposta", "autowidth": false },
+            {
+                "render": function (data, type, full, meta)
+                { return ''; }
+            },
+        ],
+        */
     </script>
 }   

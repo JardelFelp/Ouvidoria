@@ -1,5 +1,6 @@
 ﻿using Ouvidoria.Filters;
 using Ouvidoria.Models;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -14,13 +15,13 @@ namespace Ouvidoria.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.registros = this.GetFeedbacks();
             return View();
         }
 
-        public ActionResult GetFeedbacks()
+        public List<Feedback> GetFeedbacks()
         {
-            var feedbacks = db.Feedback.Include(e => e.Departamento).Include(e => e.Usuario).ToList();
-            return Json(new { data = feedbacks }, JsonRequestBehavior.AllowGet);
+            return db.Feedback.Include(e => e.Departamento).Include(e => e.Usuario).ToList();
         }
     }
 }

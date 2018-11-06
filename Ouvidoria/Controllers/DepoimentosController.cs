@@ -1,6 +1,7 @@
 ﻿using Ouvidoria.Filters;
 using Ouvidoria.Models;
 using Ouvidoria.Service;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -18,13 +19,11 @@ namespace Ouvidoria.Controllers
             return View();
         }
 
-        public ActionResult GetDepoimentos()
+        public List<Depoimento> GetDepoimentos()
         {
             using (var db = new OuvidoriaContext())
             {
-                var evento = db.Depoimento.Include(e => e.TipoDepoimento).Include(e => e.Usuario).ToList();
-                return Json(new { data = evento }, JsonRequestBehavior.AllowGet);
-
+                return db.Depoimento.Include(e => e.TipoDepoimento).Include(e => e.Usuario).ToList();
             }
         }
 
