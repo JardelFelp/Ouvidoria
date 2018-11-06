@@ -16,6 +16,7 @@ namespace Ouvidoria.Controllers
         
         public ActionResult Index()
         {
+            ViewBag.registros = GetDepoimentos();
             return View();
         }
 

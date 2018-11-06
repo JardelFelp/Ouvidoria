@@ -1,7 +1,4 @@
-﻿
-<link href="@Url.Content("/Content/DataTables/css/dataTables.bootstrap.min.css")" rel="stylesheet" />
-
-@if (TempData["Error"] != null)
+﻿@if (TempData["Error"] != null)
 {
     <script type="text/javascript">
         alert('@TempData["Error"]');
@@ -22,7 +19,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="list-group">
+            <ul class="list-group">
                 @foreach (var item in ViewBag.registros)
                 {
                     string estilo = "white";
@@ -30,42 +27,24 @@
                     {
                         estilo = "#eaeaea";
                     }
-                    <div class="list-group-item" style="background: @estilo">
-                        <h4 class="list-group-item-heading">
-                            <b>Departamento: </b>@item.Departamento.Nome
-                            <label class="pull-right">
-                                @for (int i = 0; i < @item.Avaliacao; i++)
-                                {
-                                    <i class="glyphicon glyphicon-star" style="color: #FFEB3B;"></i>
-                                }
-                            </label>
-                        </h4>
-                        <h4 class="list-group-item-heading"><b>Usuário: </b>@item.Usuario.Nome</h4>
-                        <p class="list-group-item-text"><b>Comentário: </b>@item.Comentario</p>
-                    </div>
+                    <li class="list-group-item" style="background: @estilo">
+                        <h4 class="list-group-item-heading"><b>Tipo:       </b>@item.TipoDepoimento.Tipo</h4>
+                        @if (item.Resposta == null)
+                        {
+                            <div class="badge badge-primary badge-pill">
+                                <a href="/Depoimentos/Responder/@item.id"><i class="glyphicon glyphicon-envelope" style="font-size: 20px; color: white;" rel="tooltip" title="Responder"></i></a>
+                            </div>
+                        }
+                        <h4 class="list-group-item-heading"><b>Usuário:    </b>@item.Usuario.Nome</h4>
+                        <p class="list-group-item-text">    <b>Descrição:  </b>@item.Descricao</p>
+                        @if (item.Resposta != null)
+                        {
+                            <p class="list-group-item-text"><b>Resposta: </b>@item.Resposta</p>
+                        }
+                    </li>
                 }
-            </div>
+            </ul>
         </div>
     </div>
 </div>
 
-@section Scripts{
-    <script src="@Url.Content("/Scripts/DataTables/jquery.dataTables.min.js")"></script>
-    <script src="@Url.Content("/Scripts/DataTables/dataTables.bootstrap.min.js")"></script>
-    <script type="text/javascript">
-        /*
-        "columns": [
-            { "data": "id", "autowidth": false },
-            { "data": "TipoDepoimento.Tipo", "autowidth": false },
-            { "data": "Usuario.Nome", "autowidth": false },
-            { "data": "Titulo", "autowidth": false },
-            { "data": "Descricao", "autowidth": false },
-            { "data": "Resposta", "autowidth": false },
-            {
-                "render": function (data, type, full, meta)
-                { return ''; }
-            },
-        ],
-        */
-    </script>
-}   
