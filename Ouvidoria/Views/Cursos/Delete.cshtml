@@ -4,13 +4,13 @@
     ViewBag.Title = "Delete";
 }
 
-<div class="container-fluid content-end">
-
-    @{Html.RenderPartial("_PartialAdmSideBar"); }
+<div class="container-fluid">
     <div class="content-sides">
-
-        <div class="col-md-9 col-sm-8 content-cad" id="divInicial">
-            <h2>Cursos</h2>
+        <div class="col-md-8 col-md-offset-2" id="divInicial">
+            <h1>
+                <i class="glyphicon glyphicon-trash type-gyphi" style="padding: 12px; height: 60px; width: 60px; font-size: 35px;  "></i>
+                Cursos - @Html.Label(Model.Nome)
+            </h1>
             <hr />
             <ol class="breadcrumb">
                 <li>
@@ -19,14 +19,11 @@
                 <li class="active" id="liPagina">Excluir</li>
             </ol>
 
-            <div class="col-md-10 col-lg-offset-1">
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-danger">Você tem certeza que deseja exlcuir o Departamento abaixo?</li>
-                    <li class="list-group-item">@Html.DisplayNameFor(model => model.Nome): @Html.DisplayFor(model => model.Nome)</li>
-                </ul>
+            <div class="col-md-12">
+                <h3 style="color: red">Você tem certeza que deseja exlcuir o Curso <strong>@Html.Label(Model.Nome)</strong>?</h3>
 
                 @using (Html.BeginForm())
-            {
+                {
                     @Html.AntiForgeryToken()
 
                     <div class="form-group">

@@ -1,41 +1,37 @@
 ﻿@model Ouvidoria.Models.Usuario
 
-<div class="container-fluid content-end">
-    @{Html.RenderPartial("_PartialAdmSideBar"); }
+<div class="container-fluid">
     <div class="content-sides">
-        <div class="col-md-9 col-sm-8 content-cad" id="divInicial">
-            <h2>Detalhes do Usuário</h2>
+        <div class="col-md-8 col-md-offset-2" id="divInicial">
+            <h1>
+                <i class="glyphicon glyphicon-th-list type-gyphi" style="padding: 12px; height: 60px; width: 60px; font-size: 35px;  "></i>
+                Detalhes do Usuário
+            </h1>
             <hr />
             <ol class="breadcrumb">
                 <li>
                     @Html.ActionLink("Usuários", "Index", "Usuarios")
                 </li>
-                <li class="active" id="liPagina">Detalhes</li>
+                <li class="active" id="liPagina">Detalhes do Usuário - @Html.Label(Model.Nome)</li>
             </ol>
-            <div class="col-md-10 col-lg-offset-1">
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-info">Detalhes do Usuário</li>
-                    <li class="list-group-item">
-                        <label class="control-label">@Html.DisplayNameFor(model => model.Nome):</label> 
-                        @Html.DisplayFor(model => model.Nome)
-                    </li>
-                    <li class="list-group-item">
-                        <label class="control-label">Curso: </label>
-                        @Html.DisplayFor(model => model.Curso.Nome)
-                    </li>
-                    <li class="list-group-item">
-                        <label class="control-label">@Html.DisplayNameFor(model => model.UsuarioPerfil.Perfil): </label> 
-                        @Html.DisplayFor(model => model.UsuarioPerfil.Perfil)
-                    </li>
-                    <li class="list-group-item">
-                        <label class="control-label">@Html.DisplayNameFor(model => model.Email): </label>
-                        @Html.DisplayFor(model => model.Email)
-                    </li>
-                    <li class="list-group-item">
-                        <label class="control-label">@Html.DisplayNameFor(model => model.Telefone): </label>
-                        @Html.DisplayFor(model => model.Telefone)
-                    </li>
-                </ul>
+            <div class="col-md-12">
+                <h4 class="control-label" style="color: #555555;">
+                    <strong>@Html.DisplayNameFor(model => model.Nome):</strong> 
+                    @Html.DisplayFor(model => model.Nome)
+                </h4>
+                <h4 class="control-label" style="color: #555555;">
+                    <strong>@Html.DisplayNameFor(model => model.UsuarioPerfil.Perfil):</strong> 
+                    @Html.DisplayFor(model => model.UsuarioPerfil.Perfil)
+                </h4>
+                <h4 class="control-label" style="color: #555555;">
+                    <strong>@Html.DisplayNameFor(model => model.Email):</strong> 
+                    @Html.DisplayFor(model => model.Email)
+                </h4>
+                <h4 class="control-label" style="color: #555555;">
+                    <strong>@Html.DisplayNameFor(model => model.Telefone):</strong> 
+                    @Html.DisplayFor(model => model.Telefone)
+                </h4>
+
                 <div class="text-right">
                     @Html.ActionLink("Voltar", "Index", null, new { @class = "action-link btn btn-default" })
                     @Html.ActionLink("Editar", "Edit", new { id = Model.id }, new { @class = "btn btn-primary" })

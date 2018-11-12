@@ -1,10 +1,12 @@
 ﻿@model Ouvidoria.Models.Departamento
 
-<div class="container-fluid content-end">
-    @{Html.RenderPartial("_PartialAdmSideBar"); }
+<div class="container-fluid">
     <div class="content-sides">
-        <div class="col-md-9 col-sm-8 content-cad" id="divInicial">
-            <h2>Departamentos</h2>
+        <div class="col-md-8 col-md-offset-2" id="divInicial">
+            <h1>
+                <i class="glyphicon glyphicon-list type-gyphi" style="padding: 12px; height: 60px; width: 60px; font-size: 35px;  "></i>
+                Departamentos - @Html.Label(Model.Nome)
+            </h1>
             <hr />
             <ol class="breadcrumb">
                 <li>
@@ -12,15 +14,15 @@
                 </li>
                 <li class="active" id="liPagina">Detalhes</li>
             </ol>
-            <div class="col-md-10 col-lg-offset-1">
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-info">Detalhes do Departamento</li>
-                    <li class="list-group-item">@Html.DisplayNameFor(model => model.Nome): @Html.DisplayFor(model => model.Nome)</li>
-                </ul>
-                <div class="text-right">
-                    @Html.ActionLink("Voltar", "Index", null, new { @class = "action-link btn btn-default" })
-                    @Html.ActionLink("Editar", "Edit", new { id = Model.id }, new { @class = "btn btn-primary" })
-                </div>
+            <div class="col-md-12">
+                <h4 class="control-label" style="color: #555555;">
+                    <strong>@Html.DisplayNameFor(model => model.Nome):</strong>
+                    @Html.DisplayFor(model => model.Nome)
+                </h4>
+            </div>
+            <div class="text-right">
+                @Html.ActionLink("Voltar", "Index", null, new { @class = "action-link btn btn-default" })
+                @Html.ActionLink("Editar", "Edit", new { id = Model.id }, new { @class = "btn btn-primary" })
             </div>
         </div>
     </div>

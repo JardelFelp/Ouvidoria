@@ -1,11 +1,13 @@
 ﻿@model Ouvidoria.Models.Departamento
 
-<div class="container-fluid content-end">
-    @{Html.RenderPartial("_PartialAdmSideBar"); }
+<div class="container-fluid">
     <div class="content-sides">
-        <div class="col-md-9 col-sm-8 content-cad" id="divInicial">
+        <div class="col-md-8 col-md-offset-2" id="divInicial">
             <div class="form-horizontal">
-                <h2>Departamentos</h2>
+                <h1>
+                    <i class="glyphicon glyphicon-pencil type-gyphi" style="padding: 12px; height: 60px; width: 60px; font-size: 35px;  "></i>
+                    Departamentos - @Html.Label(Model.Nome)
+                </h1>
                 <hr />
                 <ol class="breadcrumb">
                     <li>
