@@ -9,54 +9,53 @@
 }
 
 
-<div class="container-fluid content-end">
-
-    @{Html.RenderPartial("_PartialAdmSideBar"); }
-    <div class="content-sides">
-        <div class="col-md-9 col-sm-8 content-cad" id="divInicial">
-            <h2>Cursos</h2>
-            <hr />
-            <ol class="breadcrumb">
-                <li>
-                    @Html.ActionLink("Cursos", "Index", "Cursos")
-                </li>
-                <li class="active" id="liPagina">Inicio</li>
-            </ol>
-            <table class="table table-striped" role="grid" aria-describedby="example_info" style="width: 100%;table-layout:fixed">
-                <thead>
+<div class="container-fluid">
+    <div class="col-md-8 col-md-offset-2" id="divInicial">
+        <h1>
+            <i class="glyphicon glyphicon-asterisk type-gyphi" style="padding: 12px; height: 60px; width: 60px; font-size: 35px;  "></i>
+            Cursos
+        </h1>
+        <hr />
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("Cursos", "Index", "Cursos")
+            </li>
+            <li class="active" id="liPagina">Inicio</li>
+        </ol>
+        <table class="table table-striped" role="grid" aria-describedby="example_info" style="width: 100%;table-layout:fixed">
+            <thead>
+                <tr>
+                    <th style="width: 93%;">
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </th>
+                    <th style="width: 7%;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
                     <tr>
-                        <th style="width: 93%;">
-                            @Html.DisplayNameFor(model => model.Nome)
-                        </th>
-                        <th style="width: 7%;"></th>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Cursos", new { id = item.id })">
+                                <i class="glyphicon glyphicon-pencil" style="color: black"></i>
+                            </a>
+                            <a href="@Url.Action("Details", "Cursos", new { id = item.id })">
+                                <i class="glyphicon glyphicon-zoom-in"></i>
+                            </a>
+                            <a href="@Url.Action("Delete", "Cursos", new { id = item.id })">
+                                <i class="glyphicon glyphicon-remove" style="color: red;"></i>
+                            </a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Nome)
-                            </td>
-                            <td>
-                                <a href="@Url.Action("Edit", "Cursos", new { id = item.id })">
-                                    <i class="glyphicon glyphicon-pencil" style="color: black"></i>
-                                </a>
-                                <a href="@Url.Action("Details", "Cursos", new { id = item.id })">
-                                    <i class="glyphicon glyphicon-zoom-in"></i>
-                                </a>
-                                <a href="@Url.Action("Delete", "Cursos", new { id = item.id })">
-                                    <i class="glyphicon glyphicon-remove" style="color: red;"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10" style="text-align: right">
-                    @Html.ActionLink("Novo Curso", "Create", null, new { @class = "btn btn-primary" })
-                </div>
+                }
+            </tbody>
+        </table>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="text-align: right">
+                @Html.ActionLink("Novo Curso", "Create", null, new { @class = "btn btn-primary" })
             </div>
         </div>
     </div>
