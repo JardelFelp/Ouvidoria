@@ -483,7 +483,6 @@ C:\Users\rhuan.drescher\Desktop\Git\Ouvidoria\Ouvidoria\bin\Microsoft.Owin.Secur
 C:\Users\rhuan.drescher\Desktop\Git\Ouvidoria\Ouvidoria\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\rhuan.drescher\Desktop\Git\Ouvidoria\Ouvidoria\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\rhuan.drescher\Desktop\Git\Ouvidoria\Ouvidoria\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\rhuan.drescher\Desktop\Git\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.csprojResolveAssemblyReference.cache
 C:\Users\rhuan.drescher\Desktop\Git\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.Migrations.InitialCreate.resources
 C:\Users\rhuan.drescher\Desktop\Git\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.Migrations.idCurso.resources
 C:\Users\rhuan.drescher\Desktop\Git\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.Migrations.Remodel.resources
@@ -491,3 +490,6 @@ C:\Users\rhuan.drescher\Desktop\Git\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.cspr
 C:\Users\rhuan.drescher\Desktop\Git\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.csproj.CoreCompileInputs.cache
 C:\Users\rhuan.drescher\Desktop\Git\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.dll
 C:\Users\rhuan.drescher\Desktop\Git\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.pdb
+C:\Users\rhuan.drescher\Desktop\Git\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.csprojAssemblyReference.cache
+C:\Users\rhuan.drescher\Desktop\Git\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.csproj.CopyComplete
+C:\Users\rhuan.drescher\Desktop\Git\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.Migrations.Questionario.resources

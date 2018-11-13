@@ -17,5 +17,11 @@ namespace Ouvidoria.Models
         public DbSet<TipoDepoimento> TipoDepoimento { get; set; }
         public DbSet<Depoimento> Depoimento { get; set; }
         public DbSet<Feedback> Feedback { get; set; }
+        public DbSet<Opcao> Opcao { get; set; }
+        public DbSet<Pergunta> Pergunta { get; set; }
+        public DbSet<Questionario> Questionario { get; set; }
+        public DbSet<Resposta> Resposta { get; set; }
+        public DbSet<Retorno> Retorno { get; set; }
+
     }
 }

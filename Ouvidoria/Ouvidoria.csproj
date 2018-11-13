@@ -188,11 +188,20 @@
     <Compile Include="Migrations\201810180019192_Remodel.Designer.cs">
       <DependentUpon>201810180019192_Remodel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811131923133_Questionario.cs" />
+    <Compile Include="Migrations\201811131923133_Questionario.Designer.cs">
+      <DependentUpon>201811131923133_Questionario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Curso.cs" />
     <Compile Include="Models\Departamento.cs" />
     <Compile Include="Models\Feedback.cs" />
     <Compile Include="Models\Depoimento.cs" />
+    <Compile Include="Models\Opcao.cs" />
+    <Compile Include="Models\Pergunta.cs" />
+    <Compile Include="Models\Questionario.cs" />
+    <Compile Include="Models\Resposta.cs" />
+    <Compile Include="Models\Retorno.cs" />
     <Compile Include="Models\TipoDepoimento.cs" />
     <Compile Include="Models\OuvidoriaContext.cs" />
     <Compile Include="Models\Usuario.cs" />
@@ -1864,7 +1873,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Context\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1900,6 +1908,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810180019192_Remodel.resx">
       <DependentUpon>201810180019192_Remodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811131923133_Questionario.resx">
+      <DependentUpon>201811131923133_Questionario.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

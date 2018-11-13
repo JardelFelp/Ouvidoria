@@ -14,14 +14,8 @@ namespace Ouvidoria.Controllers
     {
         private OuvidoriaContext db = new OuvidoriaContext();
 
-        // GET: Autenticacao
         public ActionResult Cadastrar()
         {
-            //Verifica se há perfis e cursos. Caso não haja cadastros, cria alguns registros padrões e também o perfil de admin
-            UsuarioService.VerificaPerfis();
-            CursoService.VerificaCurso();
-            TipoDepoimentoService.TemTipos();
-
             ViewBag.idCurso = new SelectList(db.Curso, "id", "Nome");
             return View();
         }
