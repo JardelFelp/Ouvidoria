@@ -13,14 +13,18 @@ namespace Ouvidoria.Models
         public int id { get; set; }
 
         [Required]
+        [Display(Name = "Título")]
         public string Titulo { get; set; }
 
+        [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
         [Required]
+        [Display(Name = "Data de Início")]
         public DateTime DataInicio { get; set; }
 
         [Required]
+        [Display(Name = "Data Final")]
         public DateTime DataFim { get; set; }
 
         public List<Pergunta> Pergunta  { get; set; }

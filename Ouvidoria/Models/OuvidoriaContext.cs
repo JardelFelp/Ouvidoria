@@ -22,6 +22,5 @@ namespace Ouvidoria.Models
         public DbSet<Questionario> Questionario { get; set; }
         public DbSet<Resposta> Resposta { get; set; }
         public DbSet<Retorno> Retorno { get; set; }
-
     }
 }

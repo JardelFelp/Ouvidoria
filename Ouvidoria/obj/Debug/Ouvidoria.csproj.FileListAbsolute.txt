@@ -493,3 +493,4 @@ C:\Users\rhuan.drescher\Desktop\Git\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.pdb
 C:\Users\rhuan.drescher\Desktop\Git\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.csprojAssemblyReference.cache
 C:\Users\rhuan.drescher\Desktop\Git\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.csproj.CopyComplete
 C:\Users\rhuan.drescher\Desktop\Git\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.Migrations.Questionario.resources
+C:\Users\rhuan.drescher\Desktop\Git\Ouvidoria\Ouvidoria\obj\Debug\Ouvidoria.Migrations.Ajustes.resources

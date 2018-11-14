@@ -12,6 +12,14 @@ namespace Ouvidoria.Models
         [Required]
         public string Descricao { get; set; }
 
+        public Tipo tipo { get; set; }
+
         public List<Opcao> Opcao { get; set; }
+
+        public enum Tipo
+        {
+            Dissertativa,
+            Objetiva
+        }
     }
 }

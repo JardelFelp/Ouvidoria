@@ -205,3 +205,12 @@ h1, h2, h3, h4, h5, span, label  {
     margin-top: 25px;
     margin-bottom: 25px;
 }
+
+.opcoes {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+textarea {
+    resize: none;
+}

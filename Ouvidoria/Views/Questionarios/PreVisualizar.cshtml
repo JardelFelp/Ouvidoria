@@ -1,0 +1,41 @@
+﻿@model Ouvidoria.Models.Questionario
+
+    <br />
+    <div class="jumbotron" style="font-size: 16px !important;">
+        <h2 class="text-center">@Html.DisplayFor(model => model.Titulo)</h2>
+        <br />
+        <br />
+
+        @{int i = 0, j = 1; }
+        @foreach (var pergunta in Model.Pergunta)
+        {
+            <div class="row">
+                <div class="panel panel-default well-lg">
+                    @if (pergunta.tipo == Ouvidoria.Models.Pergunta.Tipo.Objetiva)
+                    {
+                        <label class="form-control-static">@j  - @pergunta.Descricao</label>
+                        <hr />
+                        if (pergunta.Opcao != null)
+                        {
+                            foreach (var opcao in pergunta.Opcao)
+                            {
+                                <p class="radio"><input type="radio" disabled value="@opcao.id" /> @opcao.Descricao</p>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <label class="form-control-static">@j  -  @pergunta.Descricao</label>
+                        <hr />
+                        <textarea class="form-control" rows="3" disabled></textarea>
+                    }
+                </div>
+            </div>
+            i++;
+            j++;
+        }
+    </div>
+    <p>
+        @Html.ActionLink("Editar", "Editar", new { id = Model.id }) |
+        @Html.ActionLink("Voltar para a lista", "Index")
+    </p>
