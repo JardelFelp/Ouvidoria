@@ -1,12 +1,10 @@
-﻿using Ouvidoria.Models;
+﻿using Microsoft.AspNet.Identity;
+using Ouvidoria.Filters;
+using Ouvidoria.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
 using System.Data.Entity;
 using System.Linq;
+using System.Web.Mvc;
 
 namespace Ouvidoria.Controllers
 {
@@ -14,11 +12,24 @@ namespace Ouvidoria.Controllers
     {
         private OuvidoriaContext db = new OuvidoriaContext();
 
+        [Authorize]
         public ActionResult Index()
         {
+            var user = db.Usuario.Find(Convert.ToInt32(User.Identity.GetUserId()));
+            if (user.idUsuarioPerfil == 1)
+            {
+                
+                var respondidos = db.Retorno.Where(x => x.idUsuario == user.id).Select(x => x.idQuestionario).ToArray();
+                return View(db.Questionario
+                              .Where(x => !respondidos.Contains(x.id)
+                                       && x.DataFim > DateTime.Now
+                                       && x.DataInicio < DateTime.Now)
+                              .ToList());
+            }
             return View(db.Questionario.ToList());
         }
 
+        [AutorizacaoFiltro("2")]
         public ActionResult PreVisualizar(int? id)
         {
             if (id == null)
@@ -41,6 +52,7 @@ namespace Ouvidoria.Controllers
             return View();
         }
 
+        [AutorizacaoFiltro("2")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Criar([Bind(Include = "id,Titulo, Descricao, DataInicio, DataFim, Pergunta, Pergunta.Opcao")] Questionario questionario)
@@ -55,6 +67,7 @@ namespace Ouvidoria.Controllers
             return View(questionario);
         }
 
+        [AutorizacaoFiltro("2")]
         public ActionResult Editar(int? id)
         {
             if (id == null)
@@ -72,24 +85,20 @@ namespace Ouvidoria.Controllers
 
             if (db.Retorno.Any(x => x.idQuestionario == id))
             {
-                TempData["Error"] = "Já existem respostas para o questionario em questao, o que significa que o mesmo nao pode ser editado";
+                TempData["Error"] = "Ja existem respostas para o questionario em questao, o que significa que o mesmo nao pode ser editado";
                 return RedirectToAction("Index");
             }
 
             return View(questionario);
         }
 
+        [AutorizacaoFiltro("2")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "id,Titulo, Descricao, DataInicio, DataFim, Perguntas, Perguntas.Opcoes")] Questionario questionario, int[] _perguntas, int[] _opcoes)
+        public ActionResult Editar([Bind(Include = "id,Titulo, Descricao, DataInicio, DataFim, Pergunta, Pergunta.Opcao")] Questionario questionario)
         {
             if (ModelState.IsValid)
             {
-                if (_opcoes != null)
-                    RemoverOpcoes(_opcoes);
-                if (_perguntas != null)
-                    RemoverPerguntas(_perguntas);
-
                 foreach (var pergunta in questionario.Pergunta)
                 {
                     if (pergunta.id > 0)
@@ -113,29 +122,80 @@ namespace Ouvidoria.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            questionario = db.Questionario
+                             .Include(x => x.Pergunta.Select(y => y.Opcao))
+                             .FirstOrDefault(x => x.id == questionario.id);
+
+            return View();
+        }
+
+        [AutorizacaoFiltro("1")]
+        public ActionResult Responder(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            Questionario questionario = db.Questionario
+                                      .Include(x => x.Pergunta.Select(y => y.Opcao))
+                                      .FirstOrDefault(x => x.id == id);
+
+            if (questionario == null)
+            {
+                TempData["Error"] = "Questionario nao encontrado";
+                return RedirectToAction("Index");
+            }
+
             return View(questionario);
         }
 
+        [AutorizacaoFiltro("1")]
+        [HttpPost]
+        public ActionResult Responder([Bind(Include = "id, idQuestionario, Respostas")] Retorno retorno)
+        {
+            retorno.idUsuario = Convert.ToInt32(User.Identity.GetUserId());
+            if (ModelState.IsValid)
+            {
+                db.Retorno.Add(retorno);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            Questionario questionario = db.Questionario
+                                          .Include(x => x.Pergunta.Select(y => y.Opcao))
+                                          .FirstOrDefault(x => x.id == retorno.idQuestionario);
+            return View(questionario);
+        }
+
+        [AutorizacaoFiltro("2")]
         [HttpPost]
         public void RemoverOpcoes(int[] opcoes)
         {
-            var options = (from opcao in db.Opcao
-                           where opcoes.Contains(opcao.id)
-                           select opcao).ToList();
-            foreach (var opcao in options)
-                db.Entry(opcao).State = EntityState.Deleted;
-            db.SaveChanges();
+            if (opcoes != null)
+            {
+                var options = (from opcao in db.Opcao
+                               where opcoes.Contains(opcao.id)
+                               select opcao).ToList();
+                foreach (var opcao in options)
+                    db.Entry(opcao).State = EntityState.Deleted;
+                db.SaveChanges();
+            }
         }
 
+        [AutorizacaoFiltro("2")]
         [HttpPost]
         public void RemoverPerguntas(int[] perguntas)
         {
-            var questions = (from pergunta in db.Pergunta
-                             where perguntas.Contains(pergunta.id)
-                             select pergunta).ToList();
-            foreach (var pergunta in questions)
-                db.Entry(pergunta).State = EntityState.Deleted;
-            db.SaveChanges();
+            if (perguntas != null)
+            {
+                var questions = (from pergunta in db.Pergunta
+                                 where perguntas.Contains(pergunta.id)
+                                 select pergunta).ToList();
+                foreach (var pergunta in questions)
+                    db.Entry(pergunta).State = EntityState.Deleted;
+                db.SaveChanges();
+            }
         }
 
     }

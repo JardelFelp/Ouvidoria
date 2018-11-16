@@ -1977,6 +1977,7 @@
     <Content Include="Views\Questionarios\PreVisualizar.cshtml" />
     <Content Include="Views\Questionarios\Criar.cshtml" />
     <Content Include="Views\Questionarios\Editar.cshtml" />
+    <Content Include="Views\Questionarios\Responder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

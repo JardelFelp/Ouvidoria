@@ -50,7 +50,7 @@ namespace Ouvidoria.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Responder([Bind(Include = "id,Titulo,Descricao,idTipoDepoimento,idUsuario, Resposta")] Depoimento evento)
+        public ActionResult Responder([Bind(Include = "id,Titulo,Descricao,idTipoDepoimento,idUsuario,Resposta")] Depoimento evento)
         {
             if (ModelState.IsValid)
             {

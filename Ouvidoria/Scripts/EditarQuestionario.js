@@ -99,21 +99,34 @@
         $(this).parent().parent().parent().attr("opcoes", indice + 1);
         e.preventDefault();
     });
-    
-    async function remover() {
-        await $.ajax({
-            type: "POST",
-            url: "/Formularios/RemoverOpcoes",
-            contentType: 'application/json',
-            data: JSON.stringify({ opcoes: opcoes }),
-        });
 
-        await $.ajax({
-            type: "POST",
-            url: "/Formularios/RemoverPerguntas",
-            contentType: 'application/json',
-            data: JSON.stringify({ perguntas: perguntas }),
-        });
+    $("#btn-enviar").click(async function (e) {
+       //e.preventDefault();
+        console.log("Olá");
+        await remover();
+        await $("#form").submit();
+    });
+
+    async function remover() {
+        console.log("teste");
+        if (opcoes.length != 0) {
+            console.log(opcoes);
+            await $.ajax({
+                type: "POST",
+                url: "/Questionarios/RemoverOpcoes",
+                contentType: 'application/json',
+                data: JSON.stringify({ opcoes: opcoes })
+            });
+        }
+        
+        if (perguntas.length != 0) {
+            await $.ajax({
+                type: "POST",
+                url: "/Questionarios/RemoverPerguntas",
+                contentType: 'application/json',
+                data: JSON.stringify({ perguntas: perguntas })
+            });
+        }
     }
     
     function updateEvents() {

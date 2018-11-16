@@ -15,6 +15,7 @@ namespace Ouvidoria.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            var teste = User.Identity.GetType();
             return View();
         }
 
