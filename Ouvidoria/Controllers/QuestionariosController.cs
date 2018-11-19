@@ -47,6 +47,7 @@ namespace Ouvidoria.Controllers
             return View(questionario);
         }
 
+        [AutorizacaoFiltro("2")]
         public ActionResult Criar()
         {
             return View();
@@ -172,6 +173,7 @@ namespace Ouvidoria.Controllers
             return View(questionario);
         }
 
+        [AutorizacaoFiltro("2")]
         public ActionResult Respostas(int? id)
         {
             if (id == null)
@@ -192,6 +194,7 @@ namespace Ouvidoria.Controllers
             return View(retorno);
         }
 
+        [AutorizacaoFiltro("2")]
         public ActionResult Resposta(int? id)
         {
             if (id == null)

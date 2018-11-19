@@ -16,6 +16,9 @@ namespace Ouvidoria.Controllers
 
         public ActionResult Cadastrar()
         {
+            UsuarioService.VerificaPerfis();
+            CursoService.VerificaCurso();
+            TipoDepoimentoService.TemTipos();
             ViewBag.idCurso = new SelectList(db.Curso, "id", "Nome");
             return View();
         }
@@ -45,6 +48,9 @@ namespace Ouvidoria.Controllers
 
         public ActionResult Login(string ReturnUrl)
         {
+            UsuarioService.VerificaPerfis();
+            CursoService.VerificaCurso();
+            TipoDepoimentoService.TemTipos();
             var viewModel = new LoginViewModel
             {
                 UrlRetorno = ReturnUrl
