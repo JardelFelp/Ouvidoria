@@ -43,6 +43,19 @@ namespace Ouvidoria.Repository
             }
         }
 
+        internal static List<int> GetDepoimentosRegistrados()
+        {
+            using (var db = new OuvidoriaContext())
+            {
+                var feedbacks = new List<int>();
+                feedbacks.Add(db.Depoimento.Where(x => x.idTipoDepoimento == 1).Count());
+                feedbacks.Add(db.Depoimento.Where(x => x.idTipoDepoimento == 2).Count());
+                feedbacks.Add(db.Depoimento.Where(x => x.idTipoDepoimento == 3).Count());
+                feedbacks.Add(db.Depoimento.Where(x => x.idTipoDepoimento == 4).Count());
+                return feedbacks;
+            }
+        }
+
         internal static IEnumerable<Depoimento> RetornaDepoimentos(int id)
         {
             using (var db = new OuvidoriaContext())

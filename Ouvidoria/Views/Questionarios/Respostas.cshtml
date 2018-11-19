@@ -24,7 +24,7 @@
                 {
                     <li class="list-group-item" style="background: #eaeaea">
                         <h4 class="list-group-item-heading">
-                            <b>Título: </b>@Html.DisplayFor(modelItem => item.Usuario.Nome)
+                            <b>Usuário: </b>@Html.DisplayFor(modelItem => item.Usuario.Nome)
                             @Html.ActionLink("Ver respostas", "Resposta", new { id = item.id }, new { @class = "btn btn-primary btn-sm pull-right" })
                         </h4>
                         <p>@Html.DisplayFor(modelItem => item.Questionario.Titulo)</p>

@@ -38,6 +38,11 @@ namespace Ouvidoria.Service
             DepoimentoRepository.CadastraPadroes(depoimento);
         }
 
+        internal static List<int> GetDepoimentosRegistrados()
+        {
+            return DepoimentoRepository.GetDepoimentosRegistrados();
+        }
+
         public static void CadastraDepoimento(Depoimento evento)
         {
             DepoimentoRepository.CadastraDepoimento(evento);
