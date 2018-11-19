@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-xs-12 text-center">
             <h1>
-                <i class="glyphicon glyphicon-th-list type-gyphi"></i>
+                <i class="glyphicon glyphicon-comment type-gyphi"></i>
             </h1>
         </div>
         <div class="col-xs-12 text-center">
@@ -31,26 +31,21 @@
                     }
 
                     <li class="list-group-item" style="background: @estilo">
-                        <h4 class="list-group-item-heading"><b>Tipo:       </b>@item.Titulo</h4>
+                        <h4 class="list-group-item-heading">
+                            <b>Título: </b>@item.Titulo
+                            @if (User.IsInRole("2"))
+                            {
+                                    @Html.ActionLink("Editar", "Editar", new { id = item.id }, new { @class = "btn btn-primary btn-sm pull-right" })
+                                    @Html.ActionLink("Pré Visualizar", "PreVisualizar", new { id = item.id }, new { @class = "btn btn-default btn-sm pull-right" })
+                                    @Html.ActionLink("Respostas", "Respostas", new { id = item.id }, new { @class = "btn btn-success btn-sm pull-right" })
+                            }
+                            else
+                            {
+                                    @Html.ActionLink("Responder", "Responder", new { id = item.id }, new { @class = "btn btn-primary btn-sm pull-right" })
+                            }
+                        </h4>
                         <p>@item.Descricao</p>
                         <small>De @item.DataInicio até @item.DataFim</small>
-                            
-                        <p class="list-group-item-text">    <b>Descrição:  </b>@item.Descricao</p>
-                        
-                        @if (User.IsInRole("2"))
-                        {
-                            <td>
-                                @Html.ActionLink("Editar", "Editar", new { id = item.id }) |
-                                @Html.ActionLink("Pré Visualizar", "PreVisualizar", new { id = item.id }) |
-                                @Html.ActionLink("Respostas", "Respostas", new { id = item.id }) 
-                            </td>
-                        }
-                        else
-                        {
-                            <td>
-                                @Html.ActionLink("Responder", "Responder", new { id = item.id })
-                            </td>
-                        }
                     </li>
                 }
             </ul>

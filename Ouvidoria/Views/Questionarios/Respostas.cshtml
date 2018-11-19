@@ -4,37 +4,34 @@
     ViewBag.Title = "Respostas";
 }
 
-<h2>Respostas</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Questionario.Titulo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Usuario.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataRetorno)
-        </th>
-        <th></th>
-    </tr>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <h1>
+                <i class="glyphicon glyphicon-comment type-gyphi"></i>
+            </h1>
+        </div>
+        <div class="col-xs-12 text-center">
+            <h1 class="name-giphy">Respostas Questionário</h1>
+        </div>
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Questionario.Titulo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Usuario.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataRetorno)
-        </td>
-        <td>
-            @Html.ActionLink("Ver respostas", "Resposta", new { id=item.id }) 
-        </td>
-    </tr>
-}
-
-</table>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="list-group">
+                @foreach (var item in Model)
+                {
+                    <li class="list-group-item" style="background: #eaeaea">
+                        <h4 class="list-group-item-heading">
+                            <b>Título: </b>@Html.DisplayFor(modelItem => item.Usuario.Nome)
+                            @Html.ActionLink("Ver respostas", "Resposta", new { id = item.id }, new { @class = "btn btn-primary btn-sm pull-right" })
+                        </h4>
+                        <p>@Html.DisplayFor(modelItem => item.Questionario.Titulo)</p>
+                        <small>@Html.DisplayFor(modelItem => item.DataRetorno)</small>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

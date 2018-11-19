@@ -1,47 +1,58 @@
 ﻿@model Ouvidoria.Models.Questionario
 
-<br />
-<div class="jumbotron" style="font-size: 16px !important;">
-    <h2 class="text-center">@Html.DisplayFor(model => model.Titulo)</h2>
-    <br />
-    <br />
-    @using (Html.BeginForm())
-    {
-        <input type="number" name="idQuestionario" value="@Model.id" hidden="hidden" />
-        int i = 0, j = 1;
-        foreach (var pergunta in Model.Pergunta)
-        {
-            <div class="row">
-                <div class="panel panel-default well-lg">
-                    <input type="number" name="Resposta[@i].idPergunta" value="@pergunta.id" hidden="hidden" />
-                    @if (pergunta.tipo == Ouvidoria.Models.Pergunta.Tipo.Objetiva)
-                    {
-                        <label class="form-control-static">@j  - @pergunta.Descricao</label>
-                        <hr />
-                        if (pergunta.Opcao != null)
-                        {
+<div class="container-fluid">
+    <div class="content-sides">
+        <div class="col-md-8 col-md-offset-2">
+            <h1>
+                <i class="glyphicon glyphicon-comment type-gyphi" style="padding: 12px; height: 60px; width: 60px; font-size: 35px;  "></i>
+                Questionários
+            </h1>
+            <hr />
 
-                            foreach (var opcao in pergunta.Opcao)
-                            {
-                                <p class="radio"><input type="radio" name="Resposta[@i].idOpcao" value="@opcao.id" /> @opcao.Descricao</p>
-                            }
-                        }
-                    }
-                    else
+            <div class="jumbotron" style="font-size: 16px !important;">
+                <h2 class="text-center">@Html.DisplayFor(model => model.Titulo)</h2>
+                <br />
+                <br />
+                @using (Html.BeginForm())
+                {
+                    <input type="number" name="idQuestionario" value="@Model.id" hidden="hidden" />
+                    int i = 0, j = 1;
+                    foreach (var pergunta in Model.Pergunta)
                     {
-                        <label class="form-control-static">@j  -  @pergunta.Descricao</label>
-                        <hr />
-                        <textarea class="form-control" name="Resposta[@i].Conclusao" rows="3"></textarea>
+                        <div class="row">
+                            <div class="panel panel-default well-lg">
+                                <input type="number" name="Resposta[@i].idPergunta" value="@pergunta.id" hidden="hidden" />
+                                @if (pergunta.tipo == Ouvidoria.Models.Pergunta.Tipo.Objetiva)
+                                {
+                                    <label class="form-control-static">@j  - @pergunta.Descricao</label>
+                                    <hr />
+                                    if (pergunta.Opcao != null)
+                                    {
+
+                                        foreach (var opcao in pergunta.Opcao)
+                                        {
+                                            <p class="radio"><input type="radio" name="Resposta[@i].idOpcao" value="@opcao.id" /> @opcao.Descricao</p>
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    <label class="form-control-static">@j  -  @pergunta.Descricao</label>
+                                    <hr />
+                                    <textarea class="form-control" name="Resposta[@i].Conclusao" rows="3"></textarea>
+                                }
+                            </div>
+                        </div>
+                        i++;
+                        j++;
                     }
-                </div>
+                    <input class="btn btn-primary" type="submit" name="Enviar Resposta" value="Responder" />
+                }
             </div>
-            i++;
-            j++;
-        }
-        <input type="submit" name="Enviar Resposta" value="Responder" />
-    }
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.id }, new { @class = "btn btn-primary btn-sm" })
+                @Html.ActionLink("Back to List", "Index", new { id = Model.id }, new { @class = "btn btn-default btn-sm" })
+            </p>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

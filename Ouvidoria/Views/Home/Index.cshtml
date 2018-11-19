@@ -58,7 +58,25 @@
 
         <div class="container-fluid" style="background-image: linear-gradient(#04519b, #044687 60%, #033769)">
             <div class="row icons">
-                <div class="col-md-2 col-xs-12 col-sm-6 col-md-offset-1 col-xs-offset-0 col-sm-offset-0">
+                <div class="col-md-2 col-xs-12 col-sm-6 col-xs-offset-0 col-sm-offset-0">
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("1"))
+                    {
+                        <a class="col-xs-12 item btn-active" href="@Url.Action("Index", "Questionarios")">
+                            <h1><i class="glyphicon glyphicon-comment"></i></h1>
+                            <h3>Questionários </h3>
+                            <p>Responda os questionários disponíveis!</p>
+                        </a>
+                    }
+                    else
+                    {
+                        <div class="col-xs-12 item">
+                            <h1><i class="glyphicon glyphicon-comment"></i></h1>
+                            <h3>Questionários </h3>
+                            <p>Responda os questionários disponíveis!</p>
+                        </div>
+                    }
+                </div>
+                <div class="col-md-2 col-xs-12 col-sm-6 col-xs-offset-0 col-sm-offset-0">
                     @if (User.Identity.IsAuthenticated && User.IsInRole("1"))
                     {
                         <a class="col-xs-12 item btn-active" href="@Url.Action("Feedback", "Ouvidoria")">
@@ -197,7 +215,7 @@
                 </div>
                 <div class="col-md-2 col-md-offset-0 col-xs-12 col-sm-6">
                     <a class="col-xs-12 item btn-active" href="@Url.Action("Index", "Questionarios")">
-                        <h1><i class="glyphicon glyphicon-th-list"></i></h1>
+                        <h1><i class="glyphicon glyphicon-comment"></i></h1>
                         <h3>Questionários </h3>
                         <p>Crie novos questionários ou edite já existentes!</p>
                     </a>

@@ -4,64 +4,80 @@
     ViewBag.Title = "Resposta";
 }
 
-<h2>Resposta</h2>
+<div class="container-fluid">
+    <div class="content-sides">
+        <div class="col-md-8 col-md-offset-2" id="divInicial">
+            <h1>
+                <i class="glyphicon glyphicon-comment type-gyphi" style="padding: 12px; height: 60px; width: 60px; font-size: 35px;  "></i>
+                Resposta Questionário - @Html.Label(Model.Questionario.Titulo)
+            </h1>
+            <hr />
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Questionário", "Index", "Questionario")
+                </li>
+                <li class="active" id="liPagina">Detalhes</li>
+            </ol>
 
-<div>
-    <h4>Retorno</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Questionario.Titulo)
-        </dt>
+            <div>
+                <h4>Retorno</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Questionario.Titulo)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Questionario.Titulo)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Questionario.Titulo)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Usuario.Nome)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Usuario.Nome)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Usuario.Nome)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Usuario.Nome)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DataRetorno)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DataRetorno)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DataRetorno)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.DataRetorno)
+                    </dd>
 
-        @{int i = 1; }
-        @foreach (var item in Model.Resposta)
-        {
-            <dt>
-                Pergunta @i
-            </dt>
-            <dd>
-                <b>@item.Pergunta.Descricao</b>
-            </dd>
-            <dt>
-                Resposta
-            </dt>
-            <dd>
-                @if (item.Conclusao != null)
-                {
-                    @item.Conclusao
-                }
-                else
-                {
-                    @item.Opcao.Descricao
-                }
-            </dd>
-            i++;
-        }
+                    @{int i = 1; }
+                    @foreach (var item in Model.Resposta)
+                    {
+                        <dt>
+                            Pergunta @i
+                        </dt>
+                        <dd>
+                            <b>@item.Pergunta.Descricao</b>
+                        </dd>
+                        <dt>
+                            Resposta
+                        </dt>
+                        <dd>
+                            @if (item.Conclusao != null)
+                            {
+                                @item.Conclusao
+                            }
+                            else
+                            {
+                                @item.Opcao.Descricao
+                            }
+                        </dd>
+                        i++;
+                    }
 
-    </dl>
+                </dl>
+            </div>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
