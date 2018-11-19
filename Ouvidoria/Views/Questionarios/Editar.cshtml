@@ -42,7 +42,7 @@
             <div class="col-md-10">
                 <div class="col-md-12">
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.DataInicio, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                        @Html.EditorFor(model => model.DataInicio, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
                         @Html.ValidationMessageFor(model => model.DataInicio, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -54,7 +54,7 @@
             <div class="col-md-10">
                 <div class="col-md-12">
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.DataFim, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                        @Html.EditorFor(model => model.DataFim, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
                         @Html.ValidationMessageFor(model => model.DataFim, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -204,11 +204,5 @@
 
 @section Scripts {
     <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
     <script src="~/Scripts/EditarQuestionario.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $('.datepicker').datepicker();
-        });
-    </script>
 }

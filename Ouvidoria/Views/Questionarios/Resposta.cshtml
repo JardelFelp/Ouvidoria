@@ -1,0 +1,67 @@
+﻿@model Ouvidoria.Models.Retorno
+
+@{
+    ViewBag.Title = "Resposta";
+}
+
+<h2>Resposta</h2>
+
+<div>
+    <h4>Retorno</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Questionario.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Questionario.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataRetorno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataRetorno)
+        </dd>
+
+        @{int i = 1; }
+        @foreach (var item in Model.Resposta)
+        {
+            <dt>
+                Pergunta @i
+            </dt>
+            <dd>
+                <b>@item.Pergunta.Descricao</b>
+            </dd>
+            <dt>
+                Resposta
+            </dt>
+            <dd>
+                @if (item.Conclusao != null)
+                {
+                    @item.Conclusao
+                }
+                else
+                {
+                    @item.Opcao.Descricao
+                }
+            </dd>
+            i++;
+        }
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

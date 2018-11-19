@@ -21,7 +21,7 @@ namespace Ouvidoria.Filters
             if (!autorizado)
             {
                 filterContext.Controller.TempData["ErroAutorizacao"] = "Voce nao tem permissao para acessar essa pagina.";
-                filterContext.Result = new RedirectResult("Home");
+                filterContext.Result = new RedirectResult("~/Home");
             }
 
         }

@@ -57,7 +57,11 @@ namespace Ouvidoria.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Criar([Bind(Include = "id,Titulo, Descricao, DataInicio, DataFim, Pergunta, Pergunta.Opcao")] Questionario questionario)
         {
-            if (ModelState.IsValid)
+            if (questionario.DataInicio >= questionario.DataFim)
+            {
+                ModelState.AddModelError("DataFim", "A data final deve ser maior que a data inicial");
+            }
+            else if (ModelState.IsValid)
             {
                 db.Questionario.Add(questionario);
                 db.SaveChanges();
@@ -153,7 +157,7 @@ namespace Ouvidoria.Controllers
 
         [AutorizacaoFiltro("1")]
         [HttpPost]
-        public ActionResult Responder([Bind(Include = "id, idQuestionario, Respostas")] Retorno retorno)
+        public ActionResult Responder([Bind(Include = "id, idQuestionario, Resposta")] Retorno retorno)
         {
             retorno.idUsuario = Convert.ToInt32(User.Identity.GetUserId());
             if (ModelState.IsValid)
@@ -166,6 +170,46 @@ namespace Ouvidoria.Controllers
                                           .Include(x => x.Pergunta.Select(y => y.Opcao))
                                           .FirstOrDefault(x => x.id == retorno.idQuestionario);
             return View(questionario);
+        }
+
+        public ActionResult Respostas(int? id)
+        {
+            if (id == null)
+                return RedirectToAction("Index");
+
+            var retorno = db.Retorno
+                          .Include(x => x.Questionario)
+                          .Include(x => x.Usuario)
+                          .Where(x => x.idQuestionario == id)
+                          .ToList();
+
+            if (retorno == null)
+            {
+                TempData["Error"] = "Respostas nao encontradas";
+                return RedirectToAction("Index");
+            }
+            
+            return View(retorno);
+        }
+
+        public ActionResult Resposta(int? id)
+        {
+            if (id == null)
+                return RedirectToAction("Index");
+
+            var retorno = db.Retorno
+                          .Include(x => x.Questionario)
+                          .Include(x => x.Usuario)
+                          .Include(x => x.Resposta.Select(y => y.Pergunta))
+                          .Include(x => x.Resposta.Select(y => y.Opcao))
+                          .FirstOrDefault(x => x.id == id);
+            if (retorno == null)
+            {
+                TempData["Error"] = "Respostas nao encontradas";
+                return RedirectToAction("Index");
+            }
+
+            return View(retorno);
         }
 
         [AutorizacaoFiltro("2")]

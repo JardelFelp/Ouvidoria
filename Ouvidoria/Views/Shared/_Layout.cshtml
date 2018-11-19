@@ -32,6 +32,12 @@
 
                     @if (User.Identity.IsAuthenticated)
                     {
+                        <li>
+                            <a href="@Url.Action("Index", "Questionarios")">
+                                Questionários
+                                <i class="glyphicon glyphicon-comment"></i>
+                            </a>
+                        </li>
                         if (User.IsInRole("2"))
                         {
                             <li id="">
