@@ -5,45 +5,49 @@
     <script>alert("@TempData["Error"]")</script>
 }
 
-<p>
-    @Html.ActionLink("Criar um novo questionário", "Criar")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Titulo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descricao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataInicio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataFim)
-        </th>
-        <th></th>
-    </tr>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <h1>
+                <i class="glyphicon glyphicon-th-list type-gyphi"></i>
+            </h1>
+        </div>
+        <div class="col-xs-12 text-center">
+            <h1 class="name-giphy">Questionários</h1>
+        </div>
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Titulo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataInicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataFim)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Editar", new { id=item.id }) |
-            @Html.ActionLink("Pré Visualizar", "PreVisualizar", new { id=item.id })
-        </td>
-    </tr>
-}
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="list-group">
+                @{ int index = 0; }
 
-</table>
+                @foreach (var item in Model)
+                {
+                    string estilo = "white";
+                    if (@index % 2 == 0)
+                    {
+                        estilo = "#eaeaea";
+                    }
+
+                    <li class="list-group-item" style="background: @estilo">
+                        <h4 class="list-group-item-heading"><b>Tipo:       </b>@item.Titulo</h4>
+                        <p>@item.Descricao</p>
+                        <small>De @item.DataInicio até @item.DataFim</small>
+                            
+                        <p class="list-group-item-text">    <b>Descrição:  </b>@item.Descricao</p>
+                        
+                        @Html.ActionLink("Editar", "Editar", new { id = item.id }) |
+                        @Html.ActionLink("Pré Visualizar", "PreVisualizar", new { id = item.id })
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="text-align: right">
+                @Html.ActionLink("Novo Questionário", "Criar", null, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+</div>
