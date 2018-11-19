@@ -101,8 +101,6 @@
     });
 
     $("#btn-enviar").click(async function (e) {
-       //e.preventDefault();
-        console.log("Olá");
         await remover();
         await $("#form").submit();
     });

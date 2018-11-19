@@ -131,7 +131,7 @@ namespace Ouvidoria.Controllers
                              .Include(x => x.Pergunta.Select(y => y.Opcao))
                              .FirstOrDefault(x => x.id == questionario.id);
 
-            return View();
+            return View(questionario);
         }
 
         [AutorizacaoFiltro("1")]
