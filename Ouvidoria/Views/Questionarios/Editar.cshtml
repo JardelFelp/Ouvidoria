@@ -67,7 +67,7 @@
                 @for (int i = 0; i < Model.Pergunta.Count; i++)
                 {
                     <div class="form-group">
-                        <div class="col-md-12 linhas" id="Perguntas[@i]" opcoes="@Model.Pergunta[i].Opcao.Count">
+                        <div class="col-md-12 linhas" id="Pergunta[@i]" opcoes="@Model.Pergunta[i].Opcao.Count">
                             <div class="col-md-12 pergunta">
                                 <div class="col-md-9">
                                     @Html.HiddenFor(model => model.Pergunta[i].id, new { @class = "hid-id" })

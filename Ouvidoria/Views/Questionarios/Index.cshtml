@@ -17,7 +17,6 @@
         </div>
     </div>
 
-<<<<<<< refs/remotes/origin/fontes
     <div class="row">
         <div class="col-md-12">
             <ul class="list-group">
@@ -38,47 +37,24 @@
                             
                         <p class="list-group-item-text">    <b>Descrição:  </b>@item.Descricao</p>
                         
-                        @Html.ActionLink("Editar", "Editar", new { id = item.id }) |
-                        @Html.ActionLink("Pré Visualizar", "PreVisualizar", new { id = item.id })
+                        @if (User.IsInRole("2"))
+                        {
+                            <td>
+                                @Html.ActionLink("Editar", "Editar", new { id = item.id }) |
+                                @Html.ActionLink("Pré Visualizar", "PreVisualizar", new { id = item.id }) |
+                                @Html.ActionLink("Respostas", "Respostas", new { id = item.id }) 
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                @Html.ActionLink("Responder", "Responder", new { id = item.id })
+                            </td>
+                        }
                     </li>
                 }
             </ul>
         </div>
-=======
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Titulo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descricao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataInicio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataFim)
-            </td>
-            @if (User.IsInRole("2"))
-            {
-                <td>
-                    @Html.ActionLink("Editar", "Editar", new { id = item.id }) |
-                    @Html.ActionLink("Pré Visualizar", "PreVisualizar", new { id = item.id }) |
-                    @Html.ActionLink("Respostas", "Respostas", new { id = item.id }) 
-                </td>
-            }
-            else
-            {
-                <td>
-                    @Html.ActionLink("Responder", "Responder", new { id = item.id })
-                </td>
-            }
-
-        </tr>
-    }
->>>>>>> Backend questionário finalizado
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10" style="text-align: right">
                 @Html.ActionLink("Novo Questionário", "Criar", null, new { @class = "btn btn-primary" })
