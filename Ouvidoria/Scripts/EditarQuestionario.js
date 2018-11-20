@@ -27,14 +27,13 @@
             if (parseInt($(this).parent().parent().parent().attr('opcoes')) > 0) {
                 $(this).parent().parent().parent().find('.opcoes').each(function () {
                     if ($(this).attr('data-id')) {
-                        opcoes.push(parseInt($(this).attr('data-id')));              
+                        opcoes.push(parseInt($(this).attr('data-id')));
                         var tamanho = opcoes.length - 1;
                         $("#arrayOpcoes").append('<input type="number" name="_opcoes[' + tamanho + ']" value="' + parseInt($(this).attr('data-id')) + '" />');
                     }
                 });
             }
         }
-            //$.post("/Clientes/RemoverTelefone?id=" + id);
 
         $(this).parent().parent().parent().remove();
 
@@ -61,7 +60,6 @@
 
     $("#div-Perguntas").on("click", ".btn-remover-opcao", function (e) {
         e.preventDefault();
-        console.log('oi');
         updateEvents();
         if ($(this).attr('data-id')) {
             opcoes.push(parseInt($(this).attr('data-id')));
@@ -76,7 +74,7 @@
 
         $(_id).find(".opcoes").each(function (indice, elemento) {
             $(this).find(".hid-id-opcao").attr("name", id + ".Opcao[" + indice + "].id");
-            $(elemento).find(".lbl-opcao").text("Opção " + indice + 1);
+            $(elemento).find(".lbl-opcao").text("Opção " + (indice + 1));
             $(elemento).find(".opcao").attr("name", id + ".Opcao[" + indice + "].Descricao");
         });
         updateEvents();
@@ -101,12 +99,52 @@
     });
 
     $("#btn-enviar").click(async function (e) {
-        await remover();
-        await $("#form").submit();
+        var erros = 0;
+
+        if ($("#DataFim").val() <= $("#DataInicio").val()) {
+            var span = '<span class="field-validation-valid text-danger validacao">A data final deve ser maior que a data inicial</span>';
+            $("#DataFim").parent().find(".validacao").remove();
+            $("#DataFim").parent().append(span);
+            erros = erros + 1;
+            e.preventDefault();
+        }
+        else {
+            $("#DataFim").parent().find(".validacao").remove();
+        }
+
+        $("#div-Perguntas").find(".txt-pergunta").each(function () {
+            var span = '<span class="field-validation-valid text-danger validacao">A pergunta não pode estar vazia.</span>';
+            if ($(this).val() == null || $(this).val() == "") {
+                $(this).parent().find(".validacao").remove();
+                $(this).parent().append(span);
+                erros = erros + 1;
+                e.preventDefault();
+            }
+            else {
+                $(this).parent().find(".validacao").remove();
+            }
+        });
+
+        $("#div-Perguntas").find(".opcao").each(function () {
+            var span = '<span class="field-validation-valid text-danger validacao">A opção não pode estar vazia.</span>';
+            if ($(this).val() == null || $(this).val() == "") {
+                $(this).parent().find(".validacao").remove();
+                $(this).parent().append(span);
+                erros = erros + 1;
+                e.preventDefault();
+            } else {
+                $(this).parent().find(".validacao").remove();
+            }
+        });
+
+
+        if (erros == 0) {
+            await remover();
+            await $("#form").submit();
+        }
     });
 
     async function remover() {
-        console.log("teste");
         if (opcoes.length != 0) {
             console.log(opcoes);
             await $.ajax({
@@ -116,7 +154,7 @@
                 data: JSON.stringify({ opcoes: opcoes })
             });
         }
-        
+
         if (perguntas.length != 0) {
             await $.ajax({
                 type: "POST",
@@ -126,7 +164,7 @@
             });
         }
     }
-    
+
     function updateEvents() {
         $(".ddl-tipos, .ddl-tipo").off();
 

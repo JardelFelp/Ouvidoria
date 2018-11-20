@@ -10,13 +10,15 @@
             <hr />
             <ol class="breadcrumb">
                 <li>
-                    @Html.ActionLink("Departamentos", "Index", "Departamentos")
+                    @Html.ActionLink("Questionários", "Index", "Questionarios")
                 </li>
-                <li class="active" id="liPagina">Detalhes</li>
+                <li class="active" id="liPagina">Pré Visualizar</li>
             </ol>
 
             <div class="jumbotron" style="font-size: 16px !important;">
                 <h2 class="text-center">@Html.DisplayFor(model => model.Titulo)</h2>
+                <br />
+                <small>@Html.DisplayFor(model => model.Descricao)</small>
                 <br />
                 <br />
 

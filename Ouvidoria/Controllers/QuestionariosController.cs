@@ -18,12 +18,15 @@ namespace Ouvidoria.Controllers
             var user = db.Usuario.Find(Convert.ToInt32(User.Identity.GetUserId()));
             if (user.idUsuarioPerfil == 1)
             {
-                
-                var respondidos = db.Retorno.Where(x => x.idUsuario == user.id).Select(x => x.idQuestionario).ToArray();
+                var respondidos = db.Retorno
+                                    .Where(x => x.idUsuario == user.id)
+                                    .Select(x => x.idQuestionario)
+                                    .ToArray();
+
                 return View(db.Questionario
                               .Where(x => !respondidos.Contains(x.id)
-                                       && x.DataFim > DateTime.Now
-                                       && x.DataInicio < DateTime.Now)
+                                       && x.DataFim >= DateTime.Now
+                                       && x.DataInicio <= DateTime.Now)
                               .ToList());
             }
             return View(db.Questionario.ToList());
@@ -34,6 +37,7 @@ namespace Ouvidoria.Controllers
         {
             if (id == null)
                 return RedirectToAction("Index");
+
             Questionario questionario = db.Questionario
                                           .Include(x => x.Pergunta.Select(y => y.Opcao))
                                           .FirstOrDefault(x => x.id == id);
@@ -102,7 +106,11 @@ namespace Ouvidoria.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Editar([Bind(Include = "id,Titulo, Descricao, DataInicio, DataFim, Pergunta, Pergunta.Opcao")] Questionario questionario)
         {
-            if (ModelState.IsValid)
+            if (questionario.DataInicio >= questionario.DataFim)
+            {
+                ModelState.AddModelError("DataFim", "A data final deve ser maior que a data inicial");
+            }
+            else if (ModelState.IsValid)
             {
                 foreach (var pergunta in questionario.Pergunta)
                 {
@@ -144,8 +152,8 @@ namespace Ouvidoria.Controllers
             }
 
             Questionario questionario = db.Questionario
-                                      .Include(x => x.Pergunta.Select(y => y.Opcao))
-                                      .FirstOrDefault(x => x.id == id);
+                                          .Include(x => x.Pergunta.Select(y => y.Opcao))
+                                          .FirstOrDefault(x => x.id == id);
 
             if (questionario == null)
             {
@@ -180,10 +188,10 @@ namespace Ouvidoria.Controllers
                 return RedirectToAction("Index");
 
             var retorno = db.Retorno
-                          .Include(x => x.Questionario)
-                          .Include(x => x.Usuario)
-                          .Where(x => x.idQuestionario == id)
-                          .ToList();
+                            .Include(x => x.Questionario)
+                            .Include(x => x.Usuario)
+                            .Where(x => x.idQuestionario == id)
+                            .ToList();
 
             if (retorno == null)
             {

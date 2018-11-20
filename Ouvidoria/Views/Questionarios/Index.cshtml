@@ -25,7 +25,7 @@
                 @foreach (var item in Model)
                 {
                     string estilo = "white";
-                    if (@index % 2 == 0)
+                    if (index % 2 == 0)
                     {
                         estilo = "#eaeaea";
                     }
@@ -35,25 +35,30 @@
                             <b>Título: </b>@item.Titulo
                             @if (User.IsInRole("2"))
                             {
-                                    @Html.ActionLink("Editar", "Editar", new { id = item.id }, new { @class = "btn btn-primary btn-sm pull-right" })
-                                    @Html.ActionLink("Pré Visualizar", "PreVisualizar", new { id = item.id }, new { @class = "btn btn-default btn-sm pull-right" })
-                                    @Html.ActionLink("Respostas", "Respostas", new { id = item.id }, new { @class = "btn btn-success btn-sm pull-right" })
+                                @Html.ActionLink("Editar", "Editar", new { id = item.id }, new { @class = "btn btn-primary btn-sm pull-right" })
+                                @Html.ActionLink("Pré Visualizar", "PreVisualizar", new { id = item.id }, new { @class = "btn btn-default btn-sm pull-right" })
+                                @Html.ActionLink("Respostas", "Respostas", new { id = item.id }, new { @class = "btn btn-success btn-sm pull-right" })
                             }
                             else
                             {
-                                    @Html.ActionLink("Responder", "Responder", new { id = item.id }, new { @class = "btn btn-primary btn-sm pull-right" })
+                                @Html.ActionLink("Responder", "Responder", new { id = item.id }, new { @class = "btn btn-primary btn-sm pull-right" })
                             }
                         </h4>
                         <p>@item.Descricao</p>
-                        <small>De @item.DataInicio até @item.DataFim</small>
+                        <small>De <b>@item.DataInicio.ToShortDateString()</b> até <b>@item.DataFim.ToShortDateString()</b></small>
                     </li>
+                    index++;
                 }
             </ul>
         </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10" style="text-align: right">
-                @Html.ActionLink("Novo Questionário", "Criar", null, new { @class = "btn btn-primary" })
+        @if (User.IsInRole("2"))
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10" style="text-align: right">
+                    @Html.ActionLink("Novo Questionário", "Criar", null, new { @class = "btn btn-primary" })
+                </div>
             </div>
-        </div>
+        }
+
     </div>
 </div>

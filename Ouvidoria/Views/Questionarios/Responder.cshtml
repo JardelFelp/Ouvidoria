@@ -12,6 +12,8 @@
             <div class="jumbotron" style="font-size: 16px !important;">
                 <h2 class="text-center">@Html.DisplayFor(model => model.Titulo)</h2>
                 <br />
+                <small>@Html.DisplayFor(model => model.Descricao)</small>
+                <br />
                 <br />
                 @using (Html.BeginForm())
                 {
@@ -46,13 +48,9 @@
                         i++;
                         j++;
                     }
-                    <input class="btn btn-primary" type="submit" name="Enviar Resposta" value="Responder" />
+                    <input class="btn btn-primary pull-right" type="submit" value="Responder" />
                 }
             </div>
-            <p>
-                @Html.ActionLink("Edit", "Edit", new { id = Model.id }, new { @class = "btn btn-primary btn-sm" })
-                @Html.ActionLink("Back to List", "Index", new { id = Model.id }, new { @class = "btn btn-default btn-sm" })
-            </p>
         </div>
     </div>
 </div>

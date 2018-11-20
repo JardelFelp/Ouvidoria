@@ -78,10 +78,9 @@
     $("#btn-submit").click(function (e) {
         updateEvents();
 
-        if ($("#DataFim").val() < $("#DataInicio").val()) {
+        if ($("#DataFim").val() <= $("#DataInicio").val()) {
             var span = '<span class="field-validation-valid text-danger validacao">A data final deve ser maior que a data inicial</span>';
-            $("#DataFim").removeClass("valid");
-            $("#DataFim").addClass("is-invalid");
+            $("#DataFim").parent().find(".validacao").remove();
             $("#DataFim").parent().append(span);
             e.preventDefault();
         }
@@ -89,14 +88,22 @@
             $("#DataFim").parent().find(".validacao").remove();
         }
 
+        if ($(".descricao").val() == null || $(".descricao").val() == "") {
+            var spans = '<span class="field-validation-valid text-danger validacao">A pergunta não pode estar vazia.</span>';
+            $(".descricao").parent().find(".validacao").remove();
+            $(".descricao").parent().append(spans);
+            e.preventDefault();
+        }
+        else {
+            $(this).parent().find(".validacao").remove();
+        }
+
         $("#div-Perguntas").find(".txt-descricao").each(function () {
             var span = '<span class="field-validation-valid text-danger validacao">A pergunta não pode estar vazia.</span>';
             if ($(this).val() == null || $(this).val() == "") {
-                var existe = $(this).parent().find(".validacao");
                 $(this).parent().find(".validacao").remove();
                 $(this).parent().append(span);
                 e.preventDefault();
-                return;
             }
             else {
                 $(this).parent().find(".validacao").remove();
@@ -104,11 +111,13 @@
         });
 
         $("#div-Perguntas").find(".opcao").each(function () {
+            var span = '<span class="field-validation-valid text-danger validacao">A opção não pode estar vazia.</span>';
             if ($(this).val() == null || $(this).val() == "") {
-                $("#span-aviso").text("Por favor, preencha todos os campos.");
-                $("#span-aviso").show();
+                $(this).parent().find(".validacao").remove();
+                $(this).parent().append(span);
                 e.preventDefault();
-                return;
+            } else {
+                $(this).parent().find(".validacao").remove();
             }
         });
 
