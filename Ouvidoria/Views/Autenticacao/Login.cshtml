@@ -1,10 +1,5 @@
 ﻿@model Ouvidoria.ViewModels.LoginViewModel
 
-@{
-    ViewBag.Title = "Login";
-}
-
-
 @if (TempData["Mensagem"] != null)
 {
     <div class="alert alert-success">
@@ -15,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4 col-md-offset-4 content-cad">
@@ -48,8 +43,8 @@
 
 }
 
-
 @section  scripts{
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 }
+

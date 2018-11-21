@@ -18,7 +18,7 @@
                 @using (Html.BeginForm())
                 {
                     <input type="number" name="idQuestionario" value="@Model.id" hidden="hidden" />
-                    int i = 0, j = 1;
+                    int i = 0, j = 1, k = 0;
                     foreach (var pergunta in Model.Pergunta)
                     {
                         <div class="row">
@@ -30,10 +30,18 @@
                                     <hr />
                                     if (pergunta.Opcao != null)
                                     {
-
+                                        k = 0;
                                         foreach (var opcao in pergunta.Opcao)
                                         {
-                                            <p class="radio"><input type="radio" name="Resposta[@i].idOpcao" value="@opcao.id" /> @opcao.Descricao</p>
+                                            if (k == 0)
+                                            {
+                                                <p class="radio"><input type="radio" name="Resposta[@i].idOpcao" value="@opcao.id" checked /> @opcao.Descricao</p>
+                                            }
+                                            else
+                                            {
+                                                <p class="radio"><input type="radio" name="Resposta[@i].idOpcao" value="@opcao.id" /> @opcao.Descricao</p>
+                                            }
+                                            k++;
                                         }
                                     }
                                 }
@@ -41,16 +49,20 @@
                                 {
                                     <label class="form-control-static">@j  -  @pergunta.Descricao</label>
                                     <hr />
-                                    <textarea class="form-control" name="Resposta[@i].Conclusao" rows="3"></textarea>
+                                    <textarea class="form-control resposta" name="Resposta[@i].Conclusao" rows="3"></textarea>
                                 }
                             </div>
                         </div>
                         i++;
                         j++;
                     }
-                    <input class="btn btn-primary pull-right" type="submit" value="Responder" />
+                    <input class="btn btn-primary pull-right" type="submit" id="btn-submit" value="Responder" />
                 }
             </div>
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script type="text/javascript" src="~/Scripts/ResponderQuestionario.js"></script>
+}

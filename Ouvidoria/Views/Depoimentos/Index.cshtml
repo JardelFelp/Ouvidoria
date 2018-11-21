@@ -1,11 +1,4 @@
-﻿@if (TempData["Error"] != null)
-{
-    <script type="text/javascript">
-        alert('@TempData["Error"]');
-    </script>
-}
-
-<div class="container-fluid">
+﻿<div class="container-fluid">
     <div class="row">
         <div class="col-xs-12 text-center">
             <h1>
@@ -48,3 +41,9 @@
     </div>
 </div>
 
+@if (TempData["Error"] != null)
+{
+    <script type="text/javascript">
+        alert('@TempData["Error"]');
+    </script>
+}

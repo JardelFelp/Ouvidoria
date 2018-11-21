@@ -20,5 +20,11 @@ namespace Ouvidoria.Controllers
 
             return Json(new { respondidos, naoRespondidos }, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult getDepoimentosRegistrados()
+        {
+            var feedbacks = DepoimentoService.GetDepoimentosRegistrados();
+            return Json(new { feedbacks }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

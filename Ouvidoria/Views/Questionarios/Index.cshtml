@@ -1,10 +1,5 @@
 ﻿@model IEnumerable<Ouvidoria.Models.Questionario>
 
-@if (TempData["Error"] != null)
-{
-    <script>alert("@TempData["Error"]")</script>
-}
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-12 text-center">
@@ -62,3 +57,8 @@
 
     </div>
 </div>
+
+@if (TempData["Error"] != null)
+{
+    <script>alert("@TempData["Error"]")</script>
+}

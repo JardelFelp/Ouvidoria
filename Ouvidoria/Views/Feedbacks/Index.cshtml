@@ -1,12 +1,6 @@
 ﻿
 <link href="@Url.Content("/Content/DataTables/css/dataTables.bootstrap.min.css")" rel="stylesheet" />
 
-@if (TempData["Error"] != null)
-{
-    <script type="text/javascript">
-        alert('@TempData["Error"]');
-    </script>
-}
 
 <div class="container-fluid">
     <div class="row">
@@ -52,4 +46,11 @@
 @section Scripts{
     <script src="@Url.Content("/Scripts/DataTables/jquery.dataTables.min.js")"></script>
     <script src="@Url.Content("/Scripts/DataTables/dataTables.bootstrap.min.js")"></script>
+}
+
+@if (TempData["Error"] != null)
+{
+    <script type="text/javascript">
+        alert('@TempData["Error"]');
+    </script>
 }

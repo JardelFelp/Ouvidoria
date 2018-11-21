@@ -161,6 +161,22 @@ namespace Ouvidoria.Controllers
                 return RedirectToAction("Index");
             }
 
+            var idUsuario = Convert.ToInt32(User.Identity.GetUserId());
+            var retorno = db.Retorno
+                            .FirstOrDefault(x => x.idQuestionario == questionario.id 
+                                              && x.idUsuario == idUsuario);
+            if (retorno != null)
+            {
+                TempData["Error"] = "Questionario ja respondido";
+                return RedirectToAction("Index");
+            }
+
+            if (questionario.DataInicio > DateTime.Now || questionario.DataFim < DateTime.Now)
+            {
+                TempData["Error"] = "Questionario fora do periodo de resposta";
+                return RedirectToAction("Index");
+            }
+
             return View(questionario);
         }
 

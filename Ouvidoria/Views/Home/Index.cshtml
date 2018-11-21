@@ -1,12 +1,10 @@
 ﻿<div id="myCarousel" class="carousel slide">
-    <!-- Indicators -->
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
 
-    <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
             <div class="fill" style="background-image:url('../../img/home1.jpg');"></div>
@@ -19,7 +17,6 @@
         </div>
     </div>
 
-    <!-- Controls -->
     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
         <span class="icon-prev" style="color: white;"></span>
     </a>
@@ -313,10 +310,10 @@
         data.addColumn('string', 'Topping');
         data.addColumn('number', 'Slices');
         data.addRows([
-            ['Elogios', response.feedbacks[0]],
-            ['Sugestões', response.feedbacks[1]],
-            ['Reclamação', response.feedbacks[2]],
-            ['Denúncias', response.feedbacks[3]],
+            ['Denúncias', response.feedbacks[0]],
+            ['Elogios', response.feedbacks[1]],
+            ['Reclamações', response.feedbacks[2]],
+            ['Sugestões', response.feedbacks[3]],
         ]);
 
         var options = {
@@ -331,4 +328,3 @@
 </script>
 
 <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
-<!-- /.section-colored -->

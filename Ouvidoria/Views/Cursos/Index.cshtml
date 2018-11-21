@@ -1,14 +1,5 @@
 ﻿@model IEnumerable<Ouvidoria.Models.Curso>
 
-@if (TempData["Error"] != null)
-{
-    <script type="text/javascript">
-            alert('@TempData["Error"]');
-    </script>
-
-}
-
-
 <div class="container-fluid">
     <div class="col-md-8 col-md-offset-2" id="divInicial">
         <h1>
@@ -60,4 +51,13 @@
         </div>
     </div>
 </div>
+
+@if (TempData["Error"] != null)
+{
+    <script type="text/javascript">
+            alert('@TempData["Error"]');
+    </script>
+
+}
+
 
