@@ -1,7 +1,4 @@
-﻿@model Ouvidoria.Models.Depoimento
-@{
-    ViewBag.Title = "Elogio";
-}
+﻿@model IEnumerable<Ouvidoria.Models.Depoimento>
 
 <div class="container-fluid">
     <div class="row">
@@ -24,47 +21,55 @@
                     <button class="pull-right btn btn-primary" data-toggle="modal" data-target="#modal-elogio">
                         Visualize seus Elogios
                         <i class="glyphicon glyphicon-th-list"></i>
-                    </button> 
+                    </button>
                 </small>
             </h1>
 
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
-            <div class="form-horizontal">
-                @Html.ValidationSummary(true)
-                <div class="form-group">
-                    <label for="Titulo" class="control-label col-md-2">Título</label>
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.Titulo, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Titulo)
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true)
+                    <div class="form-group">
+                        <label for="Titulo" class="control-label col-md-2">Título</label>
+                        <div class="col-md-10">
+                            <input class="form-control" data-val="true" data-val-maxlength="Tamanho máximo de 100 caracteres"
+                                   data-val-maxlength-max="100" data-val-required="O campo Titulo é obrigatório." id="Titulo" name="Titulo" type="text" value="">
+                            <span class="field-validation-valid text-danger" data-valmsg-for="Titulo" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Descricao" class="control-label col-md-2">Descrição</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control" cols="20" data-val="true" data-val-maxlength="Tamanho máximo de 4000 caracteres"
+                                      data-val-maxlength-max="4000" data-val-required="O campo Descricao é obrigatório." id="Descricao" name="Descricao" rows="5"></textarea>
+                            <span class="field-validation-valid text-danger" data-valmsg-for="Descricao" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10 text-right">
+                            <a class="btn btn-default" href="/">Voltar</a>
+                            <input type="submit" value="Salvar" class="btn btn-primary" id="btnSalvar" />
+                        </div>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="Descricao" class="control-label col-md-2">Descrição</label>
-                    <div class="col-md-10">
-                        @Html.TextAreaFor(model => model.Descricao, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Descricao)
-                    </div>
-                </div>
-
-                <div class="form-group" hidden="hidden">
-                    @Html.TextBoxFor(model => model.idTipoDepoimento)
-                </div>
-
-                <div class="form-group" hidden="hidden">
-                    @Html.TextBoxFor(model => model.idUsuario)
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10 text-right">
-                        <a class="btn btn-default" href="/">Voltar</a>
-                        <input type="submit" value="Salvar" class="btn btn-primary" id="btnSalvar" />
-                    </div>
-                </div>
-            </div>
             }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-retorno">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Atenção</h4>
+            </div>
+            <div class="modal-body">
+                <h4>@TempData["Retorno"]</h4>
+            </div>
         </div>
     </div>
 </div>
@@ -78,42 +83,33 @@
             </div>
             <div class="modal-body">
                 <div class="list-group">
-                    <div class="list-group-item">
-                        <h4 class="list-group-item-heading">
-                            Título: Blá Blá Blá
-                            <a href="#" class="pull-right" title="Editar">
-                                <i class="glyphicon glyphicon-pencil btn btn-default"></i>
-                            </a>
-                            <a href="#" class="pull-right" title="Visualizar">
-                                <i class="glyphicon glyphicon-eye-open btn btn-primary" style="margin-right: 5px;"></i>
-                            </a>
-                        </h4>
-                        <p class="list-group-item-text">Descrição: Blá Blá Blá Blá Blá</p>
-                    </div>
-                    <div class="list-group-item">
-                        <h4 class="list-group-item-heading">
-                            Título: Blá Blá Blá
-                            <a href="#" class="pull-right" title="Editar">
-                                <i class="glyphicon glyphicon-pencil btn btn-default"></i>
-                            </a>
-                            <a href="#" class="pull-right" title="Visualizar">
-                                <i class="glyphicon glyphicon-eye-open btn btn-primary" style="margin-right: 5px;"></i>
-                            </a>
-                        </h4>
-                        <p class="list-group-item-text">Descrição: Blá Blá Blá Blá Blá</p>
-                    </div>
-                    <div class="list-group-item">
-                        <h4 class="list-group-item-heading">
-                            Título: Blá Blá Blá
-                            <a href="#" class="pull-right" title="Editar">
-                                <i class="glyphicon glyphicon-pencil btn btn-default"></i>
-                            </a>
-                            <a href="#" class="pull-right" title="Visualizar">
-                                <i class="glyphicon glyphicon-eye-open btn btn-primary" style="margin-right: 5px;"></i>
-                            </a>
-                        </h4>
-                        <p class="list-group-item-text">Descrição: Blá Blá Blá Blá Blá</p>
-                    </div>
+                    @foreach (var item in Model)
+                    {
+                        <div class="list-group-item">
+                            <h4 class="list-group-item-heading">
+                                Titulo: @Html.DisplayFor(modelItem => item.Titulo)
+                                @if (item.Respondido == false)
+                                {
+                                    <a href="@Url.Action("EditarDepoimento", "Ouvidoria", new { id = item.id })" class="pull-right" title="Editar">
+                                        <i class="glyphicon glyphicon-pencil btn btn-default"></i>
+                                    </a>
+                                    <a href="@Url.Action("ExcluirDepoimento", "Ouvidoria", new { id = item.id })" class="pull-right" title="Excluir">
+                                        <i class="glyphicon glyphicon-trash btn btn-primary" style="margin-right: 5px;"></i>
+                                    </a>
+                                }
+
+                            </h4>
+                            <p class="list-group-item-text">Descrição: @item.Descricao</p>
+                            @if (item.Respondido == true)
+                            {
+                                <p class="list-group-item-text">Descrição: @item.Resposta</p>
+                            }
+                            else
+                            {
+                                <br />
+                            }
+                        </div>
+                    }
                 </div>
             </div>
             <div class="modal-footer">
@@ -124,4 +120,14 @@
 </div>
 
 <script src="@Url.Content("/Scripts/jquery-3.3.1.js")"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
+
+<script>
+    $(document).ready(function () {
+        if ("@TempData["Retorno"]" != "") {
+            $("#modal-retorno").modal();
+        }
+    });
+</script>

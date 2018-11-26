@@ -1,7 +1,6 @@
-﻿@model Ouvidoria.Models.Feedback
-@{
-    ViewBag.Title = "Ouvidoria";
-}
+﻿@model IEnumerable<Ouvidoria.Models.Feedback>
+
+
 
 <div class="container-fluid">
     <div class="row">
@@ -38,7 +37,6 @@
                         <label for="idDepartamento" class="control-label col-md-2">Selecione o Departamento</label>
                         <div class="col-md-10">
                             @Html.DropDownList("idDepartamento", (IEnumerable<SelectListItem>)ViewBag.PriorityID, new { @class = "form-control btn btn-default" })
-                            @Html.ValidationMessageFor(model => model.idDepartamento)
                         </div>
                     </div>
 
@@ -50,13 +48,14 @@
                             </label>
                         </div>
                         <div class="col-md-10">
-                            @Html.TextAreaFor(model => model.Comentario, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Comentario)
+                            <textarea class="form-control" id="Comentario" name="Comentario" rows="4" cols="20" data-val="true"></textarea>
+                            <span class="field-validation-valid" data-valmsg-for="Comentario" data-valmsg-replace="true"></span>
                         </div>
                     </div>
 
                     <div class="form-group" hidden="hidden">
-                        @Html.EditorFor(model => model.Avaliacao)
+                        <input class="form-control" data-val="true"
+                               data-val-required="Campo obrigatório" id="Avaliacao" name="Avaliacao" type="number" value="">
                     </div>
 
                     <div class="form-group estrelas">
@@ -73,7 +72,9 @@
                             <input type="radio" id="estrela_quatro" name="estrela" value="4" />
                             <label for="estrela_cinco"><i class="fas fa-star" id="icon_estrela_cinco"></i></label>
                             <input type="radio" id="estrela_cinco" name="estrela" value="5" />
-                            @Html.ValidationMessageFor(model => model.Avaliacao)
+                            <br>
+                            <span class="field-validation-valid text-danger" data-valmsg-for="estrela_cinco" data-valmsg-replace="true"></span>
+
                         </div>
                     </div>
 
@@ -89,6 +90,20 @@
     </div>
 </div>
 
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-retorno">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Atenção</h4>
+            </div>
+            <div class="modal-body">
+                <h4>@TempData["Retorno"]</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="modal-feedback" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -98,42 +113,29 @@
             </div>
             <div class="modal-body">
                 <div class="list-group">
-                    <div class="list-group-item">
-                        <h4 class="list-group-item-heading">
-                            Título: Blá Blá Blá
-                            <a href="#" class="pull-right" title="Editar">
-                                <i class="glyphicon glyphicon-pencil btn btn-default"></i>
-                            </a>
-                            <a href="#" class="pull-right" title="Visualizar">
-                                <i class="glyphicon glyphicon-eye-open btn btn-primary" style="margin-right: 5px;"></i>
-                            </a>
-                        </h4>
-                        <p class="list-group-item-text">Descrição: Blá Blá Blá Blá Blá</p>
-                    </div>
-                    <div class="list-group-item">
-                        <h4 class="list-group-item-heading">
-                            Título: Blá Blá Blá
-                            <a href="#" class="pull-right" title="Editar">
-                                <i class="glyphicon glyphicon-pencil btn btn-default"></i>
-                            </a>
-                            <a href="#" class="pull-right" title="Visualizar">
-                                <i class="glyphicon glyphicon-eye-open btn btn-primary" style="margin-right: 5px;"></i>
-                            </a>
-                        </h4>
-                        <p class="list-group-item-text">Descrição: Blá Blá Blá Blá Blá</p>
-                    </div>
-                    <div class="list-group-item">
-                        <h4 class="list-group-item-heading">
-                            Título: Blá Blá Blá
-                            <a href="#" class="pull-right" title="Editar">
-                                <i class="glyphicon glyphicon-pencil btn btn-default"></i>
-                            </a>
-                            <a href="#" class="pull-right" title="Visualizar">
-                                <i class="glyphicon glyphicon-eye-open btn btn-primary" style="margin-right: 5px;"></i>
-                            </a>
-                        </h4>
-                        <p class="list-group-item-text">Descrição: Blá Blá Blá Blá Blá</p>
-                    </div>
+                    @foreach (var item in Model)
+                    {
+                        <div class="list-group-item">
+                            <h4 class="list-group-item-heading">
+                                Departamento: @Html.DisplayFor(modelItem => item.Departamento.Nome)
+                                @for (var i = item.Avaliacao; i > 0; i--)
+                                {
+                                    <i class="fas fa-star pull-right" style="margin-right: 5px;"></i>
+                                }
+                            </h4>
+                            @if (item.Comentario != null)
+                            {
+                                <p class="list-group-item-text">
+                                    Comentário: @Html.DisplayFor(modelItem => item.Comentario)
+                                </p>
+                            }
+                            else
+                            {
+                                <br />
+                            }
+                        </div>
+                    }
+
                 </div>
             </div>
             <div class="modal-footer">
@@ -144,8 +146,10 @@
 </div>
 
 
-
 <script src="@Url.Content("/Scripts/jquery-3.3.1.js")"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
 
 <script>
     $(document).ready(function () {
@@ -154,5 +158,10 @@
         $('input[name="estrela"][type="radio"]').click(function () {
             $('#Avaliacao').val(this.value);
         });
+
+        if ("@TempData["Retorno"]" != "") {
+            $("#modal-retorno").modal();
+        }
     });
 </script>
+

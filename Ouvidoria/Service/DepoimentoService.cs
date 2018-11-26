@@ -58,6 +58,11 @@ namespace Ouvidoria.Service
             return DepoimentoRepository.RetornaDepoimentos(id);
         }
 
+        public static IEnumerable<Depoimento> RetornaDepoimentos(int id, int tipo)
+        {
+            return DepoimentoRepository.RetornaDepoimentos(id, tipo);
+        }
+
         public static string ValidaDepoimento(int? id)
         {
             return DepoimentoRepository.ValidaDepoimento(id);

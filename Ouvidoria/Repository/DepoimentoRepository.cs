@@ -68,6 +68,19 @@ namespace Ouvidoria.Repository
             }
         }
 
+        internal static IEnumerable<Depoimento> RetornaDepoimentos(int id, int tipo)
+        {
+            using (var db = new OuvidoriaContext())
+            {
+                var depoimentos = db.Depoimento
+                                .Include(d => d.TipoDepoimento)
+                                .ToList()
+                                .Where(d => d.idUsuario == id &&
+                                            d.idTipoDepoimento == tipo);
+                return depoimentos;
+            }
+        }
+
         internal static Depoimento RetornaDepoimento(int? id)
         {
             using (var db = new OuvidoriaContext())

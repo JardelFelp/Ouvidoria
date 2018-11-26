@@ -1,58 +1,65 @@
-﻿@model Ouvidoria.Models.Depoimento
-
-<div class="container-fluid content-end">
-    <div class="row" style="padding-left: 25px; padding-right: 25px; width: calc(100% - 50px)">
-        <div class="col-md-3 col-sm-4 sidebar">
-            <ul class="nav nav-stacked nav-pills" style="background-color: white;">
-                <li>
-                    @Html.ActionLink("Página In icial", "Index", "Home")
-                </li>
-                <li>
-                    @Html.ActionLink("Registre seu Feedback", "Feedback", "Ouvidoria")
-                </li>
-                <li>
-                    @Html.ActionLink("Feedbacks Registrados", "MeusFeedbacks", "Ouvidoria")
-                </li>
-                <li>
-                    @Html.ActionLink("Registre seu Depoimento", "Depoimento", "Ouvidoria")
-                </li>
-                <li>
-                    @Html.ActionLink("Depoimentos Registrados", "MeusDepoimentos", "Ouvidoria")
-                </li>
-            </ul>
-        </div>
-
-        <div class="col-md-9 col-sm-8 content-cad" id="divInicial">
-            <h1 class="page-header">
-                Ouvidoria
-                <small>Escolha ao lado a opção desejada</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li>
-                    @Html.ActionLink("Ouvidoria", "Index", "Ouvidoria")
-                </li>
-                <li class="active" id="liPagina">Inicio</li>
-            </ol>
-            <div class="col-md-8 col-lg-offset-2">
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-info">Registre seu Feedback</li>
-                    <li class="list-group-item">
-                        Deixe o seu feedback referente a uma ou mais áreas da Faculdade Antonio Meneghetti.
-                        <br />
-                        Visualize todos os feedbacks que você já registrou no sistema de Ouvidoria da AMF.
-                    </li>
-                </ul>
+﻿<section>
+    <div class="container-fluid" style="background-color: white; padding-bottom: 100px; padding-top: 50px;">
+        <div class="row">
+            <div class="col-xs-12 text-center welcome">
+                <h1 class="title">
+                    Ouvidoria
+                </h1>
+                <h3>Selecione uma das opções disponíveis</h3>
             </div>
-            <div class="col-md-8 col-lg-offset-2">
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-info">Registre seu Depoimento</li>
-                    <li class="list-group-item">
-                        Deixe o seu depoimento para a Faculdade, sendo ele uma Denúncia, Elogio, Reclamação ou Sugestão.
-                        <br />
-                        Veja, edite ou exclua os depoimentos que você já registrou no sistema e veja também a resposta deixada pelos administradores.
-                    </li>
-                </ul>
+        </div>
+    </div>
+</section>
+<div class="section">
+    <div class="container-fluid" style="background-image: linear-gradient(#04519b, #044687 60%, #033769)">
+        <div class="row icons">
+            <div class="col-md-2 col-xs-12 col-sm-6 col-xs-offset-0 col-sm-offset-0">
+                <a class="col-xs-12 item btn-active" href="@Url.Action("Index", "Questionarios")">
+                    <h1><i class="glyphicon glyphicon-comment"></i></h1>
+                    <h3>Questionários </h3>
+                    <p>Responda os questionários disponíveis!</p>
+                </a>
+            </div>
+            <div class="col-md-2 col-xs-12 col-sm-6 col-xs-offset-0 col-sm-offset-0">
+                <a class="col-xs-12 item btn-active" href="@Url.Action("Feedback", "Ouvidoria")">
+                    <h1><i class="glyphicon glyphicon-star"></i></h1>
+                    <h3>Feedback </h3>
+                    <p>Faça seu Feedback de algum departamento!</p>
+                </a>
+            </div>
+            <div class="col-md-2 col-xs-12 col-sm-6">
+                <a class="col-xs-12 item btn-active" href="@Url.Action("Elogio", "Ouvidoria")">
+                    <h1><i class="fa fa-thumbs-up"></i></h1>
+                    <h3>Elogie </h3>
+                    <p>Faça um elogio aos lanches da Iara Café!</p>
+                </a>
+            </div>
+            <div class="col-md-2 col-xs-12 col-sm-6">
+                <a class="col-xs-12 item btn-active" href="@Url.Action("Sugestao", "Ouvidoria")">
+                    <h1><i class="fa fa-lightbulb"></i></h1>
+                    <h3>Sugestione </h3>
+                    <p>Faça uma sugestão para a instituição!</p>
+                </a>
+            </div>
+            <div class="col-md-2 col-xs-12 col-sm-6">
+                <a class="col-xs-12 item btn-active" href="@Url.Action("Reclamacao", "Ouvidoria")">
+                    <h1><i class="fa fa-frown"></i></h1>
+                    <h3>Reclame</h3>
+                    <p>Faça aqui uma reclamação daquele professor ou funcionário super legal!</p>
+                </a>
+            </div>
+            <div class="col-md-2 col-xs-12 col-sm-6 col-md-offset-0 col-xs-offset-0 col-sm-offset-3">
+                <a class="col-xs-12 item btn-active" href="@Url.Action("Denuncia", "Ouvidoria")">
+                    <h1><i class="fa fa-bullhorn"></i></h1>
+                    <h3>Denuncie </h3>
+                    <p>Faça aqui suas denúncias de abuso feita por aquele professor que tirou sua nota! </p>
+                </a>
             </div>
         </div>
     </div>
 </div>
+
+@if(TempData["Error"] != null)
+{
+    <script>alert("@TempData["Error"]")</script>
+}

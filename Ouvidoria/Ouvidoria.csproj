@@ -1863,10 +1863,7 @@
     <Content Include="webfonts\fa-solid-900.ttf" />
     <Content Include="webfonts\fa-solid-900.woff" />
     <Content Include="webfonts\fa-solid-900.woff2" />
-    <Content Include="Views\Ouvidoria\Depoimento.cshtml" />
     <Content Include="Views\Ouvidoria\Feedback.cshtml" />
-    <Content Include="Views\Ouvidoria\MeusFeedbacks.cshtml" />
-    <Content Include="Views\Ouvidoria\MeusDepoimentos.cshtml" />
     <Content Include="Views\Ouvidoria\EditarDepoimento.cshtml" />
     <Content Include="Views\Ouvidoria\ExcluirDepoimento.cshtml" />
     <Content Include="Views\Usuarios\Edit.cshtml" />

@@ -1,32 +1,9 @@
 ﻿@model Ouvidoria.Models.Depoimento
-@{
-    ViewBag.Title = "Ouvidoria";
-}
+
 
 <div class="container-fluid content-end">
-    <div class="row" style="padding-left: 25px; padding-right: 25px; width: calc(100% - 50px)">
-        <div class="col-md-3 col-sm-4 sidebar">
-            <ul class="nav nav-stacked nav-pills" style="background-color: white;">
-                <li>
-                    @Html.ActionLink("Página Inicial", "Index", "Home")
-                </li>
-                <li>
-                    @Html.ActionLink("Registre seu Feedback", "Feedback", "Ouvidoria")
-                </li>
-                <li>
-                    @Html.ActionLink("Feedbacks Registrados", "MeusFeedbacks", "Ouvidoria")
-                </li>
-                <li>
-                    @Html.ActionLink("Registre seu Depoimento", "Depoimento", "Ouvidoria")
-                </li>
-                <li>
-                    @Html.ActionLink("Depoimentos Registrados", "MeusDepoimentos", "Ouvidoria")
-                </li>
-            </ul>
-        </div>
-
-
-        <div class="col-md-9 col-sm-8 content-cad" id="divFormulario">
+    <div class="row" >
+        <div class="col-md-10 col-md-offset-1 content-cad" id="divFormulario">
             <h1 class="page-header">
                 Ouvidoria
                 <small id="smTipo">Editar Depoimento</small>
@@ -70,7 +47,6 @@
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-9" style="text-align: right">
-                            <button class="btn btn-default">@Html.ActionLink("Voltar", "Index")</button>
                             <input type="submit" value="Salvar Alteração" class="btn btn-primary" id="btnSalvar" />
                         </div>
                     </div>
